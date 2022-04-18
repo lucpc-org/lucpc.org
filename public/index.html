@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico">
+    <title>Jake's Projects</title>
+
+    <!-- update the version number as needed -->
+    <!-- <script defer src="/__/firebase/9.6.11/firebase-app-compat.js"></script> -->
+    <!-- include only the Firebase features as you need -->
+    <!-- <script defer src="/__/firebase/9.6.11/firebase-auth-compat.js"></script> -->
+    <!-- <script defer src="/__/firebase/9.6.11/firebase-database-compat.js"></script> -->
+    <!-- <script defer src="/__/firebase/9.6.11/firebase-firestore-compat.js"></script> -->
+    <!-- <script defer src="/__/firebase/9.6.11/firebase-functions-compat.js"></script> -->
+    <!-- <script defer src="/__/firebase/9.6.11/firebase-messaging-compat.js"></script> -->
+    <!-- <script defer src="/__/firebase/9.6.11/firebase-storage-compat.js"></script> -->
+    <!-- <script defer src="/__/firebase/9.6.11/firebase-analytics-compat.js"></script> -->
+    <!-- <script defer src="/__/firebase/9.6.11/firebase-remote-config-compat.js"></script> -->
+    <!-- <script defer src="/__/firebase/9.6.11/firebase-performance-compat.js"></script> -->
+    <!-- 
+      initialize the SDK after all desired features are loaded, set useEmulator to false
+      to avoid connecting the SDK to running emulators.
+    -->
+    <!-- <script defer src="/__/firebase/init.js?useEmulator=true"></script> -->
+
+  </head>
+  <body>
+    <script type="text/javascript" src="index.js"></script>
+
+    <div id="page-container">
+      <h1 id="greeting">Welcome</h1>
+      <h2 id="subtitle">This is my project hosting site.</h2>
+
+      <div id="social-links">
+        <a class="social-link" href="https://github.com/jakehffn">@GitHub</a>
+        <a class="social-link" href="https://www.linkedin.com/in/jacob-t-hoffman/">@LinkedIn</a>
+        <a class="social-link" href="https://twitter.com/jakehffn">@Twitter</a>
+      </div>
+
+      <div id="list-container">
+        <ul id="list">
+          <li class="list-elem">
+            <a href="https://projects.jakethoffman.com/ChessCoordTrainer/index.html" class="list-left">Chess Coordinate Trainer</a>
+            <p class="list-right"> - Tool to help memorize the squares on a chess board.</p>
+          </li>
+          <li class="list-elem">
+            <a href="https://projects.jakethoffman.com/SnakeGameJs/index.html" class="list-left">SnakeGameJS</a>
+            <p class="list-right"> - The classic snake game written in javascript. Honestly, not the best version of this game.</p>
+          </li>
+          <li class="list-elem">
+            <a href="https://projects.jakethoffman.com/ArchivedWebpages/OldJakethoffman/public/index.html" class="list-left">Old jakethoffman.com</a></dt>
+            <p class="list-right"> - A previous version of my personal website.</p>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div id="social-links-desktop">
+      <a class="social-link" href="https://github.com/jakehffn">@GitHub</a>
+      <a class="social-link" href="https://www.linkedin.com/in/jacob-t-hoffman/">@LinkedIn</a>
+      <a class="social-link" href="https://twitter.com/jakehffn">@Twitter</a>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const loadEl = document.querySelector('#load');
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+        // // The Firebase SDK is initialized and available here!
+        //
+        // firebase.auth().onAuthStateChanged(user => { });
+        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+        // firebase.firestore().doc('/foo/bar').get().then(() => { });
+        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
+        // firebase.messaging().requestPermission().then(() => { });
+        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+        // firebase.analytics(); // call to activate
+        // firebase.analytics().logEvent('tutorial_completed');
+        // firebase.performance(); // call to activate
+        //
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+        try {
+          let app = firebase.app();
+          let features = [
+            'auth', 
+            'database', 
+            'firestore',
+            'functions',
+            'messaging', 
+            'storage', 
+            'analytics', 
+            'remoteConfig',
+            'performance',
+          ].filter(feature => typeof app[feature] === 'function');
+          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
+        } catch (e) {
+          console.error(e);
+          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
+        }
+      });
+    </script>
+  </body>
+</html>
