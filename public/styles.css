@@ -25,6 +25,14 @@ a:hover {
     color: grey;
 }
 
+#back {
+    /* font-size: 1.2em; */
+    text-decoration: underline;
+    display: block;
+    font-weight: bold;
+    padding-bottom: 8px;
+}
+
 #page-container {
 
     padding-left: 3%;
