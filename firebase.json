@@ -4,13 +4,11 @@
   },
   "hosting": {
     "site": "projects-a3",
-    "public": "public",
+    "public": "build",
     "ignore": [
       "firebase.json",
       "**/.*",
-      "**/node_modules/**",
-      "**/BirdTimeZone.com/**",
-      "**/Jaketh.com/**"
+      "**/node_modules/**"
     ]
   }
 }

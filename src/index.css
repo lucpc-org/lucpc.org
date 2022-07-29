@@ -1,0 +1,16 @@
+@tailwind base;
+
+@layer base {
+  body {
+    @apply h-screen;
+    @apply bg-black;
+    @apply text-white;
+  }
+
+  #root {
+    @apply h-full;
+  }
+}
+
+@tailwind components;
+@tailwind utilities;
