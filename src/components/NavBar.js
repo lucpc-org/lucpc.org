@@ -9,14 +9,8 @@ export default function NavBar(props) {
   // const [navbarOpen, setNavbarOpen] = React.useState(false);
   const { currentUser } = useContext(AuthContext);
 
-  if (currentUser) {
-    console.log('test')
-  } else {
-    console.log('not test')
-  }
-
   return (
-    <div className="h-full w-full">
+    <div className="w-full fixed">
 
       <div className="flex flex-row justify-between p-8">
         <h1 className="font-bold text-xl">Words</h1>
