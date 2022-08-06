@@ -17,7 +17,7 @@ export default function Register() {
     const { email, password } = e.target.elements
     try {
       firebaseConfig.auth().createUserWithEmailAndPassword(email.value, password.value);
-      // setCurrentUser(true);
+
     } catch (error) {
       alert(error);
     }

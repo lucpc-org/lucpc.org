@@ -2,14 +2,109 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../components/auth/AuthProvider";
 
+import firebaseConfig from "../config";
+import { 
+  getDatabase,
+  ref,
+  set,
+  push,
+  get 
+} from "firebase/database";
+
 import NavBar from "../components/NavBar";
+
+
 
 function Game() {
 
   const { currentUser } = useContext(AuthContext);
+  const db = getDatabase(firebaseConfig);
 
   const submitWord = (e) => {
-    alert("Nice one! I'll consider it.");
+
+    e.preventDefault();
+
+    var { word } = e.target.elements;
+    var enteredWord = word.value.toUpperCase();
+
+    // Clear box
+    word.value = '';
+
+    const wordsRef = ref(db, 'words/' + enteredWord);
+    const userStatsRef = ref(db, 'user-stats/' + currentUser.uid);
+    const userWordRef = ref(db, 'user-words/' + currentUser.uid + '/' + enteredWord);
+
+    Promise.all([
+      get(wordsRef),
+      get(userStatsRef),
+      get(userWordRef)
+    ])
+      .then((snapshots) => {
+
+        var unique = true;
+        var valid = snapshots[0].exists();
+
+        if (snapshots[2].exists()) {
+
+          unique = false;
+
+          const userWordObj = snapshots[2].val();
+
+          const newUserWordObj = {
+            'num-enters': userWordObj['num-enters'] + 1
+          };
+
+          set(userWordRef, newUserWordObj);
+
+        } else if (valid) {
+
+          const initializedUserWordObj = {
+            'num-enters': 1
+          };
+
+          set(userWordRef, initializedUserWordObj);
+        }
+
+        if (valid) {
+
+          const wordObj = snapshots[0].val();
+
+          const newWordObject = {
+            'num-enters': wordObj['num-enters'] + 1,
+            'num-unique-enters': wordObj['num-unique-enters'] + ((unique) ? 1 : 0)
+          };
+
+          set(wordsRef, newWordObject);
+
+        } else {
+
+          valid = false;
+        }
+
+        if (snapshots[1].exists()) {
+
+          const statsObj = snapshots[1].val();
+
+          var newUserStats = {
+            'num-enters': statsObj['num-enters'] + 1,
+            'num-words': statsObj['num-words'] + ((unique && valid) ? 1 : 0),
+            'score': statsObj['score'] + ((unique && valid) ? 1 : 0)
+          }
+
+          set(userStatsRef, newUserStats)
+
+        } else {
+
+          const initializedUserStats = {
+            'num-enters': 1,
+            'num-words': 1,
+            'score': (unique && valid) ? 1 : 0
+          }
+
+          set(userStatsRef, initializedUserStats)
+        }
+      });
+    // const newWordRef = push(wordsRef);
   };
 
   return(
@@ -19,7 +114,7 @@ function Game() {
         (currentUser === null || currentUser === undefined) ?
           
           <></> :
-          <form onSubmit={ submitWord } autocomplete="off">
+          <form onSubmit={ submitWord } autoComplete="off">
             <input className="text-center p-1 bg-neutral-900 focus:bg-neutral-900 active:bg-neutral-900 rounded border-none focus:outline-none" 
               type="text" name="word"/>
           </form>
