@@ -4,7 +4,7 @@ export default function App() {
       <div className="flex flex-col justify-center h-full">
         <div className="h-1/4 flex flex-col justify-end mb-16">
           <h1 className="text-5xl p-2 ml-8 font-serif">Liberty University</h1>
-          <h2 className="p-2 ml-8 text-2xl font-serif">Competetive Programming Club</h2>
+          <h2 className="p-2 ml-8 text-2xl font-serif">Competitive Programming Club</h2>
         </div>
 
         <div className="flex flex-row w-full justify-around h-2/5">

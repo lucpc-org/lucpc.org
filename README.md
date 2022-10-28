@@ -1,1 +1,1 @@
-# Liberty University Competetive Programming Club Website
+# Liberty University Competitive Programming Club Website
