@@ -25,11 +25,9 @@ export default function Footer(props) {
           <button className="px-4 text-sm font-bold hover:text-shadowhover">Register</button>
           </Link>
         </> :
-        <div className="flex">
-          <button type="button" onClick={ () => firebaseConfig.auth().signOut()}>
+        <button type="button" className="px-4 text-sm font-bold hover:text-shadowhover" onClick={ () => firebaseConfig.auth().signOut()}>
           <Link to="/words/">Sign Out</Link>
-          </button>
-        </div>
+        </button>
       }
     </div>
   );
