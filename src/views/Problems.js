@@ -1,12 +1,7 @@
-export default function App() {
+export default function Problems() {
   return (
-    <div className="sm:px-16 h-auto lg:h-full w-full font-sans">
-      <div className="flex flex-col justify-center lg:h-full w-full">
-        <div className="h-1/4 flex flex-col justify-end mt-48 lg:mt-0 mb-0 lg:mb-16">
-          <h1 className="text-7xl p-2 ml-8 font-serif">Liberty University</h1>
-          <h2 className="p-2 ml-8 text-4xl font-serif">Competitive Programming Club</h2>
-        </div>
-
+    <div className="sm:px-16 h-auto flex flex-col justify-center lg:h-full w-full">
+        <h1 className="mt-48 lg:mt-0 text-7xl p-2 ml-8 font-serif">Problems</h1>
         <div className="flex flex-col lg:flex-row w-full justify-around lg:justify-between xl:justify-around items-center mt-8 mb-48 lg:mb-0 lg:m-0 lg:items-stretch lg:h-fit xl:h-2/5">
           {[
             {name: "Purpose", 
@@ -26,7 +21,7 @@ export default function App() {
               </div>
             )}
         </div>
-      </div>
     </div>
+      
   );
 }

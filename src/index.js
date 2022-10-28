@@ -13,12 +13,15 @@ import AuthProvider from './components/auth/AuthProvider.js';
 
 import './index.css';
 import App from './views/App.js';
-import Words from './views/Words.js';
 import Login from "./views/auth/Login.js"
 import Register from "./views/auth/Register.js"
 
-import NavBar from './components/NavBar';
-import Footer from './components/Footer';
+import About from './views/About.js';
+import Leaderboard from './views/Leaderboard.js';
+import Problems from './views/Problems.js';
+
+import NavBar from './components/NavBar.js';
+import Footer from './components/Footer.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -28,12 +31,17 @@ root.render(
       <AuthProvider>
         <NavBar />
         <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="/words" element={<Words />} />
+          
           {/* <Route path="/words/auth/*" element={<Auth />} /> */}
-          <Route path="/words/auth/login" element={ <Login /> } />
-          <Route path="/words/auth/register" element={ <Register /> } />
-          <Route path="/words/auth" element={ <Navigate replace to="/words/auth/login" /> } />
+          <Route path="/auth/login/" element={ <Login /> } />
+          <Route path="/auth/register/" element={ <Register /> } />
+          <Route path="/auth/" element={ <Navigate replace to="/auth/login" /> } />
+
+          <Route path="/about" element={ <About /> } />
+          <Route path="/leaderboard" element={ <Leaderboard /> } />
+          <Route path="/problems" element={ <Problems /> } />
+
+          <Route path="/" element={<App />} />
           <Route path="*" element={<App />} />
         </Routes>
         <Footer />

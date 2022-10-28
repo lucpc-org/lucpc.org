@@ -33,7 +33,7 @@ export default function Register() {
   };
 
   if (currentUser) {
-    return <Navigate to="/words" />
+    return <Navigate to="/" />
   }
 
   return (

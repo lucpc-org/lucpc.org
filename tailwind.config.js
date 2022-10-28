@@ -16,10 +16,19 @@ module.exports = {
     // },
     extend: {
       colors: {
-        background: '#2b0430',
-        shadow: '#240329',
-        shadowhover: '#1b011f',
-        text: '#e0e9e0'
+        // Greens
+        background: '#141c1a',
+        shadow: '#0f1715',
+        shadowhover: '#0a0f0e',
+
+        // Purples
+        // background: '#2b0430',
+        // shadow: '#240329',
+        // shadowhover: '#1b011f', 
+
+        // background: '#2b0430',
+        // shadow: '#240329',
+        // shadowhover: '#1b011f',
       },
       borderRadius: {
         '4xl': '2rem',
