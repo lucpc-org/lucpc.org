@@ -17,6 +17,7 @@ import Login from "./views/auth/Login.js"
 import Register from "./views/auth/Register.js"
 
 import About from './views/About.js';
+import Contact from './views/Contact.js';
 import Leaderboard from './views/Leaderboard.js';
 import Problems from './views/Problems.js';
 
@@ -38,6 +39,7 @@ root.render(
           <Route path="/auth/" element={ <Navigate replace to="/auth/login" /> } />
 
           <Route path="/about" element={ <About /> } />
+          <Route path="/contact" element={ <Contact /> } />
           <Route path="/leaderboard" element={ <Leaderboard /> } />
           <Route path="/problems" element={ <Problems /> } />
 

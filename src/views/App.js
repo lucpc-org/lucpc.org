@@ -18,10 +18,8 @@ export default function App() {
             ].map((item) => 
               <div href={item.url} className="w-full md:w-2/3 lg:w-1/3 mx-8 lg:m-0">
                 <div className="bg-shadow rounded-2xl p-4 md:p-8 lg:p-4 xl:p-8 m-4 xl:mx-16 h-full">
-                  <div className="mt-2">
-                    <h1 className="flex flex-row justify-center font-bold text-xl xl:text-3xl">{item.name}</h1>
+                    <h1 className="flex flex-row mt-2 justify-center font-bold text-xl xl:text-3xl">{item.name}</h1>
                     <p className="flex flex-column justify-center mt-8 p-2 whitespace-pre-wrap text-center leading-loose xl:text-xl">{item.desc}</p>
-                  </div>
                 </div>
               </div>
             )}

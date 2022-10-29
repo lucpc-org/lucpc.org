@@ -11,10 +11,12 @@ export default function Footer(props) {
 
   return (
     <div className="w-full mt-auto flex flex-col sm:flex-row justify-center items-center text-shadow bg-neutral-200 text-xs md:text-sm">
-      {[
-        {url: "jthoffman@liberty.edu", title: "Contact Us"},
-        {url: "https://www.liberty.edu/", title: "Liberty University"},
-      ].map((link) => {return <a href={link.url}><div className="p-2 sm:p-4 font-bold hover:text-neutral-500">{link.title}</div></a>})}
+      <Link to="/contact/">
+        <button className="p-2 sm:p-4 font-bold hover:text-neutral-500">Contact Us</button>
+      </Link>
+      <a href="https://www.liberty.edu/">
+        <div className="p-2 sm:p-4 font-bold hover:text-neutral-500">Liberty University</div>
+      </a>
       {
         (currentUser === null || currentUser === undefined) ?
         <>
