@@ -1,7 +1,7 @@
 
 export default function Problems() {
   return (
-    <div className="md:px-16 h-full flex flex-col justify-center lg:min-h-[600px] lg:h-full w-full">
+    <div className="md:px-16 min-h-full h-fit flex flex-col justify-center lg:min-h-[600px] lg:h-full w-full">
         <h1 className="mt-48 lg:mt-0 text-5xl p-2 ml-8 font-serif">Problems</h1>
         <div className="flex flex-col w-full justify-around items-center mt-8 mb-48 lg:mb-0 lg:m-0">
           {[

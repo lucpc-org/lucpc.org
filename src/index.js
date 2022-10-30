@@ -9,13 +9,8 @@ import {
   Navigate
 } from "react-router-dom"
 
-import AuthProvider from './components/auth/AuthProvider.js';
-
 import './index.css';
 import App from './views/App.js';
-import Login from "./views/auth/Login.js"
-import Register from "./views/auth/Register.js"
-
 import About from './views/About.js';
 import Contact from './views/Contact.js';
 import Leaderboard from './views/Leaderboard.js';
@@ -29,25 +24,20 @@ root.render(
   <div className="no-scrollbar h-full w-full">
   <BrowserRouter>
     <React.StrictMode>
-      <AuthProvider>
-        <NavBar />
-        <Routes>
-          
-          {/* <Route path="/words/auth/*" element={<Auth />} /> */}
-          <Route path="/auth/login/" element={ <Login /> } />
-          <Route path="/auth/register/" element={ <Register /> } />
-          <Route path="/auth/" element={ <Navigate replace to="/auth/login" /> } />
+      <NavBar />
+      <Routes>
+        
+        {/* <Route path="/words/auth/*" element={<Auth />} /> */}
 
-          <Route path="/about" element={ <About /> } />
-          <Route path="/contact" element={ <Contact /> } />
-          <Route path="/leaderboard" element={ <Leaderboard /> } />
-          <Route path="/problems" element={ <Problems /> } />
+        <Route path="/about" element={ <About /> } />
+        <Route path="/contact" element={ <Contact /> } />
+        <Route path="/leaderboard" element={ <Leaderboard /> } />
+        <Route path="/problems" element={ <Problems /> } />
 
-          <Route path="/" element={<App />} />
-          <Route path="*" element={<App />} />
-        </Routes>
-        <Footer />
-      </AuthProvider>
+        <Route path="/" element={<App />} />
+        <Route path="*" element={<App />} />
+      </Routes>
+      <Footer />
     </React.StrictMode>
   </BrowserRouter>
   </div>
