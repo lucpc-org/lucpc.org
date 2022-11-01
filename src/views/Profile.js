@@ -9,8 +9,6 @@ import {
   get 
 } from "firebase/database";
 
-
-
 export default function Profile() {
 
   const { currentUser } = useContext(AuthContext);
@@ -97,7 +95,7 @@ export default function Profile() {
     <div className="min-h-full h-fit sm:px-16 flex flex-col justify-center items-center lg:min-h-[600px] lg:h-full w-full text-neutral-200 ">
       { 
         (!(currentUser === null || currentUser === undefined) &&
-        <div className="w-full md:w-2/3">
+        <div className="w-full md:w-96">
           <form onSubmit={ handleSubmit }>
             <div className="flex flex-row items-center ml-2 md:mx-4 m-4">
               <label htmlFor="name" className="basis-1/3 text-right font-bold text-sm md:text-base">
