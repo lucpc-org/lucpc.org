@@ -9,7 +9,15 @@ import {
   Navigate
 } from "react-router-dom"
 
+
 import './index.css';
+
+import AuthProvider from './components/auth/AuthProvider.js';
+import Login from './views/auth/Login.js';
+import Register from './views/auth/Register.js';
+
+import Profile from './views/Profile.js';
+
 import App from './views/App.js';
 import About from './views/About.js';
 import Contact from './views/Contact.js';
@@ -24,20 +32,27 @@ root.render(
   <div className="no-scrollbar h-full w-full">
   <BrowserRouter>
     <React.StrictMode>
-      <NavBar />
-      <Routes>
-        
-        {/* <Route path="/words/auth/*" element={<Auth />} /> */}
+      <AuthProvider>
+        <NavBar />
+        <Routes>
+          
+          {/* <Route path="/words/auth/*" element={<Auth />} /> */}
 
-        <Route path="/about" element={ <About /> } />
-        <Route path="/contact" element={ <Contact /> } />
-        <Route path="/leaderboard" element={ <Leaderboard /> } />
-        <Route path="/problems" element={ <Problems /> } />
+          <Route path="/about" element={ <About /> } />
+          <Route path="/contact" element={ <Contact /> } />
+          <Route path="/leaderboard" element={ <Leaderboard /> } />
+          <Route path="/problems" element={ <Problems /> } />
 
-        <Route path="/" element={<App />} />
-        <Route path="*" element={<App />} />
-      </Routes>
-      <Footer />
+          <Route path="/auth/login" element={<Login />} />
+          <Route path="/auth/register" element={<Register />} />
+
+          <Route path="/profile" element={<Profile />} />
+
+          <Route path="/" element={<App />} />
+          <Route path="*" element={<App />} />
+        </Routes>
+        <Footer />
+      </AuthProvider>
     </React.StrictMode>
   </BrowserRouter>
   </div>

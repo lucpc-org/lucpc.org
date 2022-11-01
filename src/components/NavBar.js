@@ -1,6 +1,10 @@
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "./auth/AuthProvider";
 
 export default function NavBar(props) {
+
+  const { currentUser } = useContext(AuthContext);
 
   return (
     <div className="w-full fixed bg-background font-bold text-base md:text-lg">
@@ -14,6 +18,10 @@ export default function NavBar(props) {
           <Link to="/about/"><div className="px-2 md:px-4 py-6 md:py-8 hover:text-neutral-500">About</div></Link>
           <Link to="/leaderboard/"><div className="px-2 md:px-4 py-6 md:py-8  hover:text-neutral-500">Leaderboard</div></Link>
           <Link to="/problems/"><div className="px-2 md:px-4 py-6 md:py-8  hover:text-neutral-500">Problems</div></Link>
+          {
+            (!(currentUser === null || currentUser === undefined) && 
+            <Link className="my-auto" to="/profile/"><img className="rounded-full h-12 lg:h-16 hover:border" src={currentUser.providerData[0].photoURL} alt="Profile"/></Link>)
+          }
         </div>
       </div>
     </div>
