@@ -24,15 +24,23 @@ export default function Problems() {
   const { currentUser } = useContext(AuthContext);
   const db = getDatabase(firebaseConfig);
 
+  const [solvedStates, setSolvedStates] = useState([]);
+
   const completeProblem = (e) => {
 
     const mondayDate = MondayDate();
     const today = new Date();
     const userRef = ref(db, 'users/' + currentUser.uid);
 
+    let newSolvedStates = solvedStates;
+    newSolvedStates[e.target.id] = !e.target.checked;
+    setSolvedStates(newSolvedStates);
+
     Promise.all([
       get(userRef)
     ]).then((snapshots) => {
+
+      
 
       if (snapshots[0].exists()) {
 
@@ -67,7 +75,6 @@ export default function Problems() {
 
         }
 
-        console.log(userData);
 
         set(userRef, userData);
         
@@ -88,7 +95,6 @@ export default function Problems() {
         set(userRef, userData);
 
       }
-
       
     });
     
@@ -117,14 +123,23 @@ export default function Problems() {
       setProblems([easy, medium, hard]);
     });
 
-  }, []);
+    const userRef = ref(db, 'users/' + currentUser.uid);
+
+    get(userRef).then((snapshot) => {
+      setSolvedStates({
+        easy: snapshot.hasChild('problems/easy/' + mondayDate),
+        medium: snapshot.hasChild('problems/medium/' + mondayDate),
+        hard: snapshot.hasChild('problems/hard/' + mondayDate)
+      });
+    });
+
+  },[]);
   
   return (
     <div className="select-none md:px-16 min-h-full h-fit flex flex-col justify-center lg:min-h-[600px] lg:h-full w-full">
-        <h1 className="mt-48 lg:mt-0 text-5xl p-2 ml-8 font-serif">Problems</h1>
         <div className="flex flex-col w-full justify-around items-center mt-8 mb-48 lg:mb-0 lg:m-0">
-          {problems.map((item) => 
-              <div className="w-full md:w-fit lg:m-0">
+          {problems.map((item, i) => 
+              <div key={item.difficulty} className="w-full md:w-fit lg:m-0">
                 <div className="flex flex-row items-center bg-shadow rounded-2xl p-4 xl:p-8 m-4 xl:mx-16 h-fit">
                     <div>
                       <div className="w-fit h-fit"><h1 className= {"bg-" + item.difficulty + " hidden sm:flex h-fit w-fit flex-row justify-center font-bold text-base md:text-lg xl:text-2xl rounded-lg p-2 sm:px-4 mx-auto"}>{item.difficulty}</h1></div>
@@ -137,8 +152,8 @@ export default function Problems() {
                     {
                       (!(currentUser === null || currentUser === undefined) && 
                       <>
-                        <input onChange={completeProblem} type="checkbox" id={item.difficulty} value="" className="hidden peer" />
-                        <label for={item.difficulty} className="text-neutral-500 hover:text-neutral-800 peer-checked:text-easy cursor-pointer">
+                        <input onChange={completeProblem} type="checkbox" id={item.difficulty} value="" defaultChecked={solvedStates[item.difficulty]} className="hidden peer" />
+                        <label htmlFor={item.difficulty} className="text-neutral-500 hover:text-neutral-800 peer-checked:text-easy cursor-pointer">
                           <svg className="h-8 lg:h-10 p-1 pl-3" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm4.393 7.5l-5.643 5.784-2.644-2.506-1.856 1.858 4.5 4.364 7.5-7.643-1.857-1.857z"/></svg>
                         </label>
                       </>)
