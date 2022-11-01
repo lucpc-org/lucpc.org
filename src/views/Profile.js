@@ -98,28 +98,28 @@ export default function Profile() {
     <div className="min-h-full h-fit sm:px-16 flex flex-col justify-center items-center lg:min-h-[600px] lg:h-full w-full text-neutral-200 ">
       { 
         (!(currentUser === null || currentUser === undefined) &&
-        <div className="w-2/3 lg:w-2/3">
+        <div className="w-full md:w-2/3">
           <form onSubmit={ handleSubmit }>
-            <div className="flex flex-row items-center m-4">
-              <label htmlFor="name" className="basis-1/3 text-right font-bold">
+            <div className="flex flex-row items-center ml-2 md:mx-4 m-4">
+              <label htmlFor="name" className="basis-1/3 text-right font-bold text-sm md:text-base">
                 Name 
               </label>
               <input type="text" placeholder="Name" 
-                className="placeholder:text-neutral-500 text-center grow ml-8 h-8 rounded-lg bg-shadow"
+                className="placeholder:text-neutral-500 text-center grow ml-4 md:ml-8 h-8 rounded-lg bg-shadow"
                 onChange={e => setName(e.target.value)}
                 value={name}/>
             </div>
-            <div className="flex flex-row items-center m-4">
-              <label htmlFor="leetname" className="basis-1/3 text-right font-bold">
+            <div className="flex flex-row items-center ml-2 md:mx-4 m-4">
+              <label htmlFor="leetname" className="basis-1/3 text-right font-bold text-sm md:text-base">
                 LeetCode Username
               </label>
               <input type="text" placeholder="LeetCode Username" name="leetname"
-                className="placeholder:text-neutral-500 text-center grow ml-8 h-8 rounded-lg bg-shadow"
+                className="placeholder:text-neutral-500 text-center grow ml-4 md:ml-8 h-8 rounded-lg bg-shadow"
                 onChange={e => setLeetname(e.target.value)}
                 value={leetname}/>
             </div>
             <div className="flex flex-row items-center justify-center select-none">
-              <span class="font-bold m-4">Appear on Leaderboard</span>
+              <span class="font-bold m-4 text-sm md:text-base">Appear on Leaderboard</span>
               <label for="onLeaderboard" class="inline-flex relative items-center cursor-pointer">
                 <input onClick={e => setOnLeaderboard(e.target.checked)} checked={onLeaderboard} type="checkbox" value="" id="onLeaderboard" name="onLeaderboard" class="sr-only peer"/>
                 <div class="w-11 h-6 bg-shadow peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-neutral-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
