@@ -41,7 +41,8 @@ export const AuthProvider = ({ children }) => {
             userData = {
               name: currentUser.providerData[0].displayName,
               imageURL: currentUser.providerData[0].photoURL,
-              leetname: ''
+              leetname: '',
+              onLeaderboard: false
             };
           }
           

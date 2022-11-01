@@ -20,7 +20,7 @@ export default function NavBar(props) {
           <Link to="/problems/"><div className="px-2 md:px-4 py-6 md:py-8  hover:text-neutral-500">Problems</div></Link>
           {
             (!(currentUser === null || currentUser === undefined) && 
-            <Link className="my-auto" to="/profile/"><img className="rounded-full h-12 lg:h-16 hover:border" src={currentUser.providerData[0].photoURL} alt="Profile"/></Link>)
+            <Link className="my-auto" to="/profile/"><img className="rounded-full h-12 lg:h-16 hover:ring-2 hover:ring-neutral-200" src={currentUser.providerData[0].photoURL} alt="Profile"/></Link>)
           }
         </div>
       </div>

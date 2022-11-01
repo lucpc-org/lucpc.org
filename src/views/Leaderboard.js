@@ -51,9 +51,10 @@ export default function Leaderboard() {
             name: userObject.name,
             username: userObject.leetname,
             imageURL: userObject.imageURL,
-            points: points
+            points: points,
+            onLeaderboard: userObject.onLeaderboard
           };
-        })
+        }).filter(user => user.onLeaderboard)
       );
     }).catch((e) => {
       console.error('Error getting user information.')
