@@ -27,6 +27,8 @@ export default function Problems() {
 
   const completeProblem = (e) => {
 
+    console.log("Tried to change")
+
     const mondayDate = MondayDate();
     const today = new Date();
     const userRef = ref(db, 'users/' + currentUser.uid);
@@ -38,8 +40,6 @@ export default function Problems() {
     Promise.all([
       get(userRef)
     ]).then((snapshots) => {
-
-      
 
       if (snapshots[0].exists()) {
 
@@ -73,7 +73,6 @@ export default function Problems() {
           } 
 
         }
-
 
         set(userRef, userData);
         
@@ -122,15 +121,19 @@ export default function Problems() {
       setProblems([easy, medium, hard]);
     });
 
-    const userRef = ref(db, 'users/' + currentUser.uid);
+    if (!(currentUser === null || currentUser === undefined)) {
 
-    get(userRef).then((snapshot) => {
-      setSolvedStates({
-        easy: snapshot.hasChild('problems/easy/' + mondayDate),
-        medium: snapshot.hasChild('problems/medium/' + mondayDate),
-        hard: snapshot.hasChild('problems/hard/' + mondayDate)
+      const userRef = ref(db, 'users/' + currentUser.uid);
+
+      get(userRef).then((snapshot) => {
+        setSolvedStates({
+          easy: snapshot.hasChild('problems/easy/' + mondayDate),
+          medium: snapshot.hasChild('problems/medium/' + mondayDate),
+          hard: snapshot.hasChild('problems/hard/' + mondayDate)
+        });
       });
-    });
+    }
+    
 
   },[]);
   
@@ -151,7 +154,7 @@ export default function Problems() {
                     {
                       (!(currentUser === null || currentUser === undefined) && 
                       <>
-                        <input onChange={completeProblem} type="checkbox" id={item.difficulty} value="" defaultChecked={solvedStates[item.difficulty]} className="hidden peer" />
+                        <input onClick={completeProblem} type="checkbox" id={item.difficulty} value="" defaultChecked={solvedStates[item.difficulty]} className="hidden peer" />
                         <label htmlFor={item.difficulty} className="text-neutral-500 hover:text-neutral-800 peer-checked:text-easy cursor-pointer">
                           <svg className="h-8 lg:h-10 p-1 pl-3" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm4.393 7.5l-5.643 5.784-2.644-2.506-1.856 1.858 4.5 4.364 7.5-7.643-1.857-1.857z"/></svg>
                         </label>

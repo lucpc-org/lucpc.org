@@ -14,7 +14,6 @@ import './index.css';
 
 import AuthProvider from './components/auth/AuthProvider.js';
 import Login from './views/auth/Login.js';
-import Register from './views/auth/Register.js';
 
 import Profile from './views/Profile.js';
 
@@ -44,7 +43,7 @@ root.render(
           <Route path="/problems" element={ <Problems /> } />
 
           <Route path="/auth/login" element={<Login />} />
-          <Route path="/auth/register" element={<Register />} />
+          <Route path="/auth/register" element={<Login />} />
 
           <Route path="/profile" element={<Profile />} />
 

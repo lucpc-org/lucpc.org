@@ -58,12 +58,27 @@ export default function Profile() {
 
     e.preventDefault();
 
-    let userData = {
-      name: name,
-      leetname: leetname
-    };
+    get(userRef).then((snapshot) => {
 
-    set(userRef, userData);
+      let userData;
+      
+      if (snapshot.exists()) {
+
+        userData = snapshot.val();
+        userData.name = name;
+        userData.leetname = leetname;
+
+      } else {
+  
+        userData = {
+          name: name,
+          imageURL: currentUser.providerData[0].photoURL,
+          leetname: leetname
+        };
+      }
+
+      set(userRef, userData);
+    })
     
   };
 
@@ -91,7 +106,7 @@ export default function Profile() {
                 onChange={e => setLeetname(e.target.value)}
                 value={leetname}/>
             </div>
-            <div className=" mt-32 mx-auto bg-neutral-200 hover:bg-neutral-500 text-center text-shadow font-bold w-fit p-2 rounded-lg">
+            <div className="mt-32 mx-auto bg-neutral-200 hover:bg-neutral-500 text-center text-shadow font-bold w-fit p-2 rounded-lg">
               <button type="submit">
                 Update
               </button>

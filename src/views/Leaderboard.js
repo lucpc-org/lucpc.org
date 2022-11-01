@@ -66,7 +66,7 @@ export default function Leaderboard() {
         <div className="px-4 md:px-8 py-2 flex flex-row justify-between content-center font-bold text-neutral-500 w-full lg:w-3/4 xl:w-1/2">
           <h1>#</h1>
           <div className="w-12 ml-4"></div>
-          <h1 className="px-4 w-1/2 lg:w-2/3">Name</h1>
+          <h1 className="px-4 w-1/3">Name</h1>
           <h1 className="shrink flex-grow ">Username</h1>
           <h1>Points</h1>
         </div>
@@ -86,8 +86,8 @@ export default function Leaderboard() {
                 <div className={((i % 2 === 0) ? "bg-shadow" : "") + " rounded-2xl py-2 px-4 md:px-8  h-full"}>
                   <div className="flex flex-row justify-between items-center font-bold w-full">
                     <h1 className={rankColors[pos]}>{pos}</h1>
-                    <img className="ml-4 rounded-full w-12" src={currentUser.providerData[0].photoURL} alt="Profile"/>
-                    <h1 className="px-4 w-1/2 lg:w-2/3">{item.name}</h1>
+                    <img className="ml-4 rounded-full w-12" src={item.imageURL} alt="Profile"/>
+                    <h1 className="px-4 w-1/3">{item.name}</h1>
                     <h1 className="shrink flex-grow">{item.username}</h1>
                     <h1>{item.points}</h1>
                   </div>

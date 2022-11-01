@@ -5,24 +5,16 @@ import { AuthContext } from "../../components/auth/AuthProvider";
 import firebaseConfig from "../../config";
 import firebase from "firebase/compat/app";
 
+
+
 export const auth = firebaseConfig.auth();
 const Login = () => {
-
-  const handleSubmit = (e) => {
-
-    e.preventDefault();
-    const { email, password } = e.target.elements;
-    try {
-      firebaseConfig.auth().signInWithEmailAndPassword(email.value, password.value);
-    } catch (error) {
-      alert(error);
-    }
-  };
 
   const handleGoogleLogin = () => {
     try {
       const googleProvider = new firebase.auth.GoogleAuthProvider();
       auth.signInWithPopup(googleProvider);
+  
     } catch (error) {
       alert(error);
     }
