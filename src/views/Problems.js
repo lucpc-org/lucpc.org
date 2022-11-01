@@ -6,7 +6,6 @@ import {
   getDatabase,
   ref,
   set,
-  push,
   get 
 } from "firebase/database";
 
