@@ -26,9 +26,7 @@ export default function Problems() {
   const [solvedStates, setSolvedStates] = useState([]);
 
   const completeProblem = (e) => {
-
-    console.log("Tried to change")
-
+    
     const mondayDate = MondayDate();
     const today = new Date();
     const userRef = ref(db, 'users/' + currentUser.uid);
