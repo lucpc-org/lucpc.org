@@ -10,9 +10,9 @@ export default function Footer(props) {
   const { currentUser } = useContext(AuthContext);
 
   return (
-    <div className="w-full b-0 mt-auto flex flex-col sm:flex-row justify-center items-center text-shadow bg-neutral-200 text-xs md:text-sm">
+    <div className="w-full b-0 mt-auto flex flex-row justify-center items-center text-shadow bg-neutral-200 text-xs md:text-sm">
       <Link to="/contact/">
-        <button className="p-2 sm:p-4 font-bold hover:text-neutral-500">Contact Us</button>
+        <button className="px-2 py-4 sm:p-4 font-bold hover:text-neutral-500">Contact Us</button>
       </Link>
       <a href="https://www.liberty.edu/">
         <div className="p-2 sm:p-4 font-bold hover:text-neutral-500">Liberty University</div>
@@ -22,9 +22,6 @@ export default function Footer(props) {
         <>
           <Link to="/auth/login">
           <button className="p-2 sm:p-4 font-bold hover:text-neutral-500">Login</button>
-          </Link>
-          <Link to="/auth/register">
-          <button className="p-2 sm:p-4 font-bold hover:text-neutral-500">Register</button>
           </Link>
         </> :
         <button type="button" className="p-2 sm:p-4 font-bold hover:text-neutral-500" onClick={ () => firebaseConfig.auth().signOut()}>
