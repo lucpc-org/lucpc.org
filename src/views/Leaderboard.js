@@ -1,18 +1,14 @@
-import React, { useContext, useState, useEffect } from "react";
-import { AuthContext } from "../components/auth/AuthProvider";
+import React, { useState, useEffect } from "react";
 
 import firebaseConfig from "../config";
 import { 
   getDatabase,
   ref,
-  set,
-  push,
   get 
 } from "firebase/database";
 
 export default function Leaderboard() {
 
-  const { currentUser } = useContext(AuthContext);
   const db = getDatabase(firebaseConfig);
 
   const [boardStats, setBoardStats] = useState([]);
