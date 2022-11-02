@@ -148,7 +148,7 @@ export default function Profile() {
           
         </div>)
       }   
-      <div id="alert" className="relative mt-4 text-easy font-bold text-lg bg-shadowhover p-2 rounded-xl invisible">Profile Saved</div>
+      <div id="alert" className="relative mt-4 text-easy font-bold text-base lg:text-lg bg-shadowhover p-2 rounded-xl invisible">Profile Saved</div>
     </div>
        
   );
