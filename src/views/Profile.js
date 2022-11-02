@@ -60,34 +60,50 @@ export default function Profile() {
 
     e.preventDefault();
 
-    get(userRef).then((snapshot) => {
+    if (name.length >= 20 || leetname >= 20) {
 
-      let userData;
-      
-      if (snapshot.exists()) {
-
-        userData = snapshot.val();
-        userData.name = name;
-        userData.leetname = leetname;
-        userData.onLeaderboard = onLeaderboard;
-
-      } else {
-  
-        userData = {
-          name: name,
-          imageURL: currentUser.providerData[0].photoURL,
-          leetname: leetname,
-          onLeaderboard: onLeaderboard
-        };
-      }
-
-      set(userRef, userData);
-
+      document.getElementById('alert').style.color='#FF375F';
+      document.getElementById('alert').innerHTML='Name must be less than 20 characters';
       document.getElementById('alert').style.visibility='visible';
       setTimeout(() => {
         document.getElementById('alert').style.visibility='hidden';
       }, 3000);
-    })
+
+    } else {
+
+      get(userRef).then((snapshot) => {
+
+        let userData;
+        
+        if (snapshot.exists()) {
+  
+          userData = snapshot.val();
+          userData.name = name;
+          userData.leetname = leetname;
+          userData.onLeaderboard = onLeaderboard;
+  
+        } else {
+    
+          userData = {
+            name: name,
+            imageURL: currentUser.providerData[0].photoURL,
+            leetname: leetname,
+            onLeaderboard: onLeaderboard
+          };
+        }
+  
+        set(userRef, userData);
+
+        document.getElementById('alert').style.color='#43a047';
+        document.getElementById('alert').innerHTML='Profile Saved';
+        document.getElementById('alert').style.visibility='visible';
+        setTimeout(() => {
+          document.getElementById('alert').style.visibility='hidden';
+        }, 3000);
+      });
+    }
+
+    
     
   };
 

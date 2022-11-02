@@ -81,11 +81,11 @@ export default function Leaderboard() {
             return (
               <div key={item.username + '-' + i} className="w-full lg:w-3/4 xl:w-1/2">
                 <div className={((i % 2 === 0) ? "bg-shadow" : "") + " rounded-2xl py-2 px-4 md:px-8  h-full"}>
-                  <div className="flex flex-row justify-between items-center font-bold w-full">
+                  <div className="flex flex-row justify-between items-center font-bold w-full ">
                     <h1 className={rankColors[pos]}>{pos}</h1>
                     <img className="ml-4 rounded-full w-12" src={item.imageURL} alt="Profile"/>
-                    <h1 className="px-4 w-1/3">{item.name}</h1>
-                    <h1 className="shrink flex-grow">{item.username}</h1>
+                    <h1 className="px-4 w-1/3 text-ellipsis overflow-hidden">{item.name}</h1>
+                    <h1 className="shrink flex-grow text-ellipsis overflow-hidden max-h-8">{item.username}</h1>
                     <h1>{item.points}</h1>
                   </div>
                 </div>
