@@ -41,7 +41,7 @@ export default function Leaderboard() {
             }
           }
 
-          let points = numEasy + numMedium + numHard;
+          let points = numEasy + 2*numMedium + 3*numHard;
 
           return {
             name: userObject.name,
