@@ -3,6 +3,7 @@
 @layer base {
   body {
     @apply h-screen;
+    @apply innerScreenSize;
     @apply bg-background;
     @apply text-neutral-200
   }
@@ -27,4 +28,8 @@
   overflow-y: scroll;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+.innerScreenSize {
+  height: calc(var(--vh, 1vh) * 100);
 }
