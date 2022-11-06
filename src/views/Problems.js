@@ -9,13 +9,13 @@ import {
   get 
 } from "firebase/database";
 
-function MondayDate() {
+function WeekDate() {
 
   const today = new Date();
-  const first = today.getDate() - today.getDay() + 1;
+  const first = today.getDate() - today.getDay();
 
-  const monday = new Date(today.setDate(first));
-  return (monday.getFullYear() + '-' + (monday.getMonth() + 1) + '-' + monday.getDate())
+  const sunday = new Date(today.setDate(first));
+  return (sunday.getFullYear() + '-' + (sunday.getMonth() + 1) + '-' + sunday.getDate())
 }
 
 export default function Problems() {
@@ -27,7 +27,7 @@ export default function Problems() {
 
   const completeProblem = (e) => {
     
-    const mondayDate = MondayDate();
+    const weekDate = WeekDate();
     const today = new Date();
     const userRef = ref(db, 'users/' + currentUser.uid);
 
@@ -48,17 +48,17 @@ export default function Problems() {
           if ('problems' in userData) {
 
             if (e.target.id in userData.problems) {
-              userData.problems[e.target.id][mondayDate] = today.toISOString();
+              userData.problems[e.target.id][weekDate] = today.toISOString();
             } else {
               userData.problems[e.target.id] = {};
-              userData.problems[e.target.id][mondayDate] = today.toISOString()
+              userData.problems[e.target.id][weekDate] = today.toISOString()
             }
   
           } else {
   
             userData.problems = {};
             userData.problems[e.target.id] = {};
-            userData.problems[e.target.id][mondayDate] = today.toISOString();
+            userData.problems[e.target.id][weekDate] = today.toISOString();
           }
 
         } else {
@@ -66,7 +66,7 @@ export default function Problems() {
           if ('problems' in userData) {
 
             if (e.target.id in userData.problems) {
-              userData.problems[e.target.id][mondayDate] = null;
+              userData.problems[e.target.id][weekDate] = null;
             } 
           } 
 
@@ -79,7 +79,7 @@ export default function Problems() {
         let problems = {};
 
         problems[e.target.id] = {};
-        problems[e.target.id][mondayDate] =  [(e.target.checked) ? today.toISOString() : null]
+        problems[e.target.id][weekDate] =  [(e.target.checked) ? today.toISOString() : null]
 
         let userData = {
           name: currentUser.providerData[0].displayName,
@@ -100,7 +100,7 @@ export default function Problems() {
 
   useEffect(() => {
 
-    const mondayDate = MondayDate();
+    const mondayDate = WeekDate();
     const problemsRef = ref(db, 'problems/' + mondayDate);
 
     get(problemsRef).then((snapshot) => {
