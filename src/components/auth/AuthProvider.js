@@ -27,7 +27,6 @@ export const AuthProvider = ({ children }) => {
         const userRef = ref(db, 'users/' + currentUser.uid);
   
         get(userRef).then((snapshot) => {
-  
           
           let userData;
           

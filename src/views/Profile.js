@@ -60,10 +60,10 @@ export default function Profile() {
 
     e.preventDefault();
 
-    if (name.length >= 20 || leetname >= 20) {
+    if (name.length >= 28 || leetname.length >= 28) {
 
       document.getElementById('alert').style.color='#FF375F';
-      document.getElementById('alert').innerHTML='Name must be less than 20 characters';
+      document.getElementById('alert').innerHTML='Name must be less than 28 characters';
       document.getElementById('alert').style.visibility='visible';
       setTimeout(() => {
         document.getElementById('alert').style.visibility='hidden';
@@ -138,10 +138,9 @@ export default function Profile() {
                 <div class="w-11 h-6 bg-shadow peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-neutral-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
               </label>
             </div>
-            
-            <div className="mt-32 mx-auto bg-neutral-200 hover:bg-neutral-500 text-center text-shadow font-bold w-fit p-2 rounded-lg">
-              <button type="submit">
-                Update
+            <div className="flex flex-row justify-center w-full">
+              <button type="submit" className="mt-32 bg-neutral-200 hover:bg-neutral-500 text-center text-shadow font-bold w-fit p-2 rounded-lg">
+                    Update
               </button>
             </div>
           </form>
