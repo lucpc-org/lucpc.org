@@ -1,0 +1,30 @@
+{
+  "rules": {
+    "users": {
+      ".read": "true",
+      "$uid": {
+        ".read": "true",
+        ".write": "auth != null && $uid === auth.uid",
+        "name": {
+          ".validate": "newData.isString() && newData.val().length < 28"
+        },
+        "leetname": {
+          ".validate": "newData.isString() && newData.val().length < 28"
+        },
+        "imageURL": { ".validate": true },
+        "onLeaderboard": { ".validate": true },
+        "$other": { ".validate": false }
+      }
+    },
+    "problems": {
+      "$problem": {
+        ".read": "true",
+        ".write": "auth.uid === 'Z4QsM8YVGygc1QTPWjVh4KWu3kq1'",
+        "easy": { ".validate": true },
+        "medium": { ".validate": true },
+        "hard": { ".validate": true },
+        "$other": { ".validate": false }
+      }
+    }
+  }
+}
