@@ -91,3 +91,5 @@ yarn-error.log*
 
 /scripts
 node_modules
+
+secret.json
