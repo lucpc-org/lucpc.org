@@ -20,7 +20,9 @@ import App from './views/App.js';
 import About from './views/About.js';
 import Contact from './views/Contact.js';
 import Leaderboard from './views/Leaderboard.js';
+
 import Problems from './views/Problems.js';
+import Schedule from './views/Schedule.js';
 
 import NavBar from './components/NavBar.js';
 import Footer from './components/Footer.js';
@@ -39,7 +41,9 @@ root.render(
           <Route path="/about" element={ <About /> } />
           <Route path="/contact" element={ <Contact /> } />
           <Route path="/leaderboard" element={ <Leaderboard /> } />
+
           <Route path="/problems" element={ <Problems /> } />
+          <Route path="/problems/schedule" element={ <Schedule /> } />
 
           <Route path="/auth/login" element={<Login />} />
           <Route path="/auth/register" element={<Login />} />
