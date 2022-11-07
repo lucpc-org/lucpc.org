@@ -13,13 +13,19 @@
         },
         "imageURL": { ".validate": true },
         "onLeaderboard": { ".validate": true },
+        "problems": { 
+          "easy": { ".validate": true },
+          "medium": { ".validate": true },
+          "hard": { ".validate": true },
+          "$other": { ".validate": false }
+        },
         "$other": { ".validate": false }
       }
     },
     "problems": {
       "$problem": {
         ".read": "true",
-        ".write": "auth.uid === 'Z4QsM8YVGygc1QTPWjVh4KWu3kq1'",
+        ".write": "auth.token.admin === true",
         "easy": { ".validate": true },
         "medium": { ".validate": true },
         "hard": { ".validate": true },
