@@ -4,9 +4,7 @@ import firebaseConfig from "../config";
 import { 
   getDatabase,
   ref,
-  get,
-  query,
-  orderByChild 
+  get
 } from "firebase/database";
 
 export default function Leaderboard() {
@@ -47,7 +45,6 @@ export default function Leaderboard() {
 
           let order = []
           if ('order' in userObject) {
-            console.log(userObject.order)
             order = Object.values(userObject.order);
           } else {
             order = ['a']; // Always larger than the year
@@ -81,9 +78,6 @@ export default function Leaderboard() {
         {
           boardStats.sort((item1, item2) => {
 
-            console.log('----------\n', item1, item2)
-            console.log(item1.order.slice(-3))
-
             let dateList1 = item1.order.slice(-3);
             dateList1.sort();
             let minDate1 = dateList1.reverse()[0];
@@ -91,8 +85,6 @@ export default function Leaderboard() {
             let dateList2 = item2.order.slice(-3);
             dateList2.sort();
             let minDate2 = dateList2.reverse()[0];
-
-            console.log(minDate1, minDate2);
 
             return item2.points - item1.points || minDate1.localeCompare(minDate2)
 
