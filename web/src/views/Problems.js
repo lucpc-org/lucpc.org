@@ -11,11 +11,16 @@ import {
 
 function WeekDate() {
 
+  window.WeekDate = WeekDate;
+
   const today = new Date();
   const first = today.getDate() - today.getDay();
 
-  const sunday = new Date(today.setDate(first));
-  return (sunday.getFullYear() + '-' + (sunday.getMonth() + 1) + '-' + sunday.getDate())
+  let sunday = new Date(today.setDate(first));
+  // return (sunday.getFullYear() + '-' + (sunday.getMonth() + 1) + '-' + sunday.getDate());
+  const offset = sunday.getTimezoneOffset();
+  sunday = new Date(sunday.getTime() - (offset*60*1000));
+  return sunday.toISOString().split('T')[0];
 }
 
 export default function Problems() {
@@ -43,10 +48,14 @@ export default function Problems() {
 
         let userData = snapshots[0].val();
 
+        // Check if being checked or unchecked
         if (e.target.checked) {
 
+          // If problems have been solved by this user, problems should exist
           if ('problems' in userData) {
 
+            // e.target.id is either 'easy', 'medium', or 'hard'
+            //  If the user had not solved any problems of this difficully, 
             if (e.target.id in userData.problems) {
               userData.problems[e.target.id][weekDate] = today.toISOString();
             } else {
@@ -54,15 +63,25 @@ export default function Problems() {
               userData.problems[e.target.id][weekDate] = today.toISOString()
             }
   
-          } else {
+          } else { 
+            // Case where 'problems' not in user data
   
             userData.problems = {};
             userData.problems[e.target.id] = {};
             userData.problems[e.target.id][weekDate] = today.toISOString();
           }
 
-        } else {
+          // If the user had solved any problems, there will be an'order' property
+          if ('order' in userData) {
+            userData.order[weekDate + '-' + e.target.id] = today.toISOString();
+          } else {
+            userData.order = {}
+            userData.order[weekDate + '-' + e.target.id] = today.toISOString();
+          }
 
+        } else {
+          // Case where the problem is unchecked 
+          // These cases do not require any action if the data does not exist
           if ('problems' in userData) {
 
             if (e.target.id in userData.problems) {
@@ -70,30 +89,34 @@ export default function Problems() {
             } 
           } 
 
+          if ('order' in userData) {
+            userData.order[weekDate + '-' + e.target.id] = null;
+          } 
         }
 
         set(userRef, userData);
         
       } else {
+        // Case where the snapshot does not exist
 
         let problems = {};
-
         problems[e.target.id] = {};
-        problems[e.target.id][weekDate] =  [(e.target.checked) ? today.toISOString() : null]
+        problems[e.target.id][weekDate] = [(e.target.checked) ? today.toISOString() : null];
+
+        let order = {};
+        order[weekDate + '-' + e.target.id] = [(e.target.checked) ? today.toISOString() : null];
 
         let userData = {
           name: currentUser.providerData[0].displayName,
           imageURL: currentUser.providerData[0].photoURL,
           leetname: '',
-          problems: problems
+          problems: problems,
+          order: order,
         };
 
         set(userRef, userData);
-
       }
-      
     });
-    
   };
 
   const [problems, setProblems] = useState([]);
