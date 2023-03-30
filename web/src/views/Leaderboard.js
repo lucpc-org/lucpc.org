@@ -7,11 +7,45 @@ import {
   get
 } from "firebase/database";
 
+import { WeekDate } from "./Problems";
+
+function getScoreSince(userObject, date) {
+
+  let numEasy = 0;
+  let numMedium = 0;
+  let numHard = 0;
+
+  if ('problems' in userObject) {
+
+    if ('easy' in userObject.problems) {
+      numEasy = Object.keys(userObject.problems.easy).filter(item => item.localeCompare(date) > 0).length;
+    }
+
+    if ('medium' in userObject.problems) {
+      numMedium = Object.keys(userObject.problems.medium).filter(item => item.localeCompare(date) > 0).length;
+    }
+
+    if ('hard' in userObject.problems) {
+      numHard = Object.keys(userObject.problems.hard).filter(item => item.localeCompare(date) > 0).length;
+    }
+  }
+
+  return numEasy + 2*numMedium + 3*numHard;
+}
+
 export default function Leaderboard() {
 
   const db = getDatabase(firebaseConfig);
 
   const [boardStats, setBoardStats] = useState([]);
+
+  const today = new Date();
+  const first = today.getDate() - today.getDay();
+
+  let sunday = new Date(today.setDate(first));
+  // return (sunday.getFullYear() + '-' + (sunday.getMonth() + 1) + '-' + sunday.getDate());
+  const offset = sunday.getTimezoneOffset();
+  sunday = new Date(sunday.getTime() - (offset*60*1000));
 
   useEffect(() => {
 
@@ -21,27 +55,6 @@ export default function Leaderboard() {
 
       setBoardStats(
         Object.entries(snapshot.val()).map(([uid, userObject]) => {
-
-          let numEasy = 0;
-          let numMedium = 0;
-          let numHard = 0;
-
-          if ('problems' in userObject) {
-
-            if ('easy' in userObject.problems) {
-              numEasy = Object.keys(userObject.problems.easy).length;
-            }
-
-            if ('medium' in userObject.problems) {
-              numMedium = Object.keys(userObject.problems.medium).length;
-            }
-
-            if ('hard' in userObject.problems) {
-              numHard = Object.keys(userObject.problems.hard).length;
-            }
-          }
-
-          let points = numEasy + 2*numMedium + 3*numHard;
 
           let order = []
           if ('order' in userObject) {
@@ -54,7 +67,7 @@ export default function Leaderboard() {
             name: userObject.name,
             username: userObject.leetname,
             imageURL: userObject.imageURL,
-            points: points,
+            points: getScoreSince(userObject, sunday.toLocaleDateString()),
             onLeaderboard: userObject.onLeaderboard,
             order: order,
           };

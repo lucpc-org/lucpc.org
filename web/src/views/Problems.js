@@ -9,7 +9,7 @@ import {
   get 
 } from "firebase/database";
 
-function WeekDate() {
+export function WeekDate() {
 
   window.WeekDate = WeekDate;
 
