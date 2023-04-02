@@ -1,5 +1,6 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
+import 'firebase/compat/analytics';
 
 const firebaseConfig = firebase.initializeApp({
     apiKey: "AIzaSyDaIvW6Kl-wsHikLweI7jSbbhxC5VXSTOU",
@@ -11,5 +12,7 @@ const firebaseConfig = firebase.initializeApp({
     appId: "1:1076015219952:web:b03d4e6a0ba9b659fe2e35",
     measurementId: "G-0NKDKH1DPC"
 });
+
+const analytics = firebase.analytics(firebaseConfig);
 
 export default firebaseConfig;
