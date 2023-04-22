@@ -10,7 +10,7 @@ export default function Footer(props) {
   const { currentUser } = useContext(AuthContext);
 
   return (
-    <div className="w-full b-0 mt-auto flex flex-row justify-center items-center text-shadow bg-neutral-200 text-xs md:text-sm">
+    <div className="w-full absolute bottom-0 left-0 flex flex-row justify-center items-center bg-background_lighter text-xs md:text-sm">
       <Link to="/contact/">
         <button className="px-2 py-4 sm:p-4 font-bold hover:text-neutral-500">Contact Us</button>
       </Link>

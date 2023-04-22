@@ -12,12 +12,12 @@ export default function App() {
             {name: "Purpose", 
               desc: "Develop the skills necessary to solve programming problems for technical interviews and competition, while also providing tools and opportunity to compete against peers."},
             {name: "Meetings", 
-              desc: "Thursdays\n5-6:00 PM\nSchool of Business\nRoom 2830"},
+              desc: "Thursdays\n5 - 6:00 PM\nSchool of Business\nRoom 2830"},
             {name: "Weekly Competitions", 
               desc: "Three problems are provided each week to solve outside of the club meetings. The leaderboard ranks current completion of the problems by the members of the club."}
             ].map((item) => 
               <div className="w-full md:w-2/3 lg:w-2/5 mx-8 lg:mx-0 lg:m-0 h-full xl:h-fit">
-                <div className="bg-shadow rounded-2xl p-4 md:p-8 lg:p-4 xl:p-6 m-4 xl:mx-10 h-full xl:h-fit">
+                <div className="bg-shadow rounded-2xl p-4 md:p-8 lg:p-4 xl:p-6 m-4 xl:mx-10 h-full xl:h-fit shadow-2xl">
                     <h1 className="flex flex-row mt-2 justify-center font-bold text-xl xl:text-3xl">{item.name}</h1>
                     <p className="flex flex-column justify-center mt-8 p-2 whitespace-pre-wrap text-center leading-loose text-sm md:text-base xl:text-lg">{item.desc}</p>
                 </div>

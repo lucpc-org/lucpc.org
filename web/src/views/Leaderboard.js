@@ -7,6 +7,13 @@ import {
   get
 } from "firebase/database";
 
+function getLastSunday() {
+  var t = new Date();
+  t.setDate(t.getDate() - t.getDay());
+  return t.toISOString().slice(0,10);
+}
+
+
 export default function Leaderboard() {
 
   const db = getDatabase(firebaseConfig);
@@ -18,7 +25,6 @@ export default function Leaderboard() {
     const usersRef = ref(db, '/users');
 
     get(usersRef).then((snapshot) => {
-
       setBoardStats(
         Object.entries(snapshot.val()).map(([uid, userObject]) => {
 
@@ -27,25 +33,28 @@ export default function Leaderboard() {
           let numHard = 0;
 
           if ('problems' in userObject) {
+            let predicate = (value) => { 
+              return value === getLastSunday();
+            }
 
             if ('easy' in userObject.problems) {
-              numEasy = Object.keys(userObject.problems.easy).length;
+              numEasy = Object.keys(userObject.problems.easy).filter(predicate).length;
             }
 
             if ('medium' in userObject.problems) {
-              numMedium = Object.keys(userObject.problems.medium).length;
+              numMedium = Object.keys(userObject.problems.medium).filter(predicate).length;
             }
 
             if ('hard' in userObject.problems) {
-              numHard = Object.keys(userObject.problems.hard).length;
+              numHard = Object.keys(userObject.problems.hard).filter(predicate).length;
             }
           }
 
-          let points = numEasy + 2*numMedium + 3*numHard;
+          let points = numEasy + 3*numMedium + 6*numHard;
 
           let order = []
           if ('order' in userObject) {
-            order = Object.values(userObject.order);
+            order = Object.values(userObject.order).slice(-3);
           } else {
             order = ['a']; // Always larger than the year
           }
@@ -58,7 +67,7 @@ export default function Leaderboard() {
             onLeaderboard: userObject.onLeaderboard,
             order: order,
           };
-        }).filter(user => user.onLeaderboard)
+        }).filter(user => user.onLeaderboard && user.points > 0)
       );
     }).catch((e) => {
       console.error('Error getting user information.')
@@ -68,29 +77,27 @@ export default function Leaderboard() {
 
   return (
     <div className="sm:px-16 py-32 min-h-full h-fit w-full flex flex-col items-center text-xs md:text-sm lg:text-base">
+      <h1 className="mt-48 lg:mt-0 md:text-3xl text-center font-serif pb-2">Weekly Leaderboard</h1>
+      <h1 className="pb-8">⚠️ Under Construction ⚠️</h1>
         <div className="px-4 md:px-8 py-2 flex flex-row justify-between content-center font-bold text-neutral-500 w-full lg:w-3/4 xl:w-1/2">
           <h1>#</h1>
           <div className="w-12 ml-4"></div>
-          <h1 className="px-4 w-1/3">Name</h1>
-          <h1 className="shrink flex-grow ">Username</h1>
+          <h1 className="shrink flex-grow">Name</h1>
           <h1>Points</h1>
         </div>
         {
           boardStats.sort((item1, item2) => {
+            item1.order.sort();
+            let minDate1 = item1.order.reverse()[0];
 
-            let dateList1 = item1.order.slice(-3);
-            dateList1.sort();
-            let minDate1 = dateList1.reverse()[0];
-
-            let dateList2 = item2.order.slice(-3);
-            dateList2.sort();
-            let minDate2 = dateList2.reverse()[0];
+            item2.order.sort();
+            let minDate2 = item2.order.reverse()[0];
 
             return item2.points - item1.points || minDate1.localeCompare(minDate2)
 
-          }).map((item, i, array) => {
+          }).map((item, i) => {
 
-            let pos = array.filter(fItem => fItem.points > item.points).length + 1;
+            let pos = i + 1;
 
             let rankColors = {
               1: "text-yellow-400",
@@ -104,13 +111,17 @@ export default function Leaderboard() {
                   <div className="flex flex-row justify-between items-center font-bold w-full ">
                     <h1 className={rankColors[pos]}>{pos}</h1>
                     <img className="ml-4 rounded-full w-12" src={item.imageURL} alt="Profile"/>
-                    <h1 className="px-4 w-1/3 text-ellipsis overflow-hidden">{item.name}</h1>
-                    <h1 className="shrink flex-grow text-ellipsis overflow-hidden max-h-8">{item.username}</h1>
+                    <h1 className="flex flex-col shrink flex-grow px-4 w-1/3 text-ellipsis overflow-hidden">
+                      {item.name}
+                      <span className="text-sm text-gray-500 font-normal">{item.username}</span>
+                    </h1>
                     <h1>{item.points}</h1>
                   </div>
                 </div>
               </div> 
             );
+
+
           })}
     </div>
   );
