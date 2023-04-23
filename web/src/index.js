@@ -51,7 +51,6 @@ root.render(
           <Route path="/profile" element={<Profile />} />
 
           <Route path="/" element={<App />} />
-          <Route path="/*" element={<App />} />
         </Routes>
         <Footer />
       </AuthProvider>
