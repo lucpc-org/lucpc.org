@@ -8,9 +8,13 @@ import {
 } from "firebase/database";
 
 function getLastSunday() {
-  var t = new Date();
-  t.setDate(t.getDate() - t.getDay());
-  return t.toISOString().slice(0,10);
+  var date = new Date();
+  date.setDate(date.getDate() - date.getDay());
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Month is 0-indexed, so add 1; pad with leading zero if needed
+  const day = date.getDate().toString().padStart(2, "0"); // Pad with leading zero if needed
+
+  return `${year}-${month}-${day}`;
 }
 
 
@@ -50,7 +54,7 @@ export default function Leaderboard() {
             }
           }
 
-          let points = numEasy + 3*numMedium + 6*numHard;
+          let points = numEasy + 2*numMedium + 3*numHard;
 
           let order = []
           if ('order' in userObject) {
@@ -96,9 +100,7 @@ export default function Leaderboard() {
             return item2.points - item1.points || minDate1.localeCompare(minDate2)
 
           }).map((item, i) => {
-
             let pos = i + 1;
-
             let rankColors = {
               1: "text-yellow-400",
               2: "text-slate-400",
