@@ -18,7 +18,7 @@ import Profile from './views/Profile.js';
 
 import App from './views/App.js';
 import About from './views/About.js';
-import Contact from './views/Contact.js';
+import Humans from './views/Humans.js';
 import Leaderboard from './views/Leaderboard.js';
 
 import Problems from './views/Problems.js';
@@ -39,7 +39,7 @@ root.render(
           {/* <Route path="/words/auth/*" element={<Auth />} /> */}
 
           <Route path="/about" element={ <About /> } />
-          <Route path="/contact" element={ <Contact /> } />
+          <Route path="/humans" element={ <Humans /> } />
           <Route path="/leaderboard" element={ <Leaderboard /> } />
 
           <Route path="/problems" element={ <Problems /> } />

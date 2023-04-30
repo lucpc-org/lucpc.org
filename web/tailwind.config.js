@@ -14,6 +14,9 @@ module.exports = {
         trajan: ["trajan-pro-3", "serif"],
         sans: ["segoe ui", "sans-serif"],
       },
+      boxShadow: {
+        'lg': '0 0px 30px -3px rgba(0, 0, 0, 0.3)',
+      },
       colors: {
         background: "#1D1E20",
         background_lighter: "#2C2E31",
@@ -21,7 +24,8 @@ module.exports = {
         background_light2: "#4B4D53",
         shadow: "#0f1715",
         shadowhover: "#0a0f0e",
-        accent: "#c2be93",
+        accent: "#74A57F",
+        accent_hover: "#B0CBB6",
         easy: "#43a047",
         medium: "#FFC01F",
         hard: "#FF375F",
