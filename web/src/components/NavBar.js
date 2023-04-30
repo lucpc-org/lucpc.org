@@ -22,9 +22,9 @@ export default function NavBar(props) {
 
   return (
     <div className="w-full fixed backdrop-blur text-sm sm:text-base md:text-lg ">
-      <div className="h-20 flex flex-row justify-between items-center font-bold px-2 md:px-4">
+      <div className="h-[56px] flex flex-row justify-between items-center font-bold px-2 md:px-4">
         <Link to="/">
-          <h1 className=" text-lg sm:text-xl md:text-2xl px-2 sm:px-4">
+          <h1 className=" text-lg sm:text-xl md:text-2xl px-2 sm:px-4  text-gray-300 hover:text-white transition-all duration-200">
             LUCPC
           </h1>
         </Link>
@@ -32,7 +32,7 @@ export default function NavBar(props) {
         <div className="flex">
           {navLinks.map(({ name, path }) => (
             <Link to={path}>
-              <div className="py-2.5 px-3.5 md:px-4  mx-2 rounded-md bg-background_light1 hover:bg-background_lighter transition-all duration-200">
+              <div className="py-2 px-3 text-sm mx-2 text-gray-300 hover:text-white transition-all duration-200">
                 {name}
               </div>
             </Link>
