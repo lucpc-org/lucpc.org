@@ -1,6 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+
+    // Or if using `src` directory:
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
   theme: {
     screens: {
       sm: "480px",
@@ -15,7 +22,7 @@ module.exports = {
         sans: ["segoe ui", "sans-serif"],
       },
       boxShadow: {
-        'lg': '0 0px 30px -3px rgba(0, 0, 0, 0.3)',
+        lg: "0 0px 30px -3px rgba(0, 0, 0, 0.3)",
       },
       colors: {
         background: "#1D1E20",

@@ -57,7 +57,7 @@ export default function App() {
             <div className="flex justify-center">
               <div className="bg-background_light1 rounded-lg lg:max-w-xl w-full py-5 p-8">
                 <div className="flex flex-row items-center text-2xl">
-                  <i class={"fa-solid " + item.icon}></i>
+                  <i className={"fa-solid " + item.icon}></i>
                   <h3 className="font-bold text-3xl font-sans pl-3 mt-[.2rem]">
                     {item.title}
                   </h3>
@@ -88,11 +88,16 @@ export default function App() {
                 </div>
 
                 <div className="flex justify-center mt-3 text-2xl">
-                  <a className={"bg-[" + item.accent + "] flex flex-row space-x-3 items-center px-8 p-2 rounded-md"} href={item.link}>
-                    <i class={item.icon}></i>
-                    <p className="text-xl mt-[.2rem]">
-                      {item.name}
-                    </p>
+                  <a
+                    className={
+                      "bg-[" +
+                      item.accent +
+                      "] flex flex-row space-x-3 items-center px-8 p-2 rounded-md"
+                    }
+                    href={item.link}
+                  >
+                    <i className={item.icon}></i>
+                    <p className="text-xl mt-[.2rem]">{item.name}</p>
                   </a>
                 </div>
               </div>

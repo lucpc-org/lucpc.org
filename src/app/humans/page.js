@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Humans() {
   const humans = [
     {
@@ -40,7 +42,13 @@ export default function Humans() {
         <div className="pt-12 flex flex-row space-x-10">
           {humans.map((item) => (
             <div className="pt-2">
-              <img className="rounded-lg" alt="Close up shot of person" src="/images/cameron.jpg"></img>
+              <Image
+                className="rounded-lg"
+                alt="Close up shot of person"
+                src="/images/cameron.jpg"
+                width="300"
+                height="300"
+              />
               <div className="pt-5 text-center">
                 <h2 className="text-2xl">{item.name}</h2>
                 <h2 className="text-lg text-gray-400">{item.major}</h2>

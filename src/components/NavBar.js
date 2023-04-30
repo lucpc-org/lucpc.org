@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-import { AuthContext } from "./auth/AuthProvider";
+import Link from "next/link";
+// import { AuthContext } from "./auth/AuthProvider";
 import GlowButton from "./GlowButton";
 
 export default function NavBar(props) {
-  const { currentUser } = useContext(AuthContext);
+  // const { currentUser } = useContext(AuthContext);
+  const currentUser = null;
 
   const navLinks = [
     {
@@ -28,7 +29,7 @@ export default function NavBar(props) {
   return (
     <div className="w-full flex justify-center sm:text-base md:text-lg">
       <div className="w-10/12 h-[70px] flex flex-row justify-between items-center">
-        <Link to="/">
+        <Link href="/">
           <h1 className="text-lg font-bold sm:text-xl md:text-2xl px-2 sm:px-4 text-white hover:text-gray-400 transition-all duration-200">
             LUCPC
           </h1>
@@ -36,7 +37,7 @@ export default function NavBar(props) {
 
         <div className="flex flex-row items-center space-x-7">
           {navLinks.map(({ name, path }) => (
-            <Link to={path} key={path}>
+            <Link href={path} key={path}>
               <div className="text-md text-white hover:text-gray-400 transition-all duration-150">
                 {name}
               </div>
