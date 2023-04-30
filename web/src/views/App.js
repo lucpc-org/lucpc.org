@@ -1,29 +1,54 @@
 export default function App() {
-  return (
-    <div className="sm:px-16 h-auto lg:h-full lg:min-h-[600px] w-full font-sans">
-      <div className="flex flex-col justify-center lg:h-full w-full">
-        <div className="h-1/4 flex flex-col justify-end mt-48 lg:mt-0 mb-0 lg:mb-[4vh]">
-          <h1 className="text-5xl md:text-7xl p-2 ml-8 font-serif">Liberty University</h1>
-          <h2 className="p-2 ml-8 text-2xl md:text-4xl font-serif">Competitive Programming Club</h2>
-        </div>
+  const cardData = [
+    {
+      title: "Purpose",
+      icon: "fa-heart-pulse",
+      desc: "Teach students core programming concepts and prepare them to compete at the International Collegiate Programming Contest.",
+    },
+    {
+      title: "Meetings",
+      icon: "fa-handshake",
+      desc: "Every Thursday from 5 - 6 PM in the School of Business Room 2830",
+    },
+    {
+      title: "Weekly Competitions",
+      icon: "fa-person-running",
+      desc: "Three problems are provided each week to solve outside of the club meetings. The leaderboard ranks current completion of the problems by the members of the club.",
+    },
+  ];
+  
 
-        <div className="flex flex-col lg:flex-row w-full justify-around lg:justify-between xl:justify-around items-center mt-8 mb-48 lg:mb-0 lg:m-0 lg:h-fit xl:h-2/5">
-          {[
-            {name: "Purpose", 
-              desc: "Develop the skills necessary to solve programming problems for technical interviews and competition, while also providing tools and opportunity to compete against peers."},
-            {name: "Meetings", 
-              desc: "Thursdays\n5 - 6:00 PM\nSchool of Business\nRoom 2830"},
-            {name: "Weekly Competitions", 
-              desc: "Three problems are provided each week to solve outside of the club meetings. The leaderboard ranks current completion of the problems by the members of the club."}
-            ].map((item) => 
-              <div className="w-full md:w-2/3 lg:w-2/5 mx-8 lg:mx-0 lg:m-0 h-full xl:h-fit">
-                <div className="bg-shadow rounded-2xl p-4 md:p-8 lg:p-4 xl:p-6 m-4 xl:mx-10 h-full xl:h-fit shadow-2xl">
-                    <h1 className="flex flex-row mt-2 justify-center font-bold text-xl xl:text-3xl">{item.name}</h1>
-                    <p className="flex flex-column justify-center mt-8 p-2 whitespace-pre-wrap text-center leading-loose text-sm md:text-base xl:text-lg">{item.desc}</p>
-                </div>
-              </div>
-            )}
+  return (
+    <div className="h-full lg:min-h-[600px] w-full">
+      <div className="flex flex-col justify-center h-full w-full">
+        <div className="flex flex-col justify-center text-center lg:mt-0 mb-0">
+          <h1 className="text-4xl lg:text-6xl font-heading font-bold italic">
+            Competitive Programming Club
+          </h1>
+          <h2 className="text-2xl lg:text-3xl font-trajan font-semibold pt-5">
+            Liberty University
+          </h2>
         </div>
+      </div>
+
+      {/* This is for the cards */}
+      <div className="flex lg:flex-row lg:space-x-10 lg:space-y-0 space-y-10 flex-col justify-center p-10 bg-background_lighter">
+        {cardData.map((item) => (
+          <div className="flex justify-center">
+            <div className="bg-background_light1 rounded-lg lg:max-w-xl w-full py-5 p-8">
+              <div className="flex flex-row items-center text-2xl">
+                <i class={"fa-solid " + item.icon}></i>
+                <h3 className="font-bold text-3xl font-sans pl-3">
+                  {item.title}
+                </h3>
+              </div>
+              <p className="text-lg pt-2">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="flex justify-center p-10 h-full bg-background_lighter">
+        <h1 className="mt-3 text-4xl font-bold">Connect with us!</h1>
       </div>
     </div>
   );

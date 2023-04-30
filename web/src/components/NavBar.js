@@ -7,7 +7,7 @@ export default function NavBar(props) {
   const { currentUser } = useContext(AuthContext);
 
   return (
-    <div className="w-full fixed bg-background text-sm sm:text-base md:text-lg">
+    <div className="w-full fixed backdrop-blur text-sm sm:text-base md:text-lg">
 
       <div className="flex flex-row justify-between items-center font-bold px-2 md:px-4">
         <Link to="/">

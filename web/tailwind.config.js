@@ -10,13 +10,15 @@ module.exports = {
     },
     extend: {
       fontFamily: {
+        heading: ["livory", "serif"],
+        trajan: ["trajan-pro-3", "serif"],
         sans: ["segoe ui", "sans-serif"],
       },
       colors: {
-        // Greens
-        background: "#131C1A",
-        background_lighter: "#2D433E",
-        background_lightest: "#486A63",
+        background: "#1D1E20",
+        background_lighter: "#2C2E31",
+        background_light1: "#3C3E42",
+        background_light2: "#4B4D53",
         shadow: "#0f1715",
         shadowhover: "#0a0f0e",
         accent: "#c2be93",
