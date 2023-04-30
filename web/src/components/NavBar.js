@@ -42,13 +42,21 @@ export default function NavBar(props) {
               </div>
             </Link>
           ))}
-          {!(currentUser === null || currentUser === undefined) && (
+          {currentUser ? (
             <GlowButton
               to="/profile"
               color="accent"
               borderColor="accent_hover"
               iconClassNames="fa-solid fa-user"
               label="Profile"
+            />
+          ) : (
+            <GlowButton
+              to="/profile"
+              color="red-500"
+              borderColor="red-500"
+              iconClassNames="fa-solid fa-user"
+              label="Log in"
             />
           )}
         </div>
