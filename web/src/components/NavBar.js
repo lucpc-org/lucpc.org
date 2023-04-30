@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "./auth/AuthProvider";
+import GlowButton from "./GlowButton";
 
 export default function NavBar(props) {
   const { currentUser } = useContext(AuthContext);
@@ -35,19 +36,20 @@ export default function NavBar(props) {
 
         <div className="flex flex-row items-center space-x-7">
           {navLinks.map(({ name, path }) => (
-            <Link to={path}>
+            <Link to={path} key={path}>
               <div className="text-md text-white hover:text-gray-400 transition-all duration-150">
                 {name}
               </div>
             </Link>
           ))}
           {!(currentUser === null || currentUser === undefined) && (
-            <Link className="my-auto" to="/profile/">
-              <div className="flex flex-row items-center bg-accent border-background border-[1px] hover:border-accent_hover shadow-none px-3 py-1 rounded-lg font-bold ease-out transition-all duration-150 hover:shadow-accent hover:shadow-lg">
-                <i class="fa-solid fa-user"></i>
-                <p className="mt-[.2rem] pl-3">Profile</p>
-              </div>
-            </Link>
+            <GlowButton
+              to="/profile"
+              color="accent"
+              borderColor="accent_hover"
+              iconClassNames="fa-solid fa-user"
+              label="Profile"
+            />
           )}
         </div>
       </div>
