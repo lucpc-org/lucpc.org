@@ -35,6 +35,9 @@ export default function Profile() {
   const userRef = ref(db, "users/" + currentUser?.uid);
 
   useEffect(() => {
+    if (currentUser === null || currentUser === undefined) {
+      return;
+    }
     get(userRef)
       .then((snapshot) => {
         let userData;
@@ -56,10 +59,10 @@ export default function Profile() {
         setLeetname(userData.leetname);
         setOnLeaderboard(userData.onLeaderboard);
       })
-      .catch(() => {
-        console.error("Error getting user information.");
+      .catch((e) => {
+        console.error("Error getting user information.", e);
       });
-  }, []);
+  }, [currentUser]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -139,23 +142,23 @@ export default function Profile() {
               />
             </div>
             <div className="flex flex-row items-center justify-center select-none">
-              <span class="font-bold m-4 text-sm md:text-base">
+              <span className="font-bold m-4 text-sm md:text-base">
                 Appear on Leaderboard
               </span>
               <label
-                for="onLeaderboard"
-                class="inline-flex relative items-center cursor-pointer"
+                htmlFor="onLeaderboard"
+                className="inline-flex relative items-center cursor-pointer"
               >
                 <input
-                  onClick={(e) => setOnLeaderboard(e.target.checked)}
+                  onChange={(e) => setOnLeaderboard(e.target.checked)}
                   checked={onLeaderboard}
                   type="checkbox"
                   value=""
                   id="onLeaderboard"
                   name="onLeaderboard"
-                  class="sr-only peer"
+                  className="sr-only peer"
                 />
-                <div class="w-11 h-6 bg-shadow peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-neutral-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                <div className="w-11 h-6 bg-shadow peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-neutral-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
               </label>
             </div>
             <div className="flex flex-row justify-center w-full">

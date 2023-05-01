@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 
 import { db } from "../../service/FirebaseService";
-import { getDatabase, ref, get } from "firebase/database";
+import { ref, get } from "firebase/database";
 
 function getLastSunday() {
   var date = new Date();

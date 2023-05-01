@@ -1,11 +1,24 @@
-import React, { useContext } from "react";
+"use client";
+
+import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 // import { AuthContext } from "./auth/AuthProvider";
 import GlowButton from "./GlowButton";
+import { auth } from "../service/FirebaseService";
 
 export default function NavBar(props) {
   // const { currentUser } = useContext(AuthContext);
-  const currentUser = null;
+  const [currentUser, setCurrentUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setCurrentUser(user);
+      }
+      setIsLoading(false);
+    });
+    return unsubscribe;
+  }, []);
 
   const navLinks = [
     {
