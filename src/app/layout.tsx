@@ -1,4 +1,4 @@
-import NavBar from "../components/NavBar"
+import NavBar from "../component/NavBar"
 import "./globals.css"
 
 export default function RootLayout({
@@ -17,8 +17,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-export const metadata = {
-  title: 'LUCPC',
-  description: 'A club to teach core programming concepts concepts along with preparing students to compete at the International Collegiate Programming Contest. We welcome all skill levels.',
-};

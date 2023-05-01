@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
 
       if (!(currentUser === null || currentUser === undefined)) {
         const db = getDatabase(firebaseConfig);
-        const userRef = ref(db, "users/" + currentUser.uid);
+        const userRef =  (db, "users/" + currentUser.uid);
 
         get(userRef).then((snapshot) => {
           let userData;

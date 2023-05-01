@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useContext, useState, useEffect } from "react";
-import { AuthContext } from "../../components/auth/AuthProvider";
+// import { AuthContext } from "../../components/auth/AuthProvider";
 
-import firebaseConfig from "../../firebase/config";
+// import firebaseConfig from "../../firebase/config";
 import { getDatabase, ref, set, get } from "firebase/database";
 
 export default function Profile() {
@@ -49,6 +49,7 @@ export default function Profile() {
   }, []);
 
   const handleSubmit = (e) => {
+    return <a>a</a>;
     console.log(onLeaderboard);
 
     e.preventDefault();

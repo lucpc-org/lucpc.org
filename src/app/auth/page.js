@@ -1,12 +1,14 @@
-import React, { useContext } from "react";
-import { Navigate } from "react-router-dom";
+"use client";
 
-import { AuthContext } from "../../components/auth/AuthProvider";
-import firebaseConfig from "../../firebase/config";
-import firebase from "firebase/compat/app";
+// import React, { useContext } from "react";
 
-export const auth = firebaseConfig.auth();
+// import { AuthContext } from "../../component/auth/AuthProvider";
+// import firebase from "firebase/compat/app";
+import { useRouter } from "next/navigation";
+// import { auth } from "../../service/FirebaseService";
+
 const Login = () => {
+  const router = useRouter();
   const handleGoogleLogin = () => {
     try {
       const googleProvider = new firebase.auth.GoogleAuthProvider();
@@ -16,10 +18,10 @@ const Login = () => {
     }
   };
 
-  const { currentUser } = useContext(AuthContext);
-  if (currentUser) {
-    return <Navigate to="/" />;
-  }
+  // const { currentUser } = useContext(AuthContext);
+  // if (currentUser) {
+  //   return router.push("/");
+  // }
 
   return (
     <div className="w-full h-full flex flex-col justify-center content-center items-center">

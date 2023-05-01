@@ -1,10 +1,8 @@
 "use client";
 
 import React, { useContext, useState, useEffect } from "react";
-import { AuthContext } from "../../components/auth/AuthProvider";
-
-import firebaseConfig from "../../firebase/config";
 import { getDatabase, ref, set, get } from "firebase/database";
+import { db } from "../../service/FirebaseService";
 
 function WeekDate() {
   window.WeekDate = WeekDate;
@@ -20,8 +18,8 @@ function WeekDate() {
 }
 
 export default function Problems() {
+  return <a>a</a>;
   const { currentUser } = useContext(AuthContext);
-  const db = getDatabase(firebaseConfig);
 
   const [solvedStates, setSolvedStates] = useState([]);
 
