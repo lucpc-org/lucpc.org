@@ -3,23 +3,36 @@
 import React, { useContext, useState, useEffect } from "react";
 // import { AuthContext } from "../../components/auth/AuthProvider";
 
-// import firebaseConfig from "../../firebase/config";
+import { db } from "../../service/FirebaseService";
 import { getDatabase, ref, set, get } from "firebase/database";
+import { auth } from "../../service/FirebaseService";
+import { useRouter } from "next/navigation";
 
 export default function Profile() {
-  const { currentUser } = useContext(AuthContext);
+  const router = useRouter();
+  const [currentUser, setCurrentUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setCurrentUser(user);
+      } else {
+        router.push("/auth/login");
+      }
+      setIsLoading(false);
+    });
+    return unsubscribe;
+  }, []);
 
-  if (currentUser === null || currentUser === undefined) {
-    window.location.replace("/auth/login");
-  }
+  // if (currentUser === null || currentUser === undefined) {
+  //   window.location.replace("/auth/login");
+  // }
 
   const [name, setName] = useState("");
   const [leetname, setLeetname] = useState("");
   const [onLeaderboard, setOnLeaderboard] = useState(false);
 
-  const db = getDatabase(firebaseConfig);
-
-  const userRef = ref(db, "users/" + currentUser.uid);
+  const userRef = ref(db, "users/" + currentUser?.uid);
 
   useEffect(() => {
     get(userRef)
@@ -49,9 +62,6 @@ export default function Profile() {
   }, []);
 
   const handleSubmit = (e) => {
-    return <a>a</a>;
-    console.log(onLeaderboard);
-
     e.preventDefault();
 
     if (name.length >= 28 || leetname.length >= 28) {

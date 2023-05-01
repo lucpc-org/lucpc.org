@@ -2,9 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 
-// import firebaseConfig from "../../firebase/config";
-import { getDatabase, ref, get } from "firebase/database";
 import { db } from "../../service/FirebaseService";
+import { getDatabase, ref, get } from "firebase/database";
 
 function getLastSunday() {
   var date = new Date();
@@ -17,8 +16,6 @@ function getLastSunday() {
 }
 
 export default function Leaderboard() {
-  return <a>a</a>;
-
   const [boardStats, setBoardStats] = useState([]);
 
   useEffect(() => {

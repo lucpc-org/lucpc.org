@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useContext, useState, useEffect } from "react";
-import { getDatabase, ref, set, get } from "firebase/database";
-import { db } from "../../service/FirebaseService";
+import { ref, set, get } from "firebase/database";
+import { auth, db } from "../../service/FirebaseService";
 
 function WeekDate() {
   window.WeekDate = WeekDate;
@@ -18,8 +18,17 @@ function WeekDate() {
 }
 
 export default function Problems() {
-  return <a>a</a>;
-  const { currentUser } = useContext(AuthContext);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setCurrentUser(user);
+      }
+      setIsLoading(false);
+    });
+    return unsubscribe;
+  }, []);
 
   const [solvedStates, setSolvedStates] = useState([]);
 
