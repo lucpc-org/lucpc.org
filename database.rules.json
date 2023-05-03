@@ -19,6 +19,9 @@
           "hard": { ".validate": true },
           "$other": { ".validate": false }
         },
+        "order": {
+          "$all": {".validate": true }
+        },
         "$other": { ".validate": false }
       }
     },

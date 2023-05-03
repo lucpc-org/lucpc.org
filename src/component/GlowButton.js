@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 export default function GlowButton({
   to,
@@ -9,7 +9,7 @@ export default function GlowButton({
   px = "3",
 }) {
   return (
-    <Link className="my-auto" to={to}>
+    <Link className="my-auto" href={to}>
       <div
         className={`flex flex-row items-center bg-${color} border-background border-[1px] hover:border-${borderColor} shadow-none px-${px} py-1 rounded-lg font-bold ease-out transition-all duration-200 hover:shadow-${color} hover:shadow-lg`}
       >
