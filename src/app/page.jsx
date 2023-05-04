@@ -54,7 +54,7 @@ export default function App() {
       {/* This is for the cards */}
       <div className="flex flex-col justify-center p-10 bg-background_lighter">
         <h1 className="font-bold text-5xl text-center pb-10">Who we are</h1>
-        <div className="flex lg:flex-row lg:space-x-10 lg:space-y-0 space-y-10 flex-col">
+        <div className="flex lg:flex-row lg:space-x-10 lg:space-y-0 space-y-10 flex-col justify-center">
           {cardData.map((item) => (
             <div className="flex justify-center">
               <div className="bg-background_light1 rounded-lg lg:max-w-xl w-full py-5 p-8">
