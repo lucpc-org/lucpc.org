@@ -1,3 +1,5 @@
+import GlowButton from "../component/GlowButton";
+
 export default function App() {
   const cardData = [
     {
@@ -22,7 +24,7 @@ export default function App() {
       title: "Join our Discord",
       desc: "This is the main way to reach out our community. We announce in the discord when we are having meetings and general announcements",
       name: "Discord",
-      accent: "#4D6AC0",
+      boxClassnames: "bg-[#4D6AC0] hover:shadow-[#4D6AC0] hover:border-white",
       link: "https://discord.gg/dneShg4YYv",
       icon: "fa-brands fa-discord",
     },
@@ -30,7 +32,7 @@ export default function App() {
       title: "Email us",
       desc: "If you want to get in direct contact with club leadership then send us an email",
       name: "Email",
-      accent: "#FF7C7E",
+      boxClassnames: "bg-[#FF7C7E] hover:shadow-[#FF7C7E] hover:border-white",
       link: "mailto:cpc@liberty.edu",
       icon: "fa-solid fa-envelope",
     },
@@ -76,7 +78,7 @@ export default function App() {
 
         <div className="flex lg:flex-row flex-col lg:space-x-10 lg:space-y-0 space-y-10 w-full justify-center bg-background_lighter">
           {contactData.map((item) => (
-            <div className="flex justify-center">
+            <div className="flex justify-center" key={item.name}>
               <div className="bg-background_light1 rounded-lg lg:max-w-xl py-5 p-8 flex flex-col justify-between">
                 <div>
                   <div className="flex flex-row items-center text-2xl">
@@ -88,7 +90,13 @@ export default function App() {
                 </div>
 
                 <div className="flex justify-center mt-3 text-2xl">
-                  <a
+                  <GlowButton
+                    to={item.link}
+                    boxClassnames={item.boxClassnames}
+                    iconClassNames={item.icon}
+                    label={item.name}
+                  />
+                  {/* <a
                     className={
                       "bg-[" +
                       item.accent +
@@ -98,7 +106,7 @@ export default function App() {
                   >
                     <i className={item.icon}></i>
                     <p className="text-xl mt-[.2rem]">{item.name}</p>
-                  </a>
+                  </a> */}
                 </div>
               </div>
             </div>

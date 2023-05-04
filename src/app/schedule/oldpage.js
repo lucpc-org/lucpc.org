@@ -1,23 +1,34 @@
-import React, { useContext, useState, useEffect } from "react";
-import { AuthContext } from "../../components/auth/AuthProvider";
+"use client";
 
-import firebaseConfig from "../../firebase/config";
+import React, { useState, useEffect } from "react";
+
 import { getDatabase, ref, set, get } from "firebase/database";
+import { auth, db } from "../../service/FirebaseService";
+import { useRouter } from "next/navigation";
 
 export default function Schedule() {
-  const { currentUser } = useContext(AuthContext);
+  const router = useRouter();
+  const [currentUser, setCurrentUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setCurrentUser(user);
+      }
+      setIsLoading(false);
+    });
+    return unsubscribe;
+  }, []);
 
   if (currentUser === null || currentUser === undefined) {
-    window.location.replace("/auth/login");
+    router.push("/");
   }
 
   const [name, setName] = useState("");
   const [leetname, setLeetname] = useState("");
   const [onLeaderboard, setOnLeaderboard] = useState(false);
 
-  const db = getDatabase(firebaseConfig);
-
-  const userRef = ref(db, "users/" + currentUser.uid);
+  const userRef = ref(db, "users/" + currentUser?.uid);
 
   useEffect(() => {
     get(userRef)

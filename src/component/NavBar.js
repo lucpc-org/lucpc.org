@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 // import { AuthContext } from "./auth/AuthProvider";
 import GlowButton from "./GlowButton";
@@ -50,7 +50,7 @@ export default function NavBar(props) {
 
         <div className="flex flex-row items-center space-x-7">
           {navLinks.map(({ name, path }) => (
-            <Link href={path} key={path}>
+            <Link href={path} key={name}>
               <div className="text-md text-white hover:text-gray-400 transition-all duration-150">
                 {name}
               </div>
@@ -59,16 +59,14 @@ export default function NavBar(props) {
           {currentUser ? (
             <GlowButton
               to="/profile"
-              color="accent"
-              borderColor="accent_hover"
+              boxClassnames="bg-accent hover:shadow-accent_hover hover:border-white"
               iconClassNames="fa-solid fa-user"
               label="Profile"
             />
           ) : (
             <GlowButton
               to="/profile"
-              color="red-500"
-              borderColor="red-500"
+              boxClassnames="bg-accent hover:shadow-accent_hover hover:border-white"
               iconClassNames="fa-solid fa-user"
               label="Log in"
             />
