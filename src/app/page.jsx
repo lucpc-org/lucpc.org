@@ -1,116 +1,93 @@
 import GlowButton from "../component/GlowButton";
+import RedLink from "../component/RedLink";
+import Link from "next/link";
+import HTMLString from 'react-html-string';
 
 export default function App() {
-  const cardData = [
+  const information = [
     {
-      title: "Purpose",
-      icon: "fa-heart-pulse",
+      title: "Weekly Meetings",
+      inline: true,
+      desc: "Thurs 5-6 p.m.",
+    },
+    {
+      title: "Our Purpose",
       desc: "Teach students core programming concepts and prepare them to compete at the International Collegiate Programming Contest.",
     },
     {
-      title: "Meetings",
-      icon: "fa-handshake",
-      desc: "Every Thursday from 5 - 6 PM in the School of Business Room 2830",
-    },
-    {
-      title: "Weekly Competitions",
-      icon: "fa-person-running",
-      desc: "Three problems are provided each week to solve outside of the club meetings. The leaderboard ranks current completion of the problems by the members of the club.",
+      title: "Weekly Competition",
+      desc: "Three problems are provided each week to solve outside of the club meetings."
     },
   ];
 
-  const contactData = [
-    {
-      title: "Join our Discord",
-      desc: "This is the main way to reach out our community. We announce in the discord when we are having meetings and general announcements",
-      name: "Discord",
-      boxClassnames: "bg-[#4D6AC0] hover:shadow-[#4D6AC0] hover:border-white",
-      link: "https://discord.gg/dneShg4YYv",
-      icon: "fa-brands fa-discord",
-    },
-    {
-      title: "Email us",
-      desc: "If you want to get in direct contact with club leadership then send us an email",
-      name: "Email",
-      boxClassnames: "bg-[#FF7C7E] hover:shadow-[#FF7C7E] hover:border-white",
-      link: "mailto:cpc@liberty.edu",
-      icon: "fa-solid fa-envelope",
-    },
-  ];
+  const news = [
+    "We now have a new president and 4 new officers! Visit <a href=/humans>Humans</a> to see club leadership",
+    "Our dear president, Jake Hoffman, is graduating :(",
+    "In February, one of our teams (<g>Addend</g>) placed 12th out of 119 teams for the ICPC southern conference.",
+    "At the same competition we had 3 teams place 10th, 13th, and 19th out of 46 teams for the ICPC Mid-Atlantic region.",
+  ]
+
+  const components = {
+    a: props => <RedLink to={props.href} label={props.children} extraStyles="inline" />,
+    g: props => <p children={props.children} className="inline text-accent_green" />
+  };
+
+  //https://discord.gg/dneShg4YYv
 
   return (
-    <div className="h-full lg:min-h-[600px] w-full">
-      <div className="h-[calc(100%-70px-4rem)] mb-[4rem] flex flex-col justify-center h-full w-full">
-        <div className="flex flex-col justify-center text-center lg:mt-0 mb-0">
-          <h1 className="text-4xl lg:text-6xl font-heading font-bold italic">
-            Competitive Programming Club
-          </h1>
-          <h2 className="text-2xl lg:text-3xl font-trajan font-semibold pt-5">
-            Liberty University
-          </h2>
+    <div className="flex flex-col xl:h-[calc(100%-78px)] w-full justify-center items-center font-mono">
+      <div className="flex flex-col mb-10 xl:pb-5 w-[90%] pt-12 mt-0 md:mt-5">
+        <div className="flex flex-col space-y-3">
+          <h1 className="leading-normal md:leading-relaxed lg:leading-none text-4xl md:text-5xl">Competitive Programming <mark className="bg-text_color">Club</mark></h1>
+          <div className="flex text-2xl md:text-3xl text-accent_yellow">
+            <Link href="https://www.liberty.edu">
+              <h2 className="underline decoration-background decoration-dotted transition-all duration-150 hover:decoration-orange-300 hover:text-orange-300">@Liberty University</h2>
+            </Link>
+          </div>
         </div>
-      </div>
 
-      {/* This is for the cards */}
-      <div className="flex flex-col justify-center p-10 bg-background_lighter">
-        <h1 className="font-bold text-5xl text-center pb-10">Who we are</h1>
-        <div className="flex lg:flex-row lg:space-x-10 lg:space-y-0 space-y-10 flex-col justify-center">
-          {cardData.map((item) => (
-            <div className="flex justify-center">
-              <div className="bg-background_light1 rounded-lg lg:max-w-xl w-full py-5 p-8">
-                <div className="flex flex-row items-center text-2xl">
-                  <i className={"fa-solid " + item.icon}></i>
-                  <h3 className="font-bold text-3xl font-sans pl-3 mt-[.2rem]">
-                    {item.title}
-                  </h3>
-                </div>
-                <p className="text-lg pt-2">{item.desc}</p>
+        <div className="flex h-full flex-col md:flex-row md:flex-wrap md:justify-between md:pt-8 mt-12 text-base xl:text-lg">
+          <div className="flex flex-col justify-between space-y-5 md:space-y-0 mb-5 md:mb-0 lg:w-[30%] md:w-[50%]">
+            {information.map((item, i) => (
+              <div className={`flex py-4 border-2 ${item.inline ? `justify-center space-x-5 px-2 lg:px-7` : `flex-col space-y-2 px-5 lg:px-7`}`}>
+                <h4 className="font-bold">
+                  {item.title.split(' ').slice(0, -1)} <mark className={i % 2 ? `bg-accent_yellow` : `text-text_color bg-accent_green`}>{item.title.split(' ').at(-1)}</mark>
+                </h4>
+                <p>{item.desc}</p>
               </div>
-            </div>
-          ))}
-        </div>
-      </div>
+            ))}
+          </div>
 
-      <div className="flex flex-col p-10 w-full bg-background_lighter">
-        <h1 className="w-full pb-10 text-center text-5xl font-bold">
-          Connect with us!
-        </h1>
-
-        <div className="flex lg:flex-row flex-col lg:space-x-10 lg:space-y-0 space-y-10 w-full justify-center bg-background_lighter">
-          {contactData.map((item) => (
-            <div className="flex justify-center" key={item.name}>
-              <div className="bg-background_light1 rounded-lg lg:max-w-xl py-5 p-8 flex flex-col justify-between">
+          <div className="flex flex-col px-5 lg:px-7 py-4 border-2 mb-5 md:mb-0 lg:w-[35%] md:w-[45%]">
+            <h4 className="font-bold pb-2">Club <mark className="bg-accent_yellow">News</mark></h4>
+            <div className="flex flex-col space-y-5 lg:justify-between h-full">
+              {news.map((item) => (
                 <div>
-                  <div className="flex flex-row items-center text-2xl">
-                    <h2 className="font-bold text-4xl font-sans">
-                      {item.title}
-                    </h2>
-                  </div>
-                  <p className="text-lg pt-2">{item.desc}</p>
+                  <HTMLString html={item} components={components}/>
                 </div>
-
-                <div className="flex justify-center mt-3 text-2xl">
-                  <GlowButton
-                    to={item.link}
-                    boxClassnames={item.boxClassnames}
-                    iconClassNames={item.icon}
-                    label={item.name}
-                  />
-                  {/* <a
-                    className={
-                      "bg-[" +
-                      item.accent +
-                      "] flex flex-row space-x-3 items-center px-8 p-2 rounded-md"
-                    }
-                    href={item.link}
-                  >
-                    <i className={item.icon}></i>
-                    <p className="text-xl mt-[.2rem]">{item.name}</p>
-                  </a> */}
-                </div>
-              </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          <div className="flex flex-col px-7 py-4 border-2 md:mt-10 lg:mt-0 lg:w-[30%]">
+            <h4 className="pb-5 lg:pb-10">
+              <mark className="text-text_color bg-accent_green">Connect</mark>
+            </h4>
+            <div className="flex flex-col space-y-10">
+
+              <div>
+                <RedLink to="https://discord.gg/dneShg4YYv" label="Join our Discord"/>
+                <p>This is where the majority of our announcements will be.</p>
+              </div>
+
+              <div className="flex flex-col">
+                <p className="font-bold pr-3">Email us!</p>
+                <RedLink to="mailto:cpc@liberty.edu" label="cpc@liberty.edu"/>
+                <p>We would love to hear from you! This is the best way for directly contacting club leadership.</p>
+              </div>
+
+            </div>
+          </div>
         </div>
       </div>
     </div>

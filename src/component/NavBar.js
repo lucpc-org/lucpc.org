@@ -30,28 +30,24 @@ export default function NavBar(props) {
       path: "/humans",
     },
     {
-      name: "Leaderboard",
-      path: "/leaderboard",
-    },
-    {
-      name: "Problems",
+      name: "Competition",
       path: "/problems",
     },
   ];
-
   return (
-    <div className="w-full flex justify-center sm:text-base md:text-lg">
-      <div className="w-10/12 h-[70px] flex flex-row justify-between items-center">
+    <div className="w-full flex justify-center font-mono sm:text-base md:text-lg">
+      <div className="w-[95%] md:w-[90%] h-[70px] mt-2 flex flex-col md:flex-row justify-center md:justify-between lg:items-end sm:items-center">
         <Link href="/">
-          <h1 className="text-lg font-bold sm:text-xl md:text-2xl px-2 sm:px-4 text-white hover:text-gray-400 transition-all duration-200">
-            LUCPC
-          </h1>
+          <div className="flex justify-center items-center space-x-3 font-bold text-2xl md:text-3xl border-b-2 border-dotted border-background hover:border-gray-400 hover:text-gray-400 transition-all duration-150">
+            <i class="fa-solid fa-code"></i>
+            <p>CPC</p>
+          </div>
         </Link>
 
-        <div className="flex flex-row items-center space-x-7">
+        <div className="flex flex-row items-center justify-center text-sm md:text-base lg:text-lg space-x-5 lg:space-x-7">
           {navLinks.map(({ name, path }) => (
             <Link href={path} key={name}>
-              <div className="text-md text-white hover:text-gray-400 transition-all duration-150">
+              <div className="text-text_color underline decoration-dotted decoration-background hover:decoration-gray-400 hover:text-gray-400 transition-all duration-150">
                 {name}
               </div>
             </Link>
@@ -59,8 +55,7 @@ export default function NavBar(props) {
           {currentUser ? (
             <GlowButton
               to="/profile"
-              boxClassnames="bg-accent hover:shadow-accent_hover hover:border-white"
-              iconClassNames="fa-solid fa-user"
+              boxClassnames="bg-accent hover:shadow-accent_hover hover:border-white px-1"
               label="Profile"
             />
           ) : (

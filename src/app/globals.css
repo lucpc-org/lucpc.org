@@ -1,12 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
+
 @tailwind base;
-
-
 @layer base {
   body {
     @apply h-screen;
     @apply innerScreenSize;
     @apply bg-background;
-    @apply text-neutral-200
+    @apply text-text_color
+  }
+
+  mark {
+    @apply px-1 font-bold text-background;
   }
 
   #root {
@@ -16,6 +20,7 @@
 
 @tailwind components;
 @tailwind utilities;
+
 
 
 /* Hide scrollbar for Chrome, Safari and Opera */

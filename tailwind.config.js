@@ -14,22 +14,27 @@ module.exports = {
       sm: "480px",
       md: "768px",
       lg: "976px",
-      xl: "1440px",
+      xl: "1530px",
     },
     extend: {
       fontFamily: {
         heading: ["livory", "serif"],
+        mono: ['JetBrains Mono', "serif"],
         trajan: ["trajan-pro-3", "serif"],
         sans: ["segoe ui", "sans-serif"],
       },
       boxShadow: {
         lg: "0 0px 30px -3px rgba(0, 0, 0, 0.3)",
       },
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+      },
       colors: {
+        text_color: "#F5F5F5",
         background: "#1D1E20",
-        background_lighter: "#2C2E31",
-        background_light1: "#3C3E42",
-        background_light2: "#4B4D53",
+        accent_green: "#048A81",
+        accent_red: "#DA4167",
+        accent_yellow: "#F5D491",
         shadow: "#0f1715",
         shadowhover: "#0a0f0e",
         accent: "#74A57F",
