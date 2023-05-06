@@ -5,6 +5,7 @@ import Link from "next/link";
 // import { AuthContext } from "./auth/AuthProvider";
 import GlowButton from "./GlowButton";
 import { auth } from "../service/FirebaseService";
+import RedLink from "./RedLink";
 
 export default function NavBar(props) {
   // const { currentUser } = useContext(AuthContext);
@@ -53,11 +54,7 @@ export default function NavBar(props) {
             </Link>
           ))}
           {currentUser ? (
-            <GlowButton
-              to="/profile"
-              boxClassnames="bg-accent hover:shadow-accent_hover hover:border-white px-1"
-              label="Profile"
-            />
+            <RedLink to="/profile" label="Profile" extraStyles="decoration-2"/>
           ) : (
             <GlowButton
               to="/profile"
