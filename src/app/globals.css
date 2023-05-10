@@ -10,7 +10,7 @@
   }
 
   mark {
-    @apply px-1 font-bold text-background;
+    @apply px-1 font-bold bg-yellow text-background;
   }
 
   #root {

@@ -49,7 +49,7 @@ export default function App() {
           <div className="flex flex-col justify-between space-y-5 mb-5 md:mb-0 lg:w-[30%] md:w-[50%]">
             {information.map((item, i) => (
               <div className={`flex py-4 border-2 ${item.inline ? `justify-between px-2 lg:px-7` : `flex-col space-y-2 px-5 lg:px-7`}`}>
-                <h4 className="font-bold">
+                <h4>
                   {item.title.split(' ').slice(0, -1)} <mark className={i % 2 ? `bg-yellow` : `text-text_color bg-green`}>{item.title.split(' ').at(-1)}</mark>
                 </h4>
                 <p>{item.desc}</p>
@@ -58,7 +58,7 @@ export default function App() {
           </div>
 
           <div className="flex flex-col px-5 lg:px-7 py-4 border-2 mb-5 md:mb-0 lg:w-[35%] md:w-[45%]">
-            <h4 className="font-bold pb-2">Club <mark className="bg-yellow">News</mark></h4>
+            <h4 className="pb-2">Club <mark className="bg-yellow">News</mark></h4>
             <div className="flex flex-col space-y-5 lg:justify-between h-full">
               {news.map((item) => (
                 <div>

@@ -18,7 +18,6 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        heading: ["livory", "serif"],
         mono: ['JetBrains Mono', "serif"],
         trajan: ["trajan-pro-3", "serif"],
         sans: ["segoe ui", "sans-serif"],

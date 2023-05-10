@@ -40,7 +40,7 @@ export default function NavBar(props) {
       <div className="w-[95%] md:w-[90%] h-[70px] mt-2 flex flex-col md:flex-row justify-center md:justify-between lg:items-end sm:items-center">
         <Link href="/">
           <div className="flex justify-center items-center space-x-3 font-bold text-2xl md:text-3xl border-b-2 border-dotted border-background hover:border-gray-400 hover:text-gray-400 transition-all duration-150">
-            <i class="fa-solid fa-code"></i>
+            <i className="fa-solid fa-code"></i>
             <p>CPC</p>
           </div>
         </Link>
