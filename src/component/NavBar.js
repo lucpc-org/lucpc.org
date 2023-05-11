@@ -36,25 +36,22 @@ export default function NavBar(props) {
     },
   ];
   return (
-    <div className="w-full flex justify-center font-mono sm:text-base md:text-lg">
-      <div className="w-[95%] md:w-[90%] h-[70px] mt-2 flex flex-col md:flex-row justify-center md:justify-between lg:items-end sm:items-center">
+    <div className="w-full flex justify-center pb-[6rem] sm:text-base md:text-lg">
+      <div className="w-[95%] md:w-[90%] h-[70px] mt-2 flex flex-col md:flex-row justify-center md:justify-between items-center">
         <Link href="/">
-          <div className="flex justify-center items-center space-x-3 font-bold text-2xl md:text-3xl border-b-2 border-dotted border-background hover:border-gray-400 hover:text-gray-400 transition-all duration-150">
-            <i className="fa-solid fa-code"></i>
-            <p>CPC</p>
-          </div>
+          <p className="flex justify-center font-bold text-2xl md:text-3xl border-b-2 border-dotted border-background hover:border-text_color">🧑‍💻 CPC</p>
         </Link>
 
-        <div className="flex flex-row items-center justify-center text-sm md:text-base lg:text-lg space-x-5 lg:space-x-7">
+        <div className="flex flex-row items-center justify-center text-sm md:text-base lg:text-lg xl:text-xl xl:space-x-10 space-x-5 lg:space-x-7">
           {navLinks.map(({ name, path }) => (
             <Link href={path} key={name}>
-              <div className="text-text_color underline decoration-dotted decoration-background hover:decoration-gray-400 hover:text-gray-400 transition-all duration-150">
+              <div className="text-text_color underline decoration-dotted decoration-background hover:decoration-gray-400 hover:text-text_hover transition-all duration-150">
                 {name}
               </div>
             </Link>
           ))}
           {currentUser ? (
-            <RedLink to="/profile" label="Profile" extraStyles="decoration-2"/>
+            <RedLink to="/profile" label="Profile" extraStyles="text-red decoration-2"/>
           ) : (
             <GlowButton
               to="/profile"

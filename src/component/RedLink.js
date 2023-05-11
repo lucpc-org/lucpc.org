@@ -10,7 +10,7 @@ export default function RedLink({
   // This took way too long to figure out
   return (
     <Link href={to}>
-      <p className={`font-bold text-red underline hover:decoration-dotted ${extraStyles}`}>
+      <p className={`font-bold underline hover:decoration-dotted ${extraStyles}`}>
         {label}
       </p>
     </Link>
