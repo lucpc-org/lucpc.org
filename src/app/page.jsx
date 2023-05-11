@@ -117,7 +117,7 @@ export default function App() {
         <div className="grid grid-flow-row lg:grid-flow-col gap-4 mb-[4rem]">
           {card.map((item, i) => (
             item.link ? (
-              <Link href={item.link} className={`flex flex-col group p-5 bg-background2 hover:bg-background3 rounded-lg transition-all ease-in duration-150 [&>*]:transition-all [&>*]:ease-in [&>*]:duration-150 hover:ring-1 ring-inset ${i % 2 ? `hover:ring-yellow/80` : `hover:ring-green/80`}`}>
+              <Link href={item.link} key={i} className={`flex flex-col group p-5 bg-background2 hover:bg-background3 rounded-lg transition-all ease-in duration-150 [&>*]:transition-all [&>*]:ease-in [&>*]:duration-150 hover:ring-1 ring-inset ${i % 2 ? `hover:ring-yellow/80` : `hover:ring-green/80`}`}>
                 <h3 className={`pb-2 ${i%2 ? `group-hover:text-yellow_white` : `group-hover:text-green_white`}`}>
                   <span className="pr-5">{item.title}</span>
                   <i className={item.icon}></i>
@@ -130,7 +130,7 @@ export default function App() {
                 </div>
               </Link>
             ) : (
-              <div className="p-5 bg-background2 rounded-lg">
+              <div className="p-5 bg-background2 rounded-lg" key={i}>
                 <h3 className="pb-2">
                   <span className="pr-5">{item.title}</span>
                   <i className={item.icon}></i>
@@ -162,8 +162,8 @@ export default function App() {
           <div>
             <h2 className="pb-3">News</h2>
             <div className="flex flex-row flex-wrap gap-5">
-              {news.map((item) => (
-                <div className="flex">
+              {news.map((item, i) => (
+                <div className="flex" key={i}>
                   <div className="p-5 text-lg bg-background2 rounded-lg">
                     <HTMLString html={item.content} components={components}/>
                     <p className="text-base pt-1 text-text_hover">{item.time}</p>
@@ -177,8 +177,8 @@ export default function App() {
         <div className="flex flex-col">
           <h1 className="flex justify-center pb-10">Connect</h1>
           <div className="flex flex-col items-start justify-center space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
-            {connections.map((item) => (
-              <Link href={item.link} className="w-full sm:h-64 cursor-pointer rounded-lg border border-background3 bg-background2 transition-all ease-in duration-150 hover:border-background4 hover:bg-background3">
+            {connections.map((item, i) => (
+              <Link href={item.link} key={i} className="w-full sm:h-64 cursor-pointer rounded-lg border border-background3 bg-background2 transition-all ease-in duration-150 hover:border-background4 hover:bg-background3">
                 <div className="flex h-full flex-col items-center justify-center space-y-3 p-4 sm:p-2 md:p-4">
                   <i className={`text-5xl ${item.icon} ${item.accent}`}></i>
                   <h3>{item.title}</h3>
