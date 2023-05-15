@@ -48,10 +48,10 @@ const Login = () => {
         <button
           type="button"
           onClick={handleSignInWithGoogle}
-          className="text-xl ml-2 bg-yellow border-yellow_white border-[1px] text-white font-bold py-2 px-8 rounded-lg transition-all duration-150 hover:opacity-80"
+          className="text-xl bg-[#4285F4] hover:bg-[#4285F4]/90 rounded-lg px-5 py-2.5 text-center inline-flex items-center"
         >
-          <i className="mr-2 fa-brands fa-google"></i>
-          Google
+          <i className="mr-4 mb-[.15rem] fa-brands fa-google"></i>
+            Sign in with Google
         </button>
 
       </div>

@@ -68,14 +68,14 @@ export default function App() {
       title: "Email",
       link: "mailto:cpc@liberty.edu",
       icon: "fa-solid fa-envelope",
-      accent: "text-yellow",
+      accent: "text-blue",
       desc: "We would love to hear from you! This is the best way to directly contact club leadership.",
     },
   ];
 
   const components = {
-    a: props => <RedLink to={props.href} label={props.children} extraStyles="inline text-yellow" />,
-    g: props => <p children={props.children} className="inline text-yellow" />
+    a: props => <RedLink to={props.href} label={props.children} extraStyles="inline text-blue" />,
+    g: props => <p children={props.children} className="inline text-blue" />
   };
 
   
@@ -85,7 +85,7 @@ export default function App() {
       <div className="flex flex-col w-[95%] lg:w-[85%] xl:w-[80%]">
         <div className="flex flex-col space-y-2 pb-[2rem]">
           <h1 className="leading-tight md:leading-none text-4xl md:text-5xl font-bold">
-            <span className="text-transparent bg-clip-text bg-gradient-to-tl from-green from-20% to-yellow">Competitive Programming Club</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-tl from-green from-20% to-blue">Competitive Programming Club</span>
           </h1>
           <div className="leading-relaxed text-2xl">
 
@@ -117,14 +117,14 @@ export default function App() {
         <div className="grid grid-flow-row lg:grid-flow-col gap-4 mb-[4rem]">
           {card.map((item, i) => (
             item.link ? (
-              <Link href={item.link} key={i} className={`flex flex-col group p-5 bg-background2 hover:bg-background3 rounded-lg transition-all ease-in duration-150 [&>*]:transition-all [&>*]:ease-in [&>*]:duration-150 hover:ring-1 ring-inset ${i % 2 ? `hover:ring-yellow/80` : `hover:ring-green/80`}`}>
-                <h3 className={`pb-2 ${i%2 ? `group-hover:text-yellow_white` : `group-hover:text-green_white`}`}>
+              <Link href={item.link} key={i} className={`flex flex-col group p-5 bg-background2 hover:bg-background3 rounded-lg transition-all ease-in duration-150 [&>*]:transition-all [&>*]:ease-in [&>*]:duration-150 hover:ring-1 ring-inset ${i % 2 ? `hover:ring-blue/80` : `hover:ring-green/80`}`}>
+                <h3 className={`pb-2 ${i%2 ? `group-hover:text-blue_white` : `group-hover:text-green_white`}`}>
                   <span className="pr-5">{item.title}</span>
                   <i className={item.icon}></i>
                 </h3>
                 <p className="leading-relaxed text-text_hover">{item.content}</p>
 
-                <div className={`flex mt-auto pt-5 items-center ${i % 2 ? `text-yellow/80` : `text-green/80`}`}>
+                <div className={`flex mt-auto pt-5 items-center ${i % 2 ? `text-blue/80` : `text-green/80`}`}>
                   <p>{item.linkLabel}</p>
                   <i className="text-xs pl-2 transition-all ease-in duration-150 group-hover:pl-4 group-hover:text-sm fa-solid fa-arrow-right"></i>
                 </div>

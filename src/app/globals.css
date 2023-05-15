@@ -10,7 +10,7 @@
   }
 
   mark {
-    @apply px-1 font-bold bg-yellow text-text_color;
+    @apply px-1 font-bold bg-blue text-text_color;
   }
 
   h1 {

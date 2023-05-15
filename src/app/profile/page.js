@@ -152,17 +152,17 @@ export default function Profile() {
               </div>
               
               <div className="flex flex-col md:flex-row text-xl mt-[4rem] space-y-8 md:space-y-0 md:space-x-12">
-                <button type="submit" className="border border-yellow bg-yellow_hover text-center text-text_color font-bold p-2 rounded-lg group transition-all ease-in duration-150 hover:bg-yellow_hover2">
+                <button type="submit" className="border border-blue bg-blue_hover text-center text-text_color font-bold p-2 rounded-lg group transition-all ease-in duration-150 hover:bg-blue_hover2">
                   <p className="inline pl-8">Save Changes</p>
                   <i className="pl-8 pr-4 fa-solid fa-floppy-disk"></i>
                 </button>
                 <button 
                   type="button" 
-                  className="border border-red_accent bg-actual_red text-center text-text_color font-bold p-2 rounded-lg group transition-all ease-in duration-150 hover:bg-[#FF2B56DD]"
+                  className="border border-red_accent bg-red text-center text-text_color font-bold p-2 rounded-lg group transition-all ease-in duration-150 hover:bg-[#F93943DD]"
                   onClick={signOut}
                 >
                   <p className="pl-12 inline">Sign Out</p>
-                  <i className="transition-all ease-in-out duration-150 pl-4 pr-8 group-hover:pl-8 group-hover:pr-4 fa-solid fa-right-to-bracket"></i>
+                  <i className=" transition-all ease-in-out duration-150 pl-4 pr-8 group-hover:pl-8 group-hover:pr-4 fa-solid fa-right-to-bracket"></i>
                 </button>
               </div>
             </form>

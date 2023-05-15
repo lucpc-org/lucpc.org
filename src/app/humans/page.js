@@ -67,16 +67,16 @@ export default function Humans() {
                   <div className="flex flex-col items-end justify-center pr-5 text-sm md:text-base lg:text-lg">
                     <div className="flex flex-col items-end pb-3">
                       <h2 className="leading-tight">{item.name}</h2>
-                      <h3 className="text-yellow">{item.title}</h3>
+                      <h3 className="text-blue">{item.title}</h3>
                     </div>
                     <p className="text-text_hover">{item.major}</p>
                     <p className="text-text_hover">Class of {item.class}</p>
                     <div className="text-xl md:text-2xl lg:text-3xl flex flex-row space-x-4 mt-auto md:mt-5">
-                      <Link href={item.linkedin} className="transition-all ease-in duration-150 hover:text-yellow">
+                      <Link href={item.linkedin} className="transition-all ease-in duration-150 hover:text-blue">
                         <i className="fa-brands fa-linkedin"></i>
                       </Link>
                       {item.github &&
-                        <Link href={item.github} className="transition-all ease-in duration-150 hover:text-yellow">
+                        <Link href={item.github} className="transition-all ease-in duration-150 hover:text-blue">
                           <i className="fa-brands fa-github"></i>
                         </Link>
                       }
@@ -107,11 +107,11 @@ export default function Humans() {
                     <p className="text-text_hover">{item.major}</p>
                     <p className="text-text_hover">Class of {item.class}</p>
                     <div className="text-2xl lg:text-3xl flex flex-row space-x-4 mt-auto md:mt-5">
-                      <Link href={item.linkedin} className="transition-all ease-in duration-150 hover:text-yellow">
+                      <Link href={item.linkedin} className="transition-all ease-in duration-150 hover:text-blue">
                         <i className="fa-brands fa-linkedin"></i>
                       </Link>
                       {item.github &&
-                        <Link href={item.github} className="transition-all ease-in duration-150 hover:text-yellow">
+                        <Link href={item.github} className="transition-all ease-in duration-150 hover:text-blue">
                           <i className="fa-brands fa-github"></i>
                         </Link>
                       }

@@ -30,7 +30,7 @@ export default function NavBar(props) {
     },
     {
       name: "Competition",
-      path: "/problems",
+      path: "/competition",
     },
   ];
   return (
@@ -49,9 +49,9 @@ export default function NavBar(props) {
             </Link>
           ))}
           {currentUser ? (
-            <RedLink to="/profile" label="Profile" extraStyles="text-red decoration-2"/>
+            <RedLink to="/profile" label="Profile" extraStyles="text-green decoration-2"/>
           ) : (
-            <RedLink to="/auth/login" label="Log In" extraStyles="text-red decoration-2"/>
+            <RedLink to="/auth/login" label="Log In" extraStyles="text-green decoration-2"/>
           )}
         </div>
       </div>
