@@ -40,19 +40,20 @@ module.exports = {
         green_hover: "#3BA872",
         green_white: "#CBEDDC",
         red: "#43AA8B",
-        actual_red: "#FF375F",
-        red_hover: "#D62F58",
+        actual_red: "#FF2B56",
+        red_accent: "#FF6685",
         yellow: "#1D9BF0",
-        yellow_hover: "#0E88DA",
+        yellow_hover: "#0E8ADD",
+        yellow_hover2: "#0B6CAD",
         yellow_white: "#BFE3FB",
         link: "#1D9BF0",
         shadow: "#0f1715",
         shadowhover: "#0a0f0e",
         accent: "#74A57F",
         accent_hover: "#B0CBB6",
-        easy: "#43a047",
-        medium: "#FFC01F",
-        hard: "#FF375F",
+        easy: "#3DA35D",
+        medium: "#E6B749",
+        hard: "#FF2B56",
         liberty_red: "#B72025",
         liberty_navy: "#0A254E",
 
@@ -67,6 +68,23 @@ module.exports = {
       },
       borderRadius: {
         "4xl": "2rem",
+      },
+      animation: {
+        check_out: 'check_out .3s ease-in forwards',
+      },
+      keyframes: {
+        check_out: {
+          '0%': { 
+            opacity: '1',
+            transform: 'scale(1)',
+          },
+
+          '100%': { 
+            opacity: '0',
+            transform: 'scale(.3)',
+            display: 'none',
+          },
+        },
       },
     },
   },

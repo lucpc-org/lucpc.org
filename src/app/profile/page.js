@@ -131,7 +131,7 @@ export default function Profile() {
                   <input
                     type="text"
                     placeholder="Name"
-                    className="placeholder:text-text_hover2 text-text_color h-12 ext-base lg:text-lg p-3 rounded-lg bg-background3"
+                    className="placeholder:text-text_hover2 text-text_color h-12 ext-base lg:text-lg p-3 rounded-lg border border-background4 bg-background3"
                     onChange={(e) => setName(e.target.value)}
                     value={name}
                   />
@@ -144,23 +144,25 @@ export default function Profile() {
                   <input
                     type="text"
                     placeholder="https://open.kattis.com/users/john-doe"
-                    className="placeholder:text-text_hover2 text-text_color h-12 text-base lg:text-lg p-3 grow rounded-lg bg-background3"
+                    className="placeholder:text-text_hover2 text-text_color h-12 text-base lg:text-lg p-3 grow rounded-lg border border-background4 bg-background3"
                     onChange={(e) => setKattisURL(e.target.value)}
                     value={kattisURL}
                   />
                 </div>
               </div>
               
-              <div className="flex flex-col md:flex-row mt-8 space-y-8 md:space-y-0 md:space-x-12">
-                <button type="submit" className="bg-yellow text-center text-text_color font-bold p-2 px-12 rounded-lg transition-all duration-150 hover:opacity-80">
-                  Save Changes
+              <div className="flex flex-col md:flex-row text-xl mt-[4rem] space-y-8 md:space-y-0 md:space-x-12">
+                <button type="submit" className="border border-yellow bg-yellow_hover text-center text-text_color font-bold p-2 rounded-lg group transition-all ease-in duration-150 hover:bg-yellow_hover2">
+                  <p className="inline pl-8">Save Changes</p>
+                  <i className="pl-8 pr-4 fa-solid fa-floppy-disk"></i>
                 </button>
                 <button 
                   type="button" 
-                  className="bg-actual_red text-center text-text_color font-bold p-2 px-12 rounded-lg transition-all duration-150 hover:opacity-80"
-                  onClickCapture={signOut}
+                  className="border border-red_accent bg-actual_red text-center text-text_color font-bold p-2 rounded-lg group transition-all ease-in duration-150 hover:bg-[#FF2B56DD]"
+                  onClick={signOut}
                 >
-                  Sign Out
+                  <p className="pl-12 inline">Sign Out</p>
+                  <i className="transition-all ease-in-out duration-150 pl-4 pr-8 group-hover:pl-8 group-hover:pr-4 fa-solid fa-right-to-bracket"></i>
                 </button>
               </div>
             </form>

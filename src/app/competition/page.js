@@ -5,74 +5,42 @@ import React, { useState, useEffect } from "react";
 import { db } from "../../service/FirebaseService";
 import { ref, get } from "firebase/database";
 
-function getLastSunday() {
-  var date = new Date();
-  date.setDate(date.getDate() - date.getDay());
-  const year = date.getFullYear();
-  const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Month is 0-indexed, so add 1; pad with leading zero if needed
-  const day = date.getDate().toString().padStart(2, "0"); // Pad with leading zero if needed
-
-  return `${year}-${month}-${day}`;
-}
-
 export default function Leaderboard() {
   const [boardStats, setBoardStats] = useState([]);
 
   useEffect(() => {
     const usersRef = ref(db, "/users");
-
     get(usersRef)
       .then((snapshot) => {
         setBoardStats(
           Object.entries(snapshot.val())
             .map(([uid, userObject]) => {
-              let numEasy = 0;
-              let numMedium = 0;
-              let numHard = 0;
+              let weeklyScore = 0;
+              let totalScore = 0;
 
-              if ("problems" in userObject) {
-                let predicate = (value) => {
-                  return value === getLastSunday();
-                };
-
-                if ("easy" in userObject.problems) {
-                  numEasy = Object.keys(userObject.problems.easy).filter(
-                    predicate
-                  ).length;
-                }
-
-                if ("medium" in userObject.problems) {
-                  numMedium = Object.keys(userObject.problems.medium).filter(
-                    predicate
-                  ).length;
-                }
-
-                if ("hard" in userObject.problems) {
-                  numHard = Object.keys(userObject.problems.hard).filter(
-                    predicate
-                  ).length;
-                }
+              if ("totalScore" in userObject) {
+                totalScore = userObject.totalScore;
+                // We can assume if they have a total score then the weekly score is also available
+                weeklyScore = userObject.weeklyScore;
               }
 
-              let points = numEasy + 2 * numMedium + 3 * numHard;
-
-              let order = [];
-              if ("order" in userObject) {
-                order = Object.values(userObject.order).slice(-3);
+              let lastSubmitted = 0;
+              if ("lastSubmitted" in userObject) {
+                lastSubmitted = userObject.lastSubmitted;
               } else {
-                order = ["a"]; // Always larger than the year
+                lastSubmitted = "a"; // Always larger than the year
               }
 
               return {
                 name: userObject.name,
-                username: userObject.leetname,
+                kattisLink: userObject.kattisURL,
                 imageURL: userObject.imageURL,
-                points: points,
-                onLeaderboard: userObject.onLeaderboard,
-                order: order,
+                totalScore: totalScore,
+                weeklyScore: weeklyScore,
+                lastSubmitted: lastSubmitted,
               };
             })
-            .filter((user) => user.onLeaderboard && user.points > 0)
+            .filter((user) => user.totalScore > 0)
         );
       })
       .catch((e) => {
