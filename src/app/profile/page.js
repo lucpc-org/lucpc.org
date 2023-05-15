@@ -11,15 +11,13 @@ import { useRouter } from "next/navigation";
 export default function Profile() {
   const router = useRouter();
   const [currentUser, setCurrentUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         setCurrentUser(user);
       } else {
-        router.push("/auth/login");
+        router.push("/");
       }
-      setIsLoading(false);
     });
     return unsubscribe;
   }, []);
@@ -28,9 +26,9 @@ export default function Profile() {
   //   window.location.replace("/auth/login");
   // }
 
+  const [profileURL, setProfileURL] = useState("https://placehold.co/300");
+  const [kattisURL, setKattisURL] = useState("");
   const [name, setName] = useState("");
-  const [leetname, setLeetname] = useState("");
-  const [onLeaderboard, setOnLeaderboard] = useState(false);
 
   const userRef = ref(db, "users/" + currentUser?.uid);
 
@@ -38,39 +36,45 @@ export default function Profile() {
     if (currentUser === null || currentUser === undefined) {
       return;
     }
+
     get(userRef)
       .then((snapshot) => {
         let userData;
 
+        // If the user exists then use the data from the database
         if (snapshot.exists()) {
           userData = snapshot.val();
         } else {
+          // Otherwise make data for them and set it in the database
           userData = {
             name: currentUser.providerData[0].displayName,
-            imageURL: currentUser.providerData[0].photoURL,
-            leetname: "",
-            onLeaderboard: false,
+            // We remove the last 6 characters so that the photo is full resolution
+            imageURL: currentUser.providerData[0].photoURL.slice(0, -6),
+            kattisURL: "",
           };
 
+          // Update the database
           set(userRef, userData);
         }
 
         setName(userData.name);
-        setLeetname(userData.leetname);
-        setOnLeaderboard(userData.onLeaderboard);
+        setProfileURL(userData.imageURL);
+        setKattisURL(userData.kattisURL);
       })
       .catch((e) => {
         console.error("Error getting user information.", e);
       });
+
+      // Don't add `userRef` here. For some reason it messes up the text box
   }, [currentUser]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (name.length >= 28 || leetname.length >= 28) {
-      document.getElementById("alert").style.color = "#FF375F";
+    if (name.length >= 28) {
+      document.getElementById("alert").style.background = "#FF375F";
       document.getElementById("alert").innerHTML =
-        "Name must be less than 28 characters";
+        `<i class="mr-2 fa-solid fa-triangle-exclamation"></i>Name must be less than 28 characters`;
       document.getElementById("alert").style.visibility = "visible";
       setTimeout(() => {
         document.getElementById("alert").style.visibility = "hidden";
@@ -82,21 +86,21 @@ export default function Profile() {
         if (snapshot.exists()) {
           userData = snapshot.val();
           userData.name = name;
-          userData.leetname = leetname;
-          userData.onLeaderboard = onLeaderboard;
+          // We remove the last 6 characters so that the photo is full resolution
+          userData.imageURL = currentUser.providerData[0].photoURL.slice(0, -6);
+          userData.kattisURL = kattisURL;
         } else {
           userData = {
             name: name,
-            imageURL: currentUser.providerData[0].photoURL,
-            leetname: leetname,
-            onLeaderboard: onLeaderboard,
+            imageURL: currentUser.providerData[0].photoURL.slice(0, -6),
+            kattisURL: kattisURL,
           };
         }
 
         set(userRef, userData);
 
-        document.getElementById("alert").style.color = "#43a047";
-        document.getElementById("alert").innerHTML = "Profile Saved";
+        document.getElementById("alert").style.background = "#43a047";
+        document.getElementById("alert").innerHTML = `<i class="mr-2 fa-solid fa-check"></i>Profile Saved`;
         document.getElementById("alert").style.visibility = "visible";
         setTimeout(() => {
           document.getElementById("alert").style.visibility = "hidden";
@@ -105,78 +109,74 @@ export default function Profile() {
     }
   };
 
+  const signOut = () => {
+    auth.signOut();
+    window.location.reload(false);
+  };
+
   return (
-    <div className="min-h-full h-fit sm:px-16 flex flex-col justify-center items-center lg:min-h-[600px] lg:h-full w-full text-neutral-200 ">
-      {!(currentUser === null || currentUser === undefined) && (
-        <div className="w-full md:w-96">
-          <form onSubmit={handleSubmit}>
-            <div className="flex flex-row items-center ml-2 md:mx-4 m-4">
-              <label
-                htmlFor="name"
-                className="basis-1/3 text-right font-bold text-sm md:text-base"
-              >
-                Name
-              </label>
-              <input
-                type="text"
-                placeholder="Name"
-                className="placeholder:text-neutral-500 text-center grow ml-4 md:ml-8 h-8 rounded-lg bg-shadow"
-                onChange={(e) => setName(e.target.value)}
-                value={name}
-              />
-            </div>
-            <div className="flex flex-row items-center ml-2 md:mx-4 m-4">
-              <label
-                htmlFor="leetname"
-                className="basis-1/3 text-right font-bold text-sm md:text-base"
-              >
-                LeetCode Username
-              </label>
-              <input
-                type="text"
-                placeholder="LeetCode Username"
-                name="leetname"
-                className="placeholder:text-neutral-500 text-center grow ml-4 md:ml-8 h-8 rounded-lg bg-shadow"
-                onChange={(e) => setLeetname(e.target.value)}
-                value={leetname}
-              />
-            </div>
-            <div className="flex flex-row items-center justify-center select-none">
-              <span className="font-bold m-4 text-sm md:text-base">
-                Appear on Leaderboard
-              </span>
-              <label
-                htmlFor="onLeaderboard"
-                className="inline-flex relative items-center cursor-pointer"
-              >
-                <input
-                  onChange={(e) => setOnLeaderboard(e.target.checked)}
-                  checked={onLeaderboard}
-                  type="checkbox"
-                  value=""
-                  id="onLeaderboard"
-                  name="onLeaderboard"
-                  className="sr-only peer"
-                />
-                <div className="w-11 h-6 bg-shadow peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-neutral-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-              </label>
-            </div>
-            <div className="flex flex-row justify-center w-full">
-              <button
-                type="submit"
-                className="mt-32 bg-neutral-200 hover:bg-neutral-500 text-center text-shadow font-bold w-fit p-2 rounded-lg"
-              >
-                Update
-              </button>
-            </div>
-          </form>
+    <div className="flex flex-col w-full items-center font-sans pb-[4rem]">
+      <div className="flex flex-col w-[95%] lg:w-[90%] xl:w-[80%]">
+        {!(currentUser === null || currentUser === undefined) && (
+          <div className="flex flex-col items-center md:items-start md:flex-row w-full">
+
+            <img src={profileURL} alt="Placeholder User" className="rounded-full w-[200px] h-[200px] lg:w-[250px] lg:h-[250px]" referrerPolicy="no-referrer"/>
+
+            <form onSubmit={handleSubmit} className="md:ml-8 lg:ml-12 mt-6 lg:mt-12 w-full">
+              <div className="flex flex-col md:flex-row gap-8 lg:gap-12"> 
+                <div className="flex flex-col grow">
+                  <label htmlFor="name" className="font-bold text-xl md:text-2xl lg:text-4xl mb-2">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Name"
+                    className="placeholder:text-text_hover2 text-text_color h-12 ext-base lg:text-lg p-3 rounded-lg bg-background3"
+                    onChange={(e) => setName(e.target.value)}
+                    value={name}
+                  />
+                </div>
+
+                <div className="flex flex-col grow">
+                  <label htmlFor="kattis" className="font-bold text-xl md:text-2xl lg:text-4xl mb-2">
+                    Kattis Profile
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="https://open.kattis.com/users/john-doe"
+                    className="placeholder:text-text_hover2 text-text_color h-12 text-base lg:text-lg p-3 grow rounded-lg bg-background3"
+                    onChange={(e) => setKattisURL(e.target.value)}
+                    value={kattisURL}
+                  />
+                </div>
+              </div>
+              
+              <div className="flex flex-col md:flex-row mt-8 space-y-8 md:space-y-0 md:space-x-12">
+                <button type="submit" className="bg-yellow text-center text-text_color font-bold p-2 px-12 rounded-lg transition-all duration-150 hover:opacity-80">
+                  Save Changes
+                </button>
+                <button 
+                  type="button" 
+                  className="bg-actual_red text-center text-text_color font-bold p-2 px-12 rounded-lg transition-all duration-150 hover:opacity-80"
+                  onClickCapture={signOut}
+                >
+                  Sign Out
+                </button>
+              </div>
+            </form>
+          </div>
+        )}
+        <div
+          id="alert"
+          className="w-fit mt-12 text-text_color font-bold text-base lg:text-lg pt-2 pb-1 px-2 rounded-lg invisible"
+        >
+          Profile Saved
         </div>
-      )}
-      <div
-        id="alert"
-        className="relative mt-4 text-easy font-bold text-base lg:text-lg bg-shadowhover p-2 rounded-xl invisible"
-      >
-        Profile Saved
+        
+        <div className="flex justify-center items-center space-x-2 mt-12">
+          <h1>Statistics</h1>
+          <p className="text-xl">Coming Soon</p>
+        </div>
       </div>
     </div>
   );

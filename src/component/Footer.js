@@ -1,15 +1,25 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-import { AuthContext } from "./auth/AuthProvider";
-import firebaseConfig from "../config.js";
+"use client";
+
+import React, { useContext, useState, useEffect } from "react";
+import Link from "next/link";
+import { auth } from "../service/FirebaseService";
 
 export default function Footer(props) {
   // const [navbarOpen, setNavbarOpen] = React.useState(false);
-  const { currentUser } = useContext(AuthContext);
+  const [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setCurrentUser(user);
+      }
+    });
+    return unsubscribe;
+  }, []);
 
   return (
     <div className="w-full absolute bottom-0 left-0 flex flex-row justify-center items-center bg-background_lighter text-xs md:text-sm">
-      <Link to="/contact/">
+      <Link href="/contact/">
         <button className="px-2 py-4 sm:p-4 font-bold hover:text-neutral-500">
           Contact Us
         </button>
@@ -21,7 +31,7 @@ export default function Footer(props) {
       </a>
       {currentUser === null || currentUser === undefined ? (
         <>
-          <Link to="/auth/login">
+          <Link href="/auth/login">
             <button className="p-2 sm:p-4 font-bold hover:text-neutral-500">
               Login
             </button>
@@ -31,9 +41,9 @@ export default function Footer(props) {
         <button
           type="button"
           className="p-2 sm:p-4 font-bold hover:text-neutral-500"
-          onClick={() => firebaseConfig.auth().signOut()}
+          onClick={() => auth.signOut()}
         >
-          <Link to="/">Sign Out</Link>
+          <Link href="/">Sign Out</Link>
         </button>
       )}
       {!(currentUser === null || currentUser === undefined) &&
@@ -43,7 +53,7 @@ export default function Footer(props) {
             className="p-2 sm:p-4 font-bold hover:text-neutral-500"
             onClick={() => currentUser.sendEmailVerification()}
           >
-            <Link to="/">Verify Email</Link>
+            <Link href="/">Verify Email</Link>
           </button>
         )}
     </div>

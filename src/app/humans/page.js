@@ -43,7 +43,7 @@ export default function Humans() {
       title: "Outreach",
       name: "Alexa Wenger",
       class: "2026",
-      major: "Software Engineering",
+      major: "Software Engineering and Data Science",
       pic: "alexa.jpg",
       linkedin: "https://www.linkedin.com/in/alexa-wenger/",
     },
@@ -60,18 +60,18 @@ export default function Humans() {
         </div>
 
         <div className="flex justify-center">
-          <div className="flex flex-col space-y-5 w-full">
+          <div className="flex flex-col space-y-9 md:space-y-5 w-[95%]">
             {humans.map((item, i) => (
               i % 2 ? (
                 <div className="flex flex-row justify-end">
-                  <div className="flex flex-col items-end justify-center pr-5 text-lg">
+                  <div className="flex flex-col items-end justify-center pr-5 text-sm md:text-base lg:text-lg">
                     <div className="flex flex-col items-end pb-3">
                       <h2 className="leading-tight">{item.name}</h2>
                       <h3 className="text-yellow">{item.title}</h3>
                     </div>
                     <p className="text-text_hover">{item.major}</p>
                     <p className="text-text_hover">Class of {item.class}</p>
-                    <div className="text-3xl flex flex-row space-x-4 mt-5">
+                    <div className="text-xl md:text-2xl lg:text-3xl flex flex-row space-x-4 mt-auto md:mt-5">
                       <Link href={item.linkedin} className="transition-all ease-in duration-150 hover:text-yellow">
                         <i className="fa-brands fa-linkedin"></i>
                       </Link>
@@ -83,7 +83,7 @@ export default function Humans() {
                     </div>
                   </div>
                   <Image
-                    className="rounded-lg"
+                    className="rounded-xl w-[150px] h-[150px] md:w-[200px] md:h-[200px] lg:w-[250px] lg:h-[250px]"
                     alt="Close up shot of person"
                     src={`/images/${item.pic}`}
                     width="250"
@@ -93,20 +93,20 @@ export default function Humans() {
               ) : (
                 <div className="flex flex-row">
                   <Image
-                    className="rounded-lg"
+                    className="rounded-lg w-[150px] h-[150px] md:w-[200px] md:h-[200px] lg:w-[250px] lg:h-[250px]"
                     alt="Close up shot of person"
                     src={`/images/${item.pic}`}
                     width="250"
                     height="250"
                   />
-                  <div className="flex flex-col pl-5 justify-center text-lg">
+                  <div className="flex flex-col pl-5 justify-center text-sm md:text-base lg:text-lg">
                     <div className="flex flex-col items-start pb-3">
                       <h2 className="leading-tight">{item.name}</h2>
                       <h3 className="text-green">{item.title}</h3>
                     </div>
                     <p className="text-text_hover">{item.major}</p>
                     <p className="text-text_hover">Class of {item.class}</p>
-                    <div className="text-3xl flex flex-row space-x-4 mt-5">
+                    <div className="text-2xl lg:text-3xl flex flex-row space-x-4 mt-auto md:mt-5">
                       <Link href={item.linkedin} className="transition-all ease-in duration-150 hover:text-yellow">
                         <i className="fa-brands fa-linkedin"></i>
                       </Link>

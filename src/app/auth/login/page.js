@@ -28,30 +28,32 @@ const Login = () => {
     if (error) {
       setError(error.message);
     } else {
-      router.push("/");
+      router.push("/profile");
     }
   };
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        router.push("/");
+        router.push("/profile");
       }
     });
     return unsubscribe;
   }, []);
 
   return (
-    <div className="w-full h-full flex flex-col justify-center content-center items-center">
-      <div className="w-fit flex flex-row items-center mb-4">
-        <h1>Sign in with</h1>
+    <div className="flex flex-col w-full items-center font-sans pb-[4rem]">
+      <div className="flex flex-col items-center w-[95%] lg:w-[85%] xl:w-[80%]">
+        <h1 className="pb-8">Sign in</h1>
         <button
           type="button"
           onClick={handleSignInWithGoogle}
-          className="ml-2 bg-neutral-200 hover:bg-neutral-500 text-center text-shadow font-bold w-fit p-2 rounded-lg"
+          className="text-xl ml-2 bg-yellow border-yellow_white border-[1px] text-white font-bold py-2 px-8 rounded-lg transition-all duration-150 hover:opacity-80"
         >
+          <i className="mr-2 fa-brands fa-google"></i>
           Google
         </button>
+
       </div>
     </div>
   );
