@@ -81,7 +81,7 @@ export default function App() {
   
   //https://discord.gg/dneShg4YYv
   return (
-    <div className="flex flex-col w-full items-center font-sans pb-[4rem]">
+    <div className="flex flex-col w-full items-center font-sans pb-[4rem] bg-background">
       <div className="flex flex-col w-[95%] lg:w-[85%] xl:w-[80%]">
         <div className="flex flex-col space-y-2 pb-[2rem]">
           <h1 className="leading-tight md:leading-none text-4xl md:text-5xl font-bold">
@@ -108,7 +108,7 @@ export default function App() {
         </div>
         
         <div className="flex justify-center md:justify-normal flex-row mb-[4rem] md:mb-[6rem]">
-          <Link href="https://discord.gg/dneShg4YYv" className="flex items-center text-base px-5 py-2 rounded-3xl bg-[#5865F2] border-[1px] border-[#7289DA] transition-all ease-in duration-150 hover:bg-[#717CF4] hover:border-[#8699DF]">
+          <Link href="https://discord.gg/dneShg4YYv" className="flex items-center text-base px-5 py-2 rounded-3xl bg-[#5865F2] border-[1px] border-[#8289FF] transition-all ease-in duration-150 hover:bg-[#717CF4] hover:border-[#8699DF]">
             <i className="mb-[.15rem] fa-brands fa-discord"></i>
             <p className="inline pl-3 font-semibold">Join our Discord</p>
           </Link>
@@ -124,9 +124,9 @@ export default function App() {
                 </h3>
                 <p className="leading-relaxed text-text_hover">{item.content}</p>
 
-                <div className={`flex mt-auto pt-5 items-center ${i % 2 ? `text-blue/80` : `text-green/80`}`}>
+                <div className={`flex flex-row subpixel-antialiased items-center mt-auto pt-5 ${i % 2 ? `text-blue/80` : `text-green/80`}`}>
                   <p>{item.linkLabel}</p>
-                  <i className="text-xs pl-2 transition-all ease-in duration-150 group-hover:pl-4 group-hover:text-sm fa-solid fa-arrow-right"></i>
+                  <i className="fa-xs pl-2 transition-all ease-in duration-150 group-hover:pl-4 fa-solid fa-arrow-right"></i>
                 </div>
               </Link>
             ) : (
@@ -141,7 +141,7 @@ export default function App() {
           ))}
         </div>
 
-        <div className="flex flex-col space-y-10 mb-[4rem]">
+        <div className="flex flex-col space-y-10 mb-[4rem] ">
           <div>
             <div className="pb-3">
               <h2 className="leading-tight">Meetings</h2>

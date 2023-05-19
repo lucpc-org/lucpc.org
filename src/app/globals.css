@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 @tailwind base;
 @layer base {
   body {
@@ -14,15 +14,15 @@
   }
 
   h1 {
-    @apply font-bold text-4xl md:text-5xl
+    @apply font-bold text-4xl md:text-5xl;
   }
 
   h2 {
-    @apply font-bold text-xl md:text-2xl lg:text-[2rem]
+    @apply font-bold text-xl md:text-2xl lg:text-[2rem];
   }
 
   h3 {
-    @apply font-bold text-lg lg:text-2xl
+    @apply font-bold text-lg lg:text-2xl;
   }
 
   #root {
@@ -31,7 +31,16 @@
 }
 
 @tailwind components;
+
+
+.btn-lg {
+  @apply h-[3rem] min-h-[3rem];
+}
+
+
+
 @tailwind utilities;
+
 
 
 

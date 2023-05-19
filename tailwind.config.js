@@ -8,7 +8,28 @@ module.exports = {
     // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-
+  daisyui: {
+    themes: [
+      {
+        mytheme: {
+          "primary": "#48BF84",
+          "primary-content": "#DFDFDF",
+          "secondary": "#1D9BF0",
+          "secondary-content": "#DFDFDF",
+          "accent": "#404045",
+          "neutral": "#303035",
+          "base-100": "#252528",
+          "base-200": "#303035",
+          "base-300": "#404045",
+          "base-content": "#DFDFDF",
+          "info": "#3ABFF8",
+          "success": "#3DA35D",
+          "warning": "#E6B749",
+          "error": "#FA646B",
+        },
+      },
+    ],
+  },
   theme: {
     screens: {
       sm: "480px",
@@ -20,7 +41,7 @@ module.exports = {
       fontFamily: {
         mono: ['JetBrains Mono', "serif"],
         trajan: ["trajan-pro-3", "serif"],
-        sans: ["Segoe UI", "sans-serif"],
+        sans: ["Inter", "Segoe UI","sans-serif"],
       },
       boxShadow: {
         lg: "0 0px 30px -3px rgba(0, 0, 0, 0.3)",
@@ -86,5 +107,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 };

@@ -15,7 +15,7 @@ export default function RootLayout({
         {/*<link rel="stylesheet" href="https://use.typekit.net/uap0crb.css" />*/}
         <script src="https://kit.fontawesome.com/8afaee683f.js"></script>
       </head>
-      <body>
+      <body >
         <NavBar />
         {children}
       </body>

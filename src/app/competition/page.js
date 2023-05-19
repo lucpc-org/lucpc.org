@@ -4,8 +4,6 @@ import React, { useContext, useState, useEffect } from "react";
 import { ref, set, get } from "firebase/database";
 import { auth, db } from "../../service/FirebaseService";
 
-import Link from "next/link"
-
 import Leaderboard from "../../component/Leaderboard";
 
 export default function Problems() {
@@ -16,16 +14,6 @@ export default function Problems() {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         setCurrentUser(user);
-        const userRef = ref(db, "users/" + user.uid);
-
-        get(userRef).then((snapshot) => {
-          const data = snapshot.val();
-          setSolvedStates({
-            easy: data.problems.easy ? data.problems.easy.state : false ,
-            medium: data.problems.medium ? data.problems.medium.state : false,
-            hard: data.problems.hard ? data.problems.hard.state : false,
-          });
-        });
       }
     });
     return unsubscribe;
@@ -52,6 +40,10 @@ export default function Problems() {
     });
 
   }, []);
+
+  function getDifficulty(e) {
+    return dbProblems.find(item => item.diffName === e.target.id).difficulty; 
+  }
 
 
   const completeProblem = (e) => {
@@ -84,7 +76,7 @@ export default function Problems() {
               userData.problems[e.target.id].time = currentTime;
             }
 
-            const difficulty = dbProblems.find(item => item.diffName === e.target.id).difficulty;
+            const difficulty = getDifficulty(e);
             // Add to the total score
             userData.totalScore += difficulty;
             userData.weeklyScore += difficulty;
@@ -96,7 +88,7 @@ export default function Problems() {
             userData.problems[e.target.id].time = currentTime;
 
             // Create the total score
-            const difficulty = dbProblems.find(item => item.diffName === e.target.id).difficulty;
+            const difficulty = getDifficulty(e);
             userData.totalScore = difficulty;
             userData.weeklyScore = difficulty;
           }
@@ -106,10 +98,13 @@ export default function Problems() {
           if ("problems" in userData) {
             userData.problems[e.target.id].state = false;
             userData.problems[e.target.id].time = null;
+
+            // Remove the problem value from their score
+            const difficulty = getDifficulty(e);
+            userData.weeklyScore -= difficulty;
+            userData.totalScore -= difficulty;
           }
         }
-
-        console.log(userData);
 
         set(userRef, userData);
       } else {
@@ -117,7 +112,7 @@ export default function Problems() {
         let problems = {};
         problems[e.target.id].state = e.target.checked;
         problems[e.target.id].time = currentTime;
-        const difficulty = dbProblems.find(item => item.diffName === e.target.id).difficulty;
+        const difficulty = getDifficulty(e);
 
         let userData = {
           name: currentUser.providerData[0].displayName,
@@ -135,9 +130,12 @@ export default function Problems() {
 
 
   return (
-    <div className="flex flex-col w-full items-center font-sans pb-[4rem]">
+    <div className="flex flex-col w-full items-center font-sans pb-[4rem] bg-background">
       <div className="flex flex-col w-[95%] lg:w-[85%] xl:w-[80%]">
-        <h1 className="pb-10">Competition</h1>
+        <div className="pb-10">
+          <h1 className="pb-1">Competition</h1>
+          <p className="text-lg text-text_hover2">Weekly Problems are posted here. Check off each problem you solve</p>
+        </div>
         <div className="flex flex-row gap-5">
           {dbProblems.map((item, i) => (
             <div key={item.difficulty} className="flex flex-row grow rounded-lg border border-background3 bg-background2 p-5 items-center">
@@ -149,31 +147,32 @@ export default function Problems() {
                 </p>
               </div>
 
-              <div className="space-x-5 text-4xl">
-                <Link href={item.url} className="transition-opacity ease-in-out duration-150 hover:opacity-80">
-                  <i className="fa-solid fa-square-arrow-up-right"></i>
-                </Link>
+              <div className="flex items-center space-x-5 text-4xl">
                 {!(currentUser === null || currentUser === undefined) && (
-                  <>
+                  <label className="swap">
                     <input
                       onClick={completeProblem}
                       type="checkbox"
                       id={item.diffName}
-                      value=""
                       defaultChecked={solvedStates[item.diffName]}
-                      className="hidden peer"
                     />
-                    <label htmlFor={item.diffName} className="text-text_hover cursor-pointer opacity-30 group transition-all ease-in-out duration-150 peer-checked:peer-hover:opacity-75 peer-hover:opacity-40 peer-checked:text-easy peer-checked:opacity-100">
-                      <i className="fa-solid fa-circle-check" />
-                    </label>
-                  </>
+                    <i className="swap-on text-easy fa-solid fa-circle-check" />
+                    <i className="swap-off text-text_hover2 fa-regular fa-circle-check" />
+                  </label>
                 )}
+                <button className="btn btn-accent btn-square">
+                  <i class="fa-lg fa-solid fa-arrow-up-right-from-square" />
+                </button>
               </div>
             </div>
           ))}
         </div>
         <div className="mt-[4rem]">
-          <Leaderboard />
+          {!(currentUser === null || currentUser === undefined) ?
+            <Leaderboard solvedStates={solvedStates} uid={currentUser.uid}/>
+            :
+            <Leaderboard/>
+          }
         </div>
       </div>
       <div className="invisible text-easy text-medium text-hard"></div>

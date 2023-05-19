@@ -115,7 +115,7 @@ export default function Profile() {
   };
 
   return (
-    <div className="flex flex-col w-full items-center font-sans pb-[4rem]">
+    <div className="flex flex-col w-full items-center font-sans pb-[4rem] bg-background">
       <div className="flex flex-col w-[95%] lg:w-[90%] xl:w-[80%]">
         {!(currentUser === null || currentUser === undefined) && (
           <div className="flex flex-col items-center md:items-start md:flex-row w-full">
@@ -142,7 +142,7 @@ export default function Profile() {
                     Kattis Profile
                   </label>
                   <input
-                    type="text"
+                  type="text"
                     placeholder="https://open.kattis.com/users/john-doe"
                     className="placeholder:text-text_hover2 text-text_color h-12 text-base lg:text-lg p-3 grow rounded-lg border border-background4 bg-background3"
                     onChange={(e) => setKattisURL(e.target.value)}
@@ -152,19 +152,20 @@ export default function Profile() {
               </div>
               
               <div className="flex flex-col md:flex-row text-xl mt-[4rem] space-y-8 md:space-y-0 md:space-x-12">
-                <button type="submit" className="border border-blue bg-blue_hover text-center text-text_color font-bold p-2 rounded-lg group transition-all ease-in duration-150 hover:bg-blue_hover2">
-                  <p className="inline pl-8">Save Changes</p>
-                  <i className="pl-8 pr-4 fa-solid fa-floppy-disk"></i>
+                <button type="submit" className="btn btn-lg btn-secondary gap-5">
+                  Save Changes
+                  <i className="fa-solid fa-floppy-disk"></i>
                 </button>
                 <button 
                   type="button" 
-                  className="border border-red_accent bg-red text-center text-text_color font-bold p-2 rounded-lg group transition-all ease-in duration-150 hover:bg-[#F93943DD]"
+                  className="btn btn-lg gap-5"
                   onClick={signOut}
                 >
-                  <p className="pl-12 inline">Sign Out</p>
-                  <i className=" transition-all ease-in-out duration-150 pl-4 pr-8 group-hover:pl-8 group-hover:pr-4 fa-solid fa-right-to-bracket"></i>
+                  Sign Out
+                  <i className="fa-solid fa-right-to-bracket"></i>
                 </button>
               </div>
+
             </form>
           </div>
         )}
@@ -175,7 +176,7 @@ export default function Profile() {
           Profile Saved
         </div>
         
-        <div className="flex justify-center items-center space-x-2 mt-12">
+        <div className="flex flex-col justify-center items-center space-x-2 mt-12">
           <h1>Statistics</h1>
           <p className="text-xl">Coming Soon</p>
         </div>

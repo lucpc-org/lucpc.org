@@ -50,11 +50,11 @@ export default function Humans() {
   ];
 
   return (
-    <div className="flex flex-col w-full items-center font-sans pb-[4rem]">
+    <div className="flex flex-col w-full items-center font-sans pb-[4rem] bg-background">
       <div className="flex flex-col w-[95%] lg:w-[85%] xl:w-[80%]">
         <div className="pb-[3rem]">
           <h1>Humans</h1>
-          <p className="text-lg text-text_hover">
+          <p className="text-lg text-text_hover2">
             These people are the heart and soul of our club
           </p>
         </div>
@@ -63,7 +63,7 @@ export default function Humans() {
           <div className="flex flex-col space-y-9 md:space-y-5 w-[95%]">
             {humans.map((item, i) => (
               i % 2 ? (
-                <div className="flex flex-row justify-end">
+                <div key={i} className="flex flex-row justify-end">
                   <div className="flex flex-col items-end justify-center pr-5 text-sm md:text-base lg:text-lg">
                     <div className="flex flex-col items-end pb-3">
                       <h2 className="leading-tight">{item.name}</h2>
@@ -82,23 +82,11 @@ export default function Humans() {
                       }
                     </div>
                   </div>
-                  <Image
-                    className="rounded-xl w-[150px] h-[150px] md:w-[200px] md:h-[200px] lg:w-[250px] lg:h-[250px]"
-                    alt="Close up shot of person"
-                    src={`/images/${item.pic}`}
-                    width="250"
-                    height="250"
-                  />
+                  <img src={`/images/${item.pic}`} alt={item.title} className="rounded-xl w-[150px] h-[150px] md:w-[200px] md:h-[200px] lg:w-[250px] lg:h-[250px]"/>
                 </div>
               ) : (
-                <div className="flex flex-row">
-                  <Image
-                    className="rounded-lg w-[150px] h-[150px] md:w-[200px] md:h-[200px] lg:w-[250px] lg:h-[250px]"
-                    alt="Close up shot of person"
-                    src={`/images/${item.pic}`}
-                    width="250"
-                    height="250"
-                  />
+                <div key={i} className="flex flex-row">
+                                    <img src={`/images/${item.pic}`} alt={item.title} className="rounded-xl w-[150px] h-[150px] md:w-[200px] md:h-[200px] lg:w-[250px] lg:h-[250px]"/>
                   <div className="flex flex-col pl-5 justify-center text-sm md:text-base lg:text-lg">
                     <div className="flex flex-col items-start pb-3">
                       <h2 className="leading-tight">{item.name}</h2>
