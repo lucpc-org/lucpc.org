@@ -8,7 +8,11 @@ import { db } from "../../service/FirebaseService";
 import Leaderboard from "../../component/Leaderboard";
 
 export default function Problems() {
-  const [solvedStates, setSolvedStates] = useState([]);
+  const [solvedStates, setSolvedStates] = useState({
+    'easy': false,
+    'medium': false,
+    'hard': false
+  });
 
   const { currentUser, loading } = useContext(AuthContext);
 
@@ -56,17 +60,17 @@ export default function Problems() {
     const currentTime = new Date().getTime();
     const userRef = ref(db, "users/" + currentUser.uid);
 
-    let newSolvedStates = solvedStates;
-    newSolvedStates[e.target.id] = !e.checked;
+    let newSolvedStates = Object.assign({}, solvedStates);
+    newSolvedStates[e.target.id] = e.target.checked;
     setSolvedStates(newSolvedStates);
-
+    
     Promise.all([get(userRef)]).then((snapshots) => {
       if (snapshots[0].exists()) {
         let userData = snapshots[0].val();
         const difficulty = getDifficulty(e);
 
         // Check if being checked or unchecked (We use opposite value cause it's not updated yet)
-        if (!e.target.checked) {
+        if (e.target.checked) {
           console.log("SGfdg")
           // If problems have been solved by this user, totalScore and weeklyScore should exist
           if ("problems" in userData) {
