@@ -56,13 +56,17 @@ export default function Problems() {
     const currentTime = new Date().getTime();
     const userRef = ref(db, "users/" + currentUser.uid);
 
+    let newSolvedStates = solvedStates;
+    newSolvedStates[e.target.id] = !e.checked;
+    setSolvedStates(newSolvedStates);
+
     Promise.all([get(userRef)]).then((snapshots) => {
       if (snapshots[0].exists()) {
         let userData = snapshots[0].val();
         const difficulty = getDifficulty(e);
 
         // Check if being checked or unchecked (We use opposite value cause it's not updated yet)
-        if (e.target.checked) {
+        if (!e.target.checked) {
           console.log("SGfdg")
           // If problems have been solved by this user, totalScore and weeklyScore should exist
           if ("problems" in userData) {
@@ -108,7 +112,6 @@ export default function Problems() {
             userData.problems[e.target.id].state = false;
             userData.problems[e.target.id].time = null;
 
-            console.log("hgg");
             // Remove the problem value from their score and make sure its only one decimal place
 
             userData.weeklyScore =
@@ -171,6 +174,7 @@ export default function Problems() {
                       type="checkbox"
                       id={item.diffName}
                       checked={solvedStates[item.diffName]}
+                      readOnly={false}
                     />
                     <i className="swap-on text-easy fa-solid fa-circle-check" />
                     <i className="swap-off text-text_hover2 fa-regular fa-circle-check" />
@@ -184,11 +188,7 @@ export default function Problems() {
           ))}
         </div>
         <div className="mt-[4rem]">
-          {!(currentUser === null || currentUser === undefined) ? (
-            <Leaderboard solvedStates={solvedStates} uid={currentUser.uid} />
-          ) : (
-            <Leaderboard />
-          )}
+          <Leaderboard />
         </div>
       </div>
       <div className="invisible text-easy text-medium text-hard"></div>
