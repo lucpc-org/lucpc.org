@@ -1,24 +1,13 @@
-"use client";
+"use client"
 
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import Link from "next/link";
-// import { AuthContext } from "./auth/AuthProvider";
-import GlowButton from "./GlowButton";
-import { auth } from "../service/FirebaseService";
+import { AuthContext } from "./AuthProvider";
 import RedLink from "./RedLink";
 
-export default function NavBar(props) {
-  // const { currentUser } = useContext(AuthContext);
-  const [currentUser, setCurrentUser] = useState(null);
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        setCurrentUser(user);
-      }
-    });
-    return unsubscribe;
-  }, []);
-
+export default function NavBar() {
+  const { currentUser } = useContext(AuthContext);
+  
   const navLinks = [
     {
       name: "About",
@@ -48,11 +37,11 @@ export default function NavBar(props) {
               </div>
             </Link>
           ))}
-          {currentUser ? (
+          {currentUser ?
             <RedLink to="/profile" label="Profile" extraStyles="text-green decoration-2"/>
-          ) : (
+           : 
             <RedLink to="/auth/login" label="Log In" extraStyles="text-green decoration-2"/>
-          )}
+          }
         </div>
       </div>
     </div>

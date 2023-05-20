@@ -1,23 +1,16 @@
 "use client";
 
 import React, { useContext, useState, useEffect } from "react";
+import { AuthContext } from "../../component/AuthProvider";
 import { ref, set, get } from "firebase/database";
-import { auth, db } from "../../service/FirebaseService";
+import { db } from "../../service/FirebaseService";
 
 import Leaderboard from "../../component/Leaderboard";
 
 export default function Problems() {
-  const [currentUser, setCurrentUser] = useState(null);
   const [solvedStates, setSolvedStates] = useState([]);
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        setCurrentUser(user);
-      }
-    });
-    return unsubscribe;
-  }, []);
+  const { currentUser, loading } = useContext(AuthContext);
 
   const [dbProblems, setDBProblems] = useState([]);
 
@@ -38,48 +31,63 @@ export default function Problems() {
 
       setDBProblems([easy, medium, hard]);
     });
-
   }, []);
 
-  function getDifficulty(e) {
-    return dbProblems.find(item => item.diffName === e.target.id).difficulty; 
-  }
+  useEffect(() => {
+    if (!(currentUser === null || currentUser === undefined)) {
+      const userRef = ref(db, "users/" + currentUser.uid);
 
+      get(userRef).then((snapshot) => {
+        const data = snapshot.val();
+        setSolvedStates({
+          easy: data.problems.easy ? data.problems.easy.state : false,
+          medium: data.problems.medium ? data.problems.medium.state : false,
+          hard: data.problems.hard ? data.problems.hard.state : false,
+        });
+      });
+    }
+  }, [currentUser]);
+
+  function getDifficulty(e) {
+    return dbProblems.find((item) => item.diffName === e.target.id).difficulty;
+  }
 
   const completeProblem = (e) => {
     const currentTime = new Date().getTime();
     const userRef = ref(db, "users/" + currentUser.uid);
 
-    let newSolvedStates = solvedStates;
-    newSolvedStates[e.target.id] = !e.target.checked;
-    setSolvedStates(newSolvedStates);
-
     Promise.all([get(userRef)]).then((snapshots) => {
       if (snapshots[0].exists()) {
         let userData = snapshots[0].val();
+        const difficulty = getDifficulty(e);
 
-        // Check if being checked or unchecked
+        // Check if being checked or unchecked (We use opposite value cause it's not updated yet)
         if (e.target.checked) {
+          console.log("SGfdg")
           // If problems have been solved by this user, totalScore and weeklyScore should exist
           if ("problems" in userData) {
             //If the problem type exists in the db
             if (e.target.id in userData.problems) {
-              // If the user has not solved the problem before then we update the time for that problem
-              
-              userData.problems[e.target.id].time = currentTime;
-              // e.target.id is either 'easy', 'medium', or 'hard'
-              userData.problems[e.target.id].state = true;
+              // This is because sometimes the checkmark won't update so they can click it again
+              // We don't want to update the database if they have already solved it
+              if (!userData.problems[e.target.id].state) {
+                userData.problems[e.target.id].time = currentTime;
+                // e.target.id is either 'easy', 'medium', or 'hard'
+                userData.problems[e.target.id].state = true;
+
+                // Add to the total score
+                userData.totalScore += difficulty;
+                userData.weeklyScore += difficulty;
+              }
             } else {
               // If the problem type does not exist in the db
-              userData.problems[e.target.id] = {}
+              userData.problems[e.target.id] = {};
               userData.problems[e.target.id].state = true;
               userData.problems[e.target.id].time = currentTime;
+              // Add to the total score
+              userData.totalScore += difficulty;
+              userData.weeklyScore += difficulty;
             }
-
-            const difficulty = getDifficulty(e);
-            // Add to the total score
-            userData.totalScore += difficulty;
-            userData.weeklyScore += difficulty;
           } else {
             // Case where 'problems' not in user data
             userData.problems = {};
@@ -88,21 +96,25 @@ export default function Problems() {
             userData.problems[e.target.id].time = currentTime;
 
             // Create the total score
-            const difficulty = getDifficulty(e);
             userData.totalScore = difficulty;
             userData.weeklyScore = difficulty;
           }
         } else {
+          console.log("kkkkkk")
+
           // Case where the problem is unchecked
           // These cases do not require any action if the data does not exist
           if ("problems" in userData) {
             userData.problems[e.target.id].state = false;
             userData.problems[e.target.id].time = null;
 
-            // Remove the problem value from their score
-            const difficulty = getDifficulty(e);
-            userData.weeklyScore -= difficulty;
-            userData.totalScore -= difficulty;
+            console.log("hgg");
+            // Remove the problem value from their score and make sure its only one decimal place
+
+            userData.weeklyScore =
+              Math.round((userData.weeklyScore - difficulty) * 10) / 10;
+            userData.totalScore =
+              Math.round((userData.totalScore - difficulty) * 10) / 10;
           }
         }
 
@@ -128,17 +140,21 @@ export default function Problems() {
     });
   };
 
-
   return (
     <div className="flex flex-col w-full items-center font-sans pb-[4rem] bg-background">
       <div className="flex flex-col w-[95%] lg:w-[85%] xl:w-[80%]">
         <div className="pb-10">
           <h1 className="pb-1">Competition</h1>
-          <p className="text-lg text-text_hover2">Weekly Problems are posted here. Check off each problem you solve</p>
+          <p className="text-lg text-text_hover2">
+            Weekly Problems are posted here. Check off each problem you solve
+          </p>
         </div>
         <div className="flex flex-row gap-5">
           {dbProblems.map((item, i) => (
-            <div key={item.difficulty} className="flex flex-row grow rounded-lg border border-background3 bg-background2 p-5 items-center">
+            <div
+              key={item.difficulty}
+              className="flex flex-row grow rounded-lg border border-background3 bg-background2 p-5 items-center"
+            >
               <div className="flex flex-col mr-auto">
                 <h3 className={`text-${item.diffName}`}>{item.name}</h3>
                 <p className="text-text_hover text-lg">
@@ -149,30 +165,30 @@ export default function Problems() {
 
               <div className="flex items-center space-x-5 text-4xl">
                 {!(currentUser === null || currentUser === undefined) && (
-                  <label className="swap">
+                  <label htmlFor={item.diffName} className="swap">
                     <input
-                      onClick={completeProblem}
+                      onChange={completeProblem}
                       type="checkbox"
                       id={item.diffName}
-                      defaultChecked={solvedStates[item.diffName]}
+                      checked={solvedStates[item.diffName]}
                     />
                     <i className="swap-on text-easy fa-solid fa-circle-check" />
                     <i className="swap-off text-text_hover2 fa-regular fa-circle-check" />
                   </label>
                 )}
                 <button className="btn btn-accent btn-square">
-                  <i class="fa-lg fa-solid fa-arrow-up-right-from-square" />
+                  <i className="fa-lg fa-solid fa-arrow-up-right-from-square" />
                 </button>
               </div>
             </div>
           ))}
         </div>
         <div className="mt-[4rem]">
-          {!(currentUser === null || currentUser === undefined) ?
-            <Leaderboard solvedStates={solvedStates} uid={currentUser.uid}/>
-            :
-            <Leaderboard/>
-          }
+          {!(currentUser === null || currentUser === undefined) ? (
+            <Leaderboard solvedStates={solvedStates} uid={currentUser.uid} />
+          ) : (
+            <Leaderboard />
+          )}
         </div>
       </div>
       <div className="invisible text-easy text-medium text-hard"></div>

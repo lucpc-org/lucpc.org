@@ -1,26 +1,20 @@
 "use client";
 
 import React, { useContext, useState, useEffect } from "react";
-// import { AuthContext } from "../../components/auth/AuthProvider";
+import { AuthContext } from "../../component/AuthProvider";
 
 import { db } from "../../service/FirebaseService";
-import { getDatabase, ref, set, get } from "firebase/database";
+import { ref, set, get } from "firebase/database";
 import { auth } from "../../service/FirebaseService";
 import { useRouter } from "next/navigation";
 
 export default function Profile() {
   const router = useRouter();
-  const [currentUser, setCurrentUser] = useState(null);
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        setCurrentUser(user);
-      } else {
-        router.push("/");
-      }
-    });
-    return unsubscribe;
-  }, []);
+  const { currentUser } = useContext(AuthContext);
+  
+  if (currentUser === null || currentUser === undefined) {
+    window.location.replace("/auth/login");
+  }
 
   // if (currentUser === null || currentUser === undefined) {
   //   window.location.replace("/auth/login");

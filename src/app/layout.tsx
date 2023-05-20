@@ -1,4 +1,6 @@
-import NavBar from "../component/NavBar"
+import NavBar from "../component/NavBar";
+import AuthProvider from "../component/AuthProvider";
+
 import "./globals.css"
 
 export default function RootLayout({
@@ -16,8 +18,10 @@ export default function RootLayout({
         <script src="https://kit.fontawesome.com/8afaee683f.js"></script>
       </head>
       <body >
-        <NavBar />
-        {children}
+        <AuthProvider>
+          <NavBar />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

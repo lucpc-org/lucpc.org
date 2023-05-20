@@ -7,10 +7,7 @@ import { ref, get } from "firebase/database";
 
 import RedLink from "./RedLink";
 
-export default function Leaderboard({
-  userUID="",
-  solvedStates=""
-}) {
+export default function Leaderboard() {
   const [boardStats, setBoardStats] = useState([]);
   const [sortByTotal, setSortByTotal] = useState(false);
 
@@ -24,10 +21,6 @@ export default function Leaderboard({
             .map(([uid, userObject]) => {
               let weeklyScore = 0;
               let totalScore = 0;
-
-              if (userUID === uid) {
-                // TODO
-              }
 
               if ("totalScore" in userObject) {
                 totalScore = userObject.totalScore;
@@ -161,8 +154,6 @@ export default function Leaderboard({
           </tbody>
         </table>
       </div>
-      
-
     </div>
   );
 }
