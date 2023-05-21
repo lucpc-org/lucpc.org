@@ -7,7 +7,7 @@
       "source": "**",
       "destination": "/index.html"
     } ],
-    "public": "build",
+    "public": "out",
     "ignore": [
       "firebase.json",
       "**/.*",
