@@ -59,56 +59,34 @@ export default function Humans() {
           </p>
         </div>
 
-        <div className="flex justify-center">
-          <div className="flex flex-col space-y-9 md:space-y-5 w-[95%]">
-            {humans.map((item, i) => (
-              i % 2 ? (
-                <div key={i} className="flex flex-row justify-end">
-                  <div className="flex flex-col items-end justify-center pr-5 text-sm md:text-base lg:text-lg">
-                    <div className="flex flex-col items-end pb-3">
-                      <h2 className="leading-tight">{item.name}</h2>
-                      <h3 className="text-blue">{item.title}</h3>
-                    </div>
-                    <p className="text-text_hover">{item.major}</p>
-                    <p className="text-text_hover">Class of {item.class}</p>
-                    <div className="text-xl md:text-2xl lg:text-3xl flex flex-row space-x-4 mt-auto md:mt-5">
-                      <Link href={item.linkedin} className="transition-all ease-in duration-150 hover:text-blue">
-                        <i className="fa-brands fa-linkedin"></i>
+        <div className="flex gap-8 justify-between flex-wrap">
+          {humans.map((item, i) => (
+            <div className="card bg-background2 shadow-xl w-[150px] md:w-[200px] lg:w-[300px]">
+              <figure>
+                <img src={`images/${item.pic}`} alt={item.name} className=""/>
+              </figure>
+              <div className="card-body pb-5">
+                <p className="font-bold text-2xl grow-0">{item.name}</p>
+                <p className={`text-xl leading-none ${i %2 ? `text-blue` : `text-green`}`}>{item.title}</p>
+                
+                <p className="text-lg text-text_hover grow-0">{item.major}</p>
+                <p className="leading-none text-lg text-text_hover">Class of {item.class}</p>
+                  
+                  <div className="flex flex-row justify-center gap-3 pt-4">
+                    <Link href={item.linkedin} className="btn btn-accent gap-2">
+                      Linkedin
+                      <i class="fa-lg fa-brands fa-linkedin"></i>
+                    </Link>
+                    {item.github && 
+                      <Link href={item.github} className="btn btn-accent gap-2">
+                        Github
+                        <i className="fa-lg fa-brands fa-github" />
                       </Link>
-                      {item.github &&
-                        <Link href={item.github} className="transition-all ease-in duration-150 hover:text-blue">
-                          <i className="fa-brands fa-github"></i>
-                        </Link>
-                      }
-                    </div>
+                    }
                   </div>
-                  <img src={`/images/${item.pic}`} alt={item.title} className="rounded-xl w-[150px] h-[150px] md:w-[200px] md:h-[200px] lg:w-[250px] lg:h-[250px]"/>
-                </div>
-              ) : (
-                <div key={i} className="flex flex-row">
-                                    <img src={`/images/${item.pic}`} alt={item.title} className="rounded-xl w-[150px] h-[150px] md:w-[200px] md:h-[200px] lg:w-[250px] lg:h-[250px]"/>
-                  <div className="flex flex-col pl-5 justify-center text-sm md:text-base lg:text-lg">
-                    <div className="flex flex-col items-start pb-3">
-                      <h2 className="leading-tight">{item.name}</h2>
-                      <h3 className="text-green">{item.title}</h3>
-                    </div>
-                    <p className="text-text_hover">{item.major}</p>
-                    <p className="text-text_hover">Class of {item.class}</p>
-                    <div className="text-2xl lg:text-3xl flex flex-row space-x-4 mt-auto md:mt-5">
-                      <Link href={item.linkedin} className="transition-all ease-in duration-150 hover:text-blue">
-                        <i className="fa-brands fa-linkedin"></i>
-                      </Link>
-                      {item.github &&
-                        <Link href={item.github} className="transition-all ease-in duration-150 hover:text-blue">
-                          <i className="fa-brands fa-github"></i>
-                        </Link>
-                      }
-                    </div>
-                  </div>
-                </div>
-              )
-            ))}
-          </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
