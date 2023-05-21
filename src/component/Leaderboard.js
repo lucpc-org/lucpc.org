@@ -82,7 +82,7 @@ export default function Leaderboard() {
           </select>
         </div>
       </div>
-      <div className="flex self-start md:self-center lg:justify-center w-full overflow-x-scroll">
+      <div className="flex self-start md:self-center lg:justify-center w-full overflow-x-scroll lg:overflow-x-hidden">
         <table className="table w-full lg:w-11/12 xl:w-10/12">
           <thead className="text-text_hover">
             <tr>

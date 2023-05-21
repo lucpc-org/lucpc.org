@@ -4,7 +4,7 @@ export default function About() {
       <div className="flex flex-col w-[95%] lg:w-[85%] xl:w-[80%]">
         <div className="pb-10">
           <h1>About Us</h1>
-          <p className="md:text-lg text-text_hover2">In 4 years of being an offical club we have accomplished and grown a lot</p>
+          <p className="md:text-lg text-text_hover2">In the 4 years since becoming an offical club we have accomplished and grown a lot</p>
         </div>
         <div className="flex flex-col gap-8">
           <div className="flex flex-wrap md:flex-nowrap gap-8">
@@ -30,8 +30,8 @@ export default function About() {
             </p>
           </div>
           <div className="flex flex-col items-center">
-            <p className="pb-2 text-lg md:text-xl">Club Members at the 2022-2023 ICPC</p>
             <img src="/images/team_2022.jpg" alt="Our 2022-2023 ICPC teams" className="rounded-lg lg:w-[900px]"/>
+            <p className="pb-2 text-lg md:text-xl italic">Club Members at the 2022-2023 ICPC</p>
           </div>
         </div>
         
