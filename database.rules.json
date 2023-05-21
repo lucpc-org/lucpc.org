@@ -8,32 +8,26 @@
         "name": {
           ".validate": "newData.isString() && newData.val().length < 28"
         },
-        "leetname": {
-          ".validate": "newData.isString() && newData.val().length < 28"
-        },
         "imageURL": { ".validate": true },
-        "onLeaderboard": { ".validate": true },
+        "kattisURL": { ".validate": true },
+        "totalScore": {".validate": true },
+        "weeklyScore": {".validate": true },
         "problems": { 
           "easy": { ".validate": true },
           "medium": { ".validate": true },
           "hard": { ".validate": true },
           "$other": { ".validate": false }
         },
-        "order": {
-          "$all": {".validate": true }
-        },
         "$other": { ".validate": false }
       }
     },
     "problems": {
-      "$problem": {
-        ".read": "true",
-        ".write": "auth.token.admin === true",
-        "easy": { ".validate": true },
-        "medium": { ".validate": true },
-        "hard": { ".validate": true },
-        "$other": { ".validate": false }
-      }
+      ".read": "true",
+      ".write": "auth.token.admin === true",
+      "easy": { ".validate": true },
+      "medium": { ".validate": true },
+      "hard": { ".validate": true },
+      "$other": { ".validate": false }
     }
   }
 }
