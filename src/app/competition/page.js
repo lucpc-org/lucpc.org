@@ -6,6 +6,7 @@ import { ref, set, get } from "firebase/database";
 import { db } from "../../service/FirebaseService";
 
 import Leaderboard from "../../component/Leaderboard";
+import Link from "next/link";
 
 export default function Problems() {
   const [solvedStates, setSolvedStates] = useState({
@@ -188,9 +189,9 @@ export default function Problems() {
                     <i className="swap-off text-text_hover2 fa-regular fa-circle-check" />
                   </label>
                 )}
-                <button className="btn btn-accent btn-square">
+                <Link href={item.url} className="btn btn-accent btn-square">
                   <i className="fa-lg fa-solid fa-arrow-up-right-from-square" />
-                </button>
+                </Link>
               </div>
             </div>
           ))}
