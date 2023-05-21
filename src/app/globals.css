@@ -37,6 +37,9 @@
   @apply h-[3rem] min-h-[3rem];
 }
 
+.btn-ghost:hover, .btn-ghost:active {
+  @apply bg-background3/60
+}
 
 
 @tailwind utilities;

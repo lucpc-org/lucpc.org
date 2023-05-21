@@ -11,10 +11,6 @@ import { useRouter } from "next/navigation";
 export default function Profile() {
   const router = useRouter();
   const { currentUser } = useContext(AuthContext);
-  
-  if (currentUser === null || currentUser === undefined) {
-    window.location.replace("/auth/login");
-  }
 
   // if (currentUser === null || currentUser === undefined) {
   //   window.location.replace("/auth/login");
@@ -106,6 +102,7 @@ export default function Profile() {
   const signOut = () => {
     auth.signOut();
     window.location.reload(false);
+    window.location.replace("/");
   };
 
   return (

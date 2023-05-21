@@ -54,39 +54,66 @@ export default function Humans() {
       <div className="flex flex-col w-[95%] lg:w-[85%] xl:w-[80%]">
         <div className="pb-[3rem]">
           <h1>Humans</h1>
-          <p className="text-lg text-text_hover2">
+          <p className="md:text-lg text-text_hover2">
             These people are the heart and soul of our club
           </p>
         </div>
 
-        <div className="flex gap-8 justify-between flex-wrap">
-          {humans.map((item, i) => (
-            <div className="card bg-background2 shadow-xl w-[150px] md:w-[200px] lg:w-[300px]">
-              <figure>
-                <img src={`images/${item.pic}`} alt={item.name} className=""/>
-              </figure>
-              <div className="card-body pb-5">
-                <p className="font-bold text-2xl grow-0">{item.name}</p>
-                <p className={`text-xl leading-none ${i %2 ? `text-blue` : `text-green`}`}>{item.title}</p>
-                
-                <p className="text-lg text-text_hover grow-0">{item.major}</p>
-                <p className="leading-none text-lg text-text_hover">Class of {item.class}</p>
-                  
-                  <div className="flex flex-row justify-center gap-3 pt-4">
-                    <Link href={item.linkedin} className="btn btn-accent gap-2">
-                      Linkedin
-                      <i class="fa-lg fa-brands fa-linkedin"></i>
-                    </Link>
-                    {item.github && 
-                      <Link href={item.github} className="btn btn-accent gap-2">
-                        Github
-                        <i className="fa-lg fa-brands fa-github" />
+        <div className="flex justify-center">
+          <div className="flex flex-col space-y-9 md:space-y-5 w-[95%]">
+            {humans.map((item, i) => (
+              i % 2 ? (
+                <div key={i} className="flex flex-col md:flex-row items-center text-center md:text-end md:justify-end">
+                  <img src={`/images/${item.pic}`} alt={item.title} className="md:hidden rounded-xl w-[250px] h-[250px] md:w-[200px] md:h-[200px] lg:w-[250px] lg:h-[250px]"/>
+                  <div className="flex flex-col pt-4 md:pt-0 items-center md:items-end md:pr-5 text-sm md:text-base lg:text-lg">
+                    <div className="flex flex-col md:items-end pb-3">
+                      <h2 className="leading-tight">{item.name}</h2>
+                      <h3 className="text-blue font-semibold">{item.title}</h3>
+                    </div>
+                    <div className="space-y-1 md:space-y-0">
+                      <p className="text-text_hover">{item.major}</p>
+                      <p className="text-text_hover">Class of {item.class}</p>
+                    </div>
+                    <div className="text-2xl lg:text-3xl flex flex-row space-x-4 mt-3 md:mt-5">
+                      <Link href={item.linkedin} className="transition-all ease-in duration-150 hover:text-blue">
+                        <i className="fa-brands fa-linkedin"></i>
                       </Link>
-                    }
+                      {item.github &&
+                        <Link href={item.github} className="transition-all ease-in duration-150 hover:text-blue">
+                          <i className="fa-brands fa-github"></i>
+                        </Link>
+                      }
+                    </div>
                   </div>
-              </div>
-            </div>
-          ))}
+                  <img src={`/images/${item.pic}`} alt={item.title} className="hidden md:inline rounded-xl w-[150px] h-[150px] md:w-[200px] md:h-[200px] lg:w-[250px] lg:h-[250px]"/>
+                </div>
+              ) : (
+                <div key={i} className="flex flex-col md:flex-row items-center text-center md:text-start">
+                  <img src={`/images/${item.pic}`} alt={item.title} className="rounded-xl w-[250px] h-[250px] md:w-[200px] md:h-[200px] lg:w-[250px] lg:h-[250px]"/>
+                  <div className="flex flex-col pt-4 md:pt-0 md:pl-5 items-center md:items-start text-sm md:text-base lg:text-lg">
+                    <div className="pb-3">
+                      <h2 className="leading-tight">{item.name}</h2>
+                      <h3 className="text-green font-semibold">{item.title}</h3>
+                    </div>
+                    <div className="space-y-1 md:space-y-0">
+                      <p className="text-text_hover">{item.major}</p>
+                      <p className="text-text_hover">Class of {item.class}</p>
+                    </div>
+                    <div className="text-2xl lg:text-3xl flex flex-row space-x-4 mt-3 md:mt-5">
+                      <Link href={item.linkedin} className="transition-all ease-in duration-150 hover:text-blue">
+                        <i className="fa-brands fa-linkedin"></i>
+                      </Link>
+                      {item.github &&
+                        <Link href={item.github} className="transition-all ease-in duration-150 hover:text-blue">
+                          <i className="fa-brands fa-github"></i>
+                        </Link>
+                      }
+                    </div>
+                  </div>
+                </div>
+              )
+            ))}
+          </div>
         </div>
       </div>
     </div>

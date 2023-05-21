@@ -43,11 +43,13 @@ export default function Problems() {
 
       get(userRef).then((snapshot) => {
         const data = snapshot.val();
-        setSolvedStates({
-          easy: data.problems.easy ? data.problems.easy.state : false,
-          medium: data.problems.medium ? data.problems.medium.state : false,
-          hard: data.problems.hard ? data.problems.hard.state : false,
-        });
+        if (data.problems){
+          setSolvedStates({
+            easy: data.problems.easy ? data.problems.easy.state : false,
+            medium: data.problems.medium ? data.problems.medium.state : false,
+            hard: data.problems.hard ? data.problems.hard.state : false,
+          });
+        }
       });
     }
   }, [currentUser]);
@@ -154,7 +156,7 @@ export default function Problems() {
       <div className="flex flex-col w-[95%] lg:w-[85%] xl:w-[80%]">
         <div className="pb-10">
           <h1 className="pb-1">Competition</h1>
-          <p className="text-lg text-text_hover2">
+          <p className="md:text-lg text-text_hover2">
             Weekly Problems are posted here. Check off each problem you solve
           </p>
         </div>

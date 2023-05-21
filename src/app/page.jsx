@@ -89,7 +89,7 @@ export default function App() {
           </h1>
           <div className="leading-relaxed text-2xl">
 
-            @<Link href="https://www.liberty.edu" className="inline underline decoration-dotted transition-all ease-in duration-150 hover:decoration-liberty_red hover:decoration-solid">
+            @<Link href="https://www.liberty.edu" className="inline underline decoration-dotted transition-all ease-in duration-150 hover:decoration-solid">
               Liberty University
             </Link>
             
@@ -119,7 +119,7 @@ export default function App() {
             item.link ? (
               <Link href={item.link} key={i} className={`flex flex-col group p-5 bg-background2 hover:bg-background3 rounded-lg transition-all ease-in duration-150 [&>*]:transition-all [&>*]:ease-in [&>*]:duration-150 hover:ring-1 ring-inset ${i % 2 ? `hover:ring-blue/80` : `hover:ring-green/80`}`}>
                 <h3 className={`pb-2 ${i%2 ? `group-hover:text-blue_white` : `group-hover:text-green_white`}`}>
-                  <span className="pr-5">{item.title}</span>
+                  <span className="pr-3 lg:pr-5">{item.title}</span>
                   <i className={item.icon}></i>
                 </h3>
                 <p className="leading-relaxed text-text_hover">{item.content}</p>
@@ -132,7 +132,7 @@ export default function App() {
             ) : (
               <div className="p-5 bg-background2 rounded-lg" key={i}>
                 <h3 className="pb-2">
-                  <span className="pr-5">{item.title}</span>
+                  <span className="pr-3 lg:pr-5">{item.title}</span>
                   <i className={item.icon}></i>
                 </h3>
                 <p className="leading-relaxed text-text_hover">{item.content}</p>
@@ -145,13 +145,13 @@ export default function App() {
           <div>
             <div className="pb-3">
               <h2 className="leading-tight">Meetings</h2>
-              <p className="text-xl">
+              <p className="text-base text-text_hover md:text-text_color md:text-xl">
                 School of Business 2830 
                 <span className="invisible md:visible inline px-1">-</span> 
                 <span className="flex md:inline">Thurs. 5 - 6 p.m.</span>
               </p>
             </div>
-            <p className="text-text_hover whitespace-pre-line">
+            <p className=" md:text-text_hover whitespace-pre-line">
               {`Our meetings will typically cover anything from data structures, algorithms, and general software engineering tools. Each week leading up to the annual International Collegiate Programming Competition we will cover critical concepts to give students a competitive edge.
                 
                 We will host scrimmages before the ICPC so that students understand what they will face during a competition.
@@ -164,9 +164,9 @@ export default function App() {
             <div className="flex flex-row flex-wrap gap-5">
               {news.map((item, i) => (
                 <div className="flex" key={i}>
-                  <div className="p-5 text-lg bg-background2 rounded-lg">
+                  <div className="p-5 md:text-lg bg-background2 rounded-lg">
                     <HTMLString html={item.content} components={components}/>
-                    <p className="text-base pt-1 text-text_hover">{item.time}</p>
+                    <p className="text-base pt-1 text-text_hover2">{item.time}</p>
                   </div>
                 </div>
               ))}
@@ -178,7 +178,7 @@ export default function App() {
           <h1 className="flex justify-center pb-10">Connect</h1>
           <div className="flex flex-col items-start justify-center space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
             {connections.map((item, i) => (
-              <Link href={item.link} key={i} className="w-full sm:h-64 cursor-pointer rounded-lg border border-background3 bg-background2 transition-all ease-in duration-150 hover:border-background4 hover:bg-background3">
+              <Link href={item.link} key={i} className="w-full h-64 cursor-pointer rounded-lg border border-background3 bg-background2 transition-all ease-in duration-150 hover:border-background4 hover:bg-background3">
                 <div className="flex h-full flex-col items-center justify-center space-y-3 p-4 sm:p-2 md:p-4">
                   <i className={`text-5xl ${item.icon} ${item.accent}`}></i>
                   <h3>{item.title}</h3>
