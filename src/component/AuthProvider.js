@@ -30,6 +30,7 @@ export const AuthProvider = ({ children }) => {
             userData = {
               name: currentUser.providerData[0].displayName,
               imageURL: currentUser.providerData[0].photoURL.slice(0, -6),
+              kattisURL: '',
               totalScore: 0,
               weeklyScore: 0,
               problems: {},

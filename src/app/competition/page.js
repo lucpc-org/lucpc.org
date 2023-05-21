@@ -71,7 +71,6 @@ export default function Problems() {
 
         // Check if being checked or unchecked (We use opposite value cause it's not updated yet)
         if (e.target.checked) {
-          console.log("SGfdg")
           // If problems have been solved by this user, totalScore and weeklyScore should exist
           if ("problems" in userData) {
             //If the problem type exists in the db
@@ -92,6 +91,7 @@ export default function Problems() {
               userData.problems[e.target.id] = {};
               userData.problems[e.target.id].state = true;
               userData.problems[e.target.id].time = currentTime;
+
               // Add to the total score
               userData.totalScore += difficulty;
               userData.weeklyScore += difficulty;
@@ -108,20 +108,22 @@ export default function Problems() {
             userData.weeklyScore = difficulty;
           }
         } else {
-          console.log("kkkkkk")
 
           // Case where the problem is unchecked
           // These cases do not require any action if the data does not exist
           if ("problems" in userData) {
-            userData.problems[e.target.id].state = false;
-            userData.problems[e.target.id].time = null;
-
-            // Remove the problem value from their score and make sure its only one decimal place
-
-            userData.weeklyScore =
-              Math.round((userData.weeklyScore - difficulty) * 10) / 10;
-            userData.totalScore =
-              Math.round((userData.totalScore - difficulty) * 10) / 10;
+            // We need to make sure that something with the website did not go wrong first (They unchecked when it was already supposed to be unchecked)
+            // Only change things if the state is set to true
+            if (userData.problems[e.target.id].state) {
+              userData.problems[e.target.id].state = false;
+              userData.problems[e.target.id].time = null;
+  
+              // Remove the problem value from their score and make sure its only one decimal place
+              const newScore = Math.round((userData.weeklyScore - difficulty) * 10) / 10;
+  
+              userData.weeklyScore = Math.max(0, newScore);
+              userData.totalScore = Math.max(0, newScore);
+            }
           }
         }
 
@@ -156,7 +158,7 @@ export default function Problems() {
             Weekly Problems are posted here. Check off each problem you solve
           </p>
         </div>
-        <div className="flex flex-row gap-5">
+        <div className="flex flex-row flex-wrap gap-5">
           {dbProblems.map((item, i) => (
             <div
               key={item.difficulty}

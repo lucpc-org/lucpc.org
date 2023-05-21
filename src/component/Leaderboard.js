@@ -65,13 +65,13 @@ export default function Leaderboard() {
   };
 
   return (
-    <div className="flex flex-col w-full items-center text-xs md:text-sm lg:text-base">
+    <div className="flex flex-col w-full items-center text-sm lg:text-base">
       <div className="text-center pb-6">
         <h2 className="pb-1">Leaderboard</h2>
         <p className="text-text_hover">Current rankings of club members (Total Score is per semester)</p>
       </div>
-      <div className="form-control w-3/4 pb-4">
-        <div className="input-group justify-end">
+      <div className="form-control w-full lg:w-11/12 xl:w-10/12 pb-4">
+        <div className="input-group justify-center md:justify-end">
           <span>Sort By</span>
           <select 
             className="select select-bordered"
@@ -82,12 +82,12 @@ export default function Leaderboard() {
           </select>
         </div>
       </div>
-      <div className="flex justify-center overflow-x-auto w-full">
-        <table className="table w-3/4">
-          <thead className="text-text_hover ">
-            <tr className="">
-              <th></th>
-              <th className="text-lg pl-0">User</th>
+      <div className="flex self-start md:self-center lg:justify-center w-full overflow-x-scroll">
+        <table className="table w-full lg:w-11/12 xl:w-10/12">
+          <thead className="text-text_hover">
+            <tr>
+              <th className="text-lg text-center">#</th>
+              <th className="text-lg">User</th>
               <th className="text-lg text-center">Total Score</th>
               <th className="text-lg text-center">Weekly Score</th>
             </tr>
@@ -120,15 +120,15 @@ export default function Leaderboard() {
                 };
                 return (
                   <tr key={item.username + "-" + i} >
-                    <th className="pl-8 pr-0">
+                    <th className="text-center">
                       <h3 className={rankColors[pos]}>{pos}</h3>
                     </th>
-                    <td className="flex items-center pl-6">
+                    <td className="flex items-center">
                       {pos === 1 ?
                         (
-                          <div className="relative inline-block">
+                          <div className="relative inline-block w-[55px]">
                             <img src={item.imageURL} alt="Profile" className="w-[55px] h-[55px] mask mask-squircle" referrerPolicy="no-referrer"/>
-                            <i className="fa-solid fa-crown text-2xl text-yellow-400 absolute top-1 left-0 transform -translate-x-1/2 -translate-y-1/2 -rotate-45"></i>
+                            <i className=" fa-solid fa-crown text-2xl text-yellow-400 absolute top-1 left-0 transform -translate-x-1/2 -translate-y-1/2 -rotate-45"></i>
                           </div>
                         )
                         :
