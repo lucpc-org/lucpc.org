@@ -50,7 +50,7 @@ export default function NavBar() {
           {navLinks.map(({ name, path }) => {
             const extraStyles =
               currentPath === path
-                ? "text-green decoration-2 font-bold underline cursor-default"
+                ? "text-green decoration-2 font-bol underline cursor-default"
                 : "text-text_color underline decoration-dotted decoration-background hover:decoration-gray-400 hover:text-text_hover transition-all duration-150";
             return (
               <Link href={path} key={name}>
