@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 export default function NavBar() {
   const { currentUser } = useContext(AuthContext);
 
-  const currentPath = usePathname();
+  const currentPath = usePathname().replaceAll("/", "");
 
   const navLinks = [
     {
