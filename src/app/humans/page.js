@@ -37,7 +37,7 @@ export default function Humans() {
       major: "Computer Science: General",
       linkedin: "https://www.linkedin.com/in/kqwq/",
       github: "https://github.com/kqwq",
-      pic: "none.jpg"
+      pic: "kyle.png"
     },
     {
       title: "Outreach",

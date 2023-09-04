@@ -28,17 +28,23 @@ export default function Leaderboard() {
                 weeklyScore = userObject.weeklyScore;
               }
 
-              let submissionTimes = []
+              let largestTime = 0;
               if ("problems" in userObject) {
                 
                 if ("easy" in userObject.problems) {
-                  submissionTimes.push(userObject.problems.easy.time);
+                  if (userObject.problems.easy.time > largestTime) {
+                    largestTime = userObject.problems.easy.time;
+                  }
                 }
                 if ("medium" in userObject.problems) {
-                  submissionTimes.push(userObject.problems.medium.time);
+                  if (userObject.problems.medium.time > largestTime) {
+                    largestTime = userObject.problems.medium.time;
+                  }
                 }
                 if ("hard" in userObject.problems) {
-                  submissionTimes.push(userObject.problems.hard.time);
+                  if (userObject.problems.hard.time > largestTime) {
+                    largestTime = userObject.problems.hard.time;
+                  }
                 }
               } 
 
@@ -48,7 +54,7 @@ export default function Leaderboard() {
                 imageURL: userObject.imageURL,
                 totalScore: totalScore,
                 weeklyScore: weeklyScore,
-                lastSubmitted: submissionTimes,
+                largestTime: largestTime,
               };
             })
             .filter((user) => sortByTotal ? (user.totalScore > 0) : (user.weeklyScore > 0))
@@ -88,17 +94,13 @@ export default function Leaderboard() {
             <tr>
               <th className="text-lg text-center">#</th>
               <th className="text-lg">User</th>
-              <th className="text-lg text-center">Total Score</th>
               <th className="text-lg text-center">Weekly Score</th>
+              <th className="text-lg text-center">Total Score</th>
             </tr>
           </thead>
           <tbody>
             {boardStats
               .sort((item1, item2) => {
-                item1.lastSubmitted.sort();
-                let minDate1 = item1.lastSubmitted[0];
-                item2.lastSubmitted.sort();
-                let minDate2 = item2.lastSubmitted[0];
                 let scoreDiff = 0;
                 if (sortByTotal) {
                   scoreDiff = item2.totalScore - item1.totalScore;
@@ -106,7 +108,9 @@ export default function Leaderboard() {
                   scoreDiff = item2.weeklyScore - item1.weeklyScore;
                 }
                 if (scoreDiff === 0) {
-                  return minDate1 < minDate2 ? -1 : 1;
+                  let mostRecentTime1 = item1.largestTime;
+                  let mostRecentTime2 = item2.largestTime;
+                  return mostRecentTime1 < mostRecentTime2 ? -1 : 1;
                 } else {
                   return scoreDiff;
                 }
@@ -142,10 +146,10 @@ export default function Leaderboard() {
                       </div>
                     </td>
                     <td className="text-center">
-                      <h3>{item.totalScore}</h3>
+                      <h3>{item.weeklyScore}</h3>
                     </td>
                     <td className="text-center">
-                      <h3>{item.weeklyScore}</h3>
+                      <h3>{item.totalScore}</h3>
                     </td>
                   </tr>
                 );

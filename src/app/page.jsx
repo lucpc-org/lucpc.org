@@ -32,6 +32,10 @@ export default function App() {
 
   const news = [
     {
+      content: "Our first meeting will be on August 31st!",
+      time: "August 20th 2023",
+    },
+    {
       content: "We now have a new president and 4 new officers! Visit <a href=/humans>Humans</a> to see club leadership.",
       time: "May 10th 2023",
     },

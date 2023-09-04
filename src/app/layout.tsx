@@ -1,4 +1,5 @@
 import NavBar from "../component/NavBar";
+import Head from "./head";
 import AuthProvider from "../component/AuthProvider";
 
 import "./globals.css"
@@ -13,6 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <Head />
 
         {/*<link rel="stylesheet" href="https://use.typekit.net/uap0crb.css" />*/}
         <script src="https://kit.fontawesome.com/8afaee683f.js"></script>

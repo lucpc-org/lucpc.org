@@ -189,7 +189,7 @@ export default function Problems() {
                     <i className="swap-off text-text_hover2 fa-regular fa-circle-check" />
                   </label>
                 )}
-                <Link href={item.url} className="btn btn-accent btn-square">
+                <Link href={item.url} className="btn btn-accent btn-square" target="_blank">
                   <i className="fa-lg fa-solid fa-arrow-up-right-from-square" />
                 </Link>
               </div>
