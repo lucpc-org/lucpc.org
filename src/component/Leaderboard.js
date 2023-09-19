@@ -48,6 +48,8 @@ export default function Leaderboard() {
                 }
               } 
 
+              totalScore = Math.round(totalScore * 10) / 10;
+              weeklyScore = Math.round(weeklyScore * 10) / 10;
               return {
                 name: userObject.name,
                 kattisLink: userObject.kattisURL,

@@ -13,6 +13,8 @@ export default function App() {
       title: "For Everyone",
       icon: "fa-solid fa-users",
       content: "Students of all skill levels are welcome. Our meetings are designed to prepare members to succeed at the annual ICPC competition even with no experience.",
+      linkLabel: "View Beginner Guide",
+      link: "https://guide.lucpc.org"
     },
     {
       title: "Weekly Competition",

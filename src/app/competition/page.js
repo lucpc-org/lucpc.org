@@ -129,7 +129,11 @@ export default function Problems() {
             }
           }
         }
-
+        
+        // Round scores to one decimal place
+        userData.totalScore = Math.round(userData.totalScore * 10) / 10;
+        userData.weeklyScore = Math.round(userData.weeklyScore * 10) / 10;
+        
         set(userRef, userData);
       } else {
         // Case where the snapshot does not exist
