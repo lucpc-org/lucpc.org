@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 export default function Humans() {
@@ -6,8 +5,8 @@ export default function Humans() {
     {
       title: "President",
       name: "Cameron Kauffman",
-      class: "2025",
-      major: "Software Engineering",
+      class: "2026",
+      major: "Software Engineering with a Minor in Mathematics",
       pic: "cameron.jpg",
       linkedin: "https://www.linkedin.com/in/cameron-k-a00565257",
       github: "https://github.com/wzid",
@@ -43,7 +42,7 @@ export default function Humans() {
       title: "Outreach",
       name: "Alexa Wenger",
       class: "2026",
-      major: "Software Engineering and Data Science",
+      major: "Software Engineering and Data Science with a Minor in Mathematics",
       pic: "alexa.jpg",
       linkedin: "https://www.linkedin.com/in/alexa-wenger/",
     },
