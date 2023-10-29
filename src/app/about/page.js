@@ -26,12 +26,12 @@ export default function About() {
           <div className="px-5 py-4 bg-background2 rounded-lg">
             <h1 className="text-2xl md:text-4xl pb-3">So Far...</h1>
             <p className="text-sm md:text-base xl:text-lg leading-loose">
-              Every year since the creation of the club we have consistently placed better. Our most recent success was in Febuary 2023 when one of our teams placed 10th in the ICPC South Region for Division 2. Our eyes are set on the upcoming competition in November where we hope to perform even better. 
+              Every year since the creation of the club we have consistently placed better. Our most recent success was in Febuary 2023 when one of our teams placed 10th in the ICPC South Region for Division 2. Our eyes are set on the upcoming competition in Febuary where we hope to perform even better. 
             </p>
           </div>
           <div className="flex flex-col items-center">
-            <img src="/images/team_2022.jpg" alt="Our 2022-2023 ICPC teams" className="rounded-lg lg:w-[900px]"/>
-            <p className="pb-2 text-lg md:text-xl italic">Club Members at the 2022-2023 ICPC</p>
+            <img src="/images/tryouts_2023.png" alt="Our teams at the 2023 tryouts" className="rounded-lg lg:w-[900px]"/>
+            <p className="pb-2 text-lg md:text-xl italic">Club Members at the 2023 Tryouts</p>
           </div>
         </div>
         
