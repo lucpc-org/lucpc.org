@@ -34,6 +34,14 @@ export default function App() {
 
   const news = [
     {
+      content: "We would like to welcome our newest LUCP members: DROP TABLE Team;, We Need Arrays, Binary Tree Huggers, Debug Thugs, and brogrammers! ",
+      time: "October 30th 2023",
+    },
+    {
+      content: "5 teams have qualified through our tryouts to advance to the ICPC Mid-Atlantic Regional Competition!",
+      time: "October 28th 2023",
+    },
+    {
       content: "Our first meeting will be on August 31st!",
       time: "August 20th 2023",
     },
@@ -44,14 +52,6 @@ export default function App() {
     {
       content: "Our dear president, Jake Hoffman, is graduating :(",
       time: "May 5th 2023",
-    },
-    {
-      content: "Other teams placed 10th, 13th, and 19th out of 46 teams for the ICPC Mid-Atlantic region.",
-      time: "Febuary 25th 2023",
-    },
-    {
-      content: "One of our teams, <g>Addend</g>, placed 12th out of 119 teams for the ICPC southern conference.",
-      time: "Febuary 25th 2023",
     },
   ];
 
