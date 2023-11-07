@@ -8,7 +8,8 @@
     @apply bg-background;
     @apply text-text_color
   }
-
+  ol {list-style-type: decimal;}
+  ul {list-style-type: circle;}
   mark {
     @apply px-1 font-bold bg-blue text-text_color;
   }
