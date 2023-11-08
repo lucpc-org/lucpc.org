@@ -36,6 +36,16 @@ export default function ProgrammingCompetition() {
               </div>
             </div>
           </div>
+          <div>
+            <h2 className="pb-2">What will the contest be like?</h2>
+            <p>
+              The contest will be held in one of the rooms in the School of Business.
+              You will compete as an individual and given 3 hours to solve as many problems as you can.
+              Your Kattis account will automatically be invited to join the competition and there will be 6-10 problems for you to solve within the 3 hours.
+              You may ask for help from the volunteers if you are stuck on a problem.
+              These problems will be aimed towards those who are just starting programming and those who have some experience.
+            </p>
+          </div>
           <div className="flex flex-col items-center py-3">
             <h1 className="pb-6">Sign up below!</h1>
             <iframe width="75%" height="500px" src="https://forms.office.com/r/hiQjh8Zasp?embed=true" frameborder="0" marginwidth="0" marginheight="0" style={{border: "none", maxWidth:"100%", maxHeight:"100vh", borderRadius: "1rem"}} allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen> </iframe>
