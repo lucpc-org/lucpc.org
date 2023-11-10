@@ -104,7 +104,9 @@ export default function ProgrammingCompetition() {
               <div className="flex flex-col gap-2 pt-8 pl-3">
                 <span className="inline">
                   <p><span className="text-text_hover2">9:15</span>&nbsp;&nbsp; - Doors <span className="text-easy">open</span> to the School of Business.</p>
+                  {/*
                   <p className="pl-9 italic text-text_hover2">&nbsp;&nbsp;&nbsp;&nbsp;Donuts will be served</p>
+                  */}
                 </span>
                 <span className="inline">
                   <p><span className="text-text_hover2 pr-2">9:50</span> - Contestants enter the competition area</p>

@@ -34,7 +34,11 @@ export default function App() {
 
   const news = [
     {
-      content: "We would like to welcome our newest LUCP members: DROP TABLE Team;, We Need Arrays, Binary Tree Huggers, Debug Thugs, and brogrammers! ",
+      content: "We are hosting a programming competition on December 2nd. Check it out <a href=/programming-competition>here</a>!",
+      time: "November 10th 2023",
+    },
+    {
+      content: "We would like to welcome our newest CPT members: DROP TABLE Team;, We Need Arrays, Binary Tree Huggers, Debug Thugs, and brogrammers! ",
       time: "October 30th 2023",
     },
     {
@@ -48,10 +52,6 @@ export default function App() {
     {
       content: "We now have a new president and 4 new officers! Visit <a href=/humans>Humans</a> to see club leadership.",
       time: "May 10th 2023",
-    },
-    {
-      content: "Our dear president, Jake Hoffman, is graduating :(",
-      time: "May 5th 2023",
     },
   ];
 
