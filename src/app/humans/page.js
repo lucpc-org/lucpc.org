@@ -7,7 +7,7 @@ export default function Humans() {
       name: "Cameron Kauffman",
       class: "2026",
       major: "Software Engineering with a Minor in Mathematics",
-      pic: "cameron.jpg",
+      pic: "https://s6.imgcdn.dev/VXFvu.png",
       linkedin: "https://www.linkedin.com/in/cameron-k-a00565257",
       github: "https://github.com/wzid",
     },
@@ -16,18 +16,18 @@ export default function Humans() {
       name: "Will Starling",
       class: "2026",
       major: "Software Engineering and Web & Mobile Programming",
-      pic: "will.jpg",
+      pic: "https://s6.imgcdn.dev/VXLPv.jpg",
       linkedin: "https://www.linkedin.com/in/willstarling/",
       github: "https://github.com/Willisaur",
     },
     {
       title: "Secretary",
-      name: "Kaelyn Haynie",
+      name: "Sam McDowell",
       class: "2026",
-      major: "Software Engineering and Data Science",
-      pic: "kaelyn.jpg",
-      linkedin: "https://www.linkedin.com/in/haynie-k/",
-      github: "https://github.com/k-haynie",
+      major: "Software Engineering",
+      pic: "https://s6.imgcdn.dev/VXqkB.jpg",
+      linkedin: "https://www.linkedin.com/in/samuelmcdowell64",
+      github: "https://github.com/sammcdo",
     },
     {
       title: "Treasurer",
@@ -36,14 +36,14 @@ export default function Humans() {
       major: "Computer Science: General",
       linkedin: "https://www.linkedin.com/in/kqwq/",
       github: "https://github.com/kqwq",
-      pic: "kyle.png"
+      pic: "https://s6.imgcdn.dev/VXb9N.png"
     },
     {
       title: "Outreach",
       name: "Alexa Wenger",
       class: "2026",
       major: "Software Engineering and Data Science with a Minor in Mathematics",
-      pic: "alexa.jpg",
+      pic: "https://s6.imgcdn.dev/VX3hg.jpg",
       linkedin: "https://www.linkedin.com/in/alexa-wenger/",
     },
   ];
@@ -63,7 +63,7 @@ export default function Humans() {
             {humans.map((item, i) => (
               i % 2 ? (
                 <div key={i} className="flex flex-col md:flex-row items-center text-center md:text-end md:justify-end">
-                  <img src={`/images/${item.pic}`} alt={item.title} className="md:hidden rounded-xl w-[250px] h-[250px] md:w-[200px] md:h-[200px] lg:w-[250px] lg:h-[250px]"/>
+                  <img src={item.pic} alt={item.title} className="md:hidden rounded-xl w-[250px] h-[250px] md:w-[200px] md:h-[200px] lg:w-[250px] lg:h-[250px]"/>
                   <div className="flex flex-col pt-4 md:pt-0 items-center md:items-end md:pr-5 text-sm md:text-base lg:text-lg">
                     <div className="flex flex-col md:items-end pb-3">
                       <h2 className="leading-tight">{item.name}</h2>
@@ -84,11 +84,11 @@ export default function Humans() {
                       }
                     </div>
                   </div>
-                  <img src={`/images/${item.pic}`} alt={item.title} className="hidden md:inline rounded-xl w-[150px] h-[150px] md:w-[200px] md:h-[200px] lg:w-[250px] lg:h-[250px]"/>
+                  <img src={item.pic} alt={item.title} className="hidden md:inline rounded-xl w-[150px] h-[150px] md:w-[200px] md:h-[200px] lg:w-[250px] lg:h-[250px]"/>
                 </div>
               ) : (
                 <div key={i} className="flex flex-col md:flex-row items-center text-center md:text-start">
-                  <img src={`/images/${item.pic}`} alt={item.title} className="rounded-xl w-[250px] h-[250px] md:w-[200px] md:h-[200px] lg:w-[250px] lg:h-[250px]"/>
+                  <img src={item.pic} alt={item.title} className="rounded-xl w-[250px] h-[250px] md:w-[200px] md:h-[200px] lg:w-[250px] lg:h-[250px]"/>
                   <div className="flex flex-col pt-4 md:pt-0 md:pl-5 items-center md:items-start text-sm md:text-base lg:text-lg">
                     <div className="pb-3">
                       <h2 className="leading-tight">{item.name}</h2>

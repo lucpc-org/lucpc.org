@@ -28,7 +28,7 @@ export default function ProgrammingCompetition() {
               </div>
               <div>
                 <h2 className="pb-2">But what if I'm not good at coding?</h2>
-                <p>Great! You don't have to be good at programming to compete and have fun. The competition will be catered towards students in <b>CSCN 111</b> and <b>CSCN 112</b> so you should not be confused.</p>
+                <p>Great! You don't have to be good at programming to compete and have fun. The competition will be catered towards students in <b>CSCN 111</b>, <b>CSCN 112</b>, and <b>CSCN 215</b> so you should not be confused.</p>
               </div>
               <div>
                 <h2 className="pb-2">Will there be food and prizes?</h2>
