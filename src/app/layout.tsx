@@ -1,8 +1,14 @@
 import NavBar from "../component/NavBar";
 import Head from "./head";
 import AuthProvider from "../component/AuthProvider";
-
+import { Inter, Newsreader } from "next/font/google"
 import "./globals.css"
+
+export const inter = Inter({ subsets: ["latin"] });
+// Apparently we have to do this here and then import it as well in globals.css
+// I have no idea why but do not remove this
+export const newsreader = Newsreader({ subsets: ["latin"] });
+
 
 export default function RootLayout({
   // Layouts must accept a children prop.
@@ -17,9 +23,10 @@ export default function RootLayout({
         <Head />
 
         {/*<link rel="stylesheet" href="https://use.typekit.net/uap0crb.css" />*/}
-        <script src="https://kit.fontawesome.com/8afaee683f.js"></script>
+        {/* This is the Livory Font */ }
+		    <link rel="stylesheet" href="https://use.typekit.net/uap0crb.css" />
       </head>
-      <body>
+      <body className="max-w-[90rem] mx-auto px-4 md:px-2">
         <AuthProvider>
           <NavBar />
           {children}
