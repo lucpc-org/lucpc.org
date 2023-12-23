@@ -7,6 +7,8 @@ import { db } from "../../service/FirebaseService";
 
 import Leaderboard from "../../component/Leaderboard";
 import Link from "next/link";
+import { Icon } from "@iconify/react";
+
 
 export default function Problems() {
   const [solvedStates, setSolvedStates] = useState({
@@ -157,52 +159,50 @@ export default function Problems() {
   };
 
   return (
-    <div className="flex flex-col w-full items-center font-sans pb-[4rem] bg-background">
-      <div className="flex flex-col w-[95%] lg:w-[85%] xl:w-[80%]">
-        <div className="pb-10">
-          <h1 className="pb-1">Competition</h1>
-          <p className="md:text-lg text-text_hover2">
-            Weekly Problems are posted here. Check off each problem you solve
-          </p>
-        </div>
-        <div className="flex flex-row flex-wrap gap-5">
-          {dbProblems.map((item, i) => (
-            <div
-              key={item.difficulty}
-              className="flex flex-row grow rounded-lg border border-background3 bg-background2 p-5 items-center"
-            >
-              <div className="flex flex-col mr-auto">
-                <h3 className={`text-${item.diffName}`}>{item.name}</h3>
-                <p className="text-text_hover text-lg">
-                  <strong>{item.difficulty} </strong>
-                  <span>points</span>
-                </p>
-              </div>
-
-              <div className="flex items-center space-x-5 text-4xl">
-                {!(currentUser === null || currentUser === undefined) && (
-                  <label htmlFor={item.diffName} className="swap">
-                    <input
-                      onChange={completeProblem}
-                      type="checkbox"
-                      id={item.diffName}
-                      checked={solvedStates[item.diffName]}
-                      readOnly={false}
-                    />
-                    <i className="swap-on text-easy fa-solid fa-circle-check" />
-                    <i className="swap-off text-text_hover2 fa-regular fa-circle-check" />
-                  </label>
-                )}
-                <Link href={item.url} className="btn btn-accent btn-square" target="_blank">
-                  <i className="fa-lg fa-solid fa-arrow-up-right-from-square" />
-                </Link>
-              </div>
+    <div className="flex flex-col w-full font-sans pb-[4rem] bg-background">
+      <div className="pb-10">
+        <h1 className="pb-1">Competition</h1>
+        <p className="md:text-lg text-foreground/80">
+          Weekly Problems are posted here. Check off each problem you solve
+        </p>
+      </div>
+      <div className="flex flex-row flex-wrap gap-5">
+        {dbProblems.map((item, i) => (
+          <div
+            key={item.difficulty}
+            className="flex flex-row grow rounded-lg border border-background-700 bg-background-800 p-5 items-center"
+          >
+            <div className="flex flex-col mr-auto">
+              <h3 className={`text-${item.diffName}`}>{item.name}</h3>
+              <p className="text-foreground/80 text-lg">
+                <strong>{item.difficulty} </strong>
+                <span>points</span>
+              </p>
             </div>
-          ))}
-        </div>
-        <div className="mt-[4rem]">
-          <Leaderboard />
-        </div>
+
+            <div className="flex items-center space-x-5 text-4xl">
+              {!(currentUser === null || currentUser === undefined) && (
+                <label htmlFor={item.diffName} className="swap">
+                  <input
+                    onChange={completeProblem}
+                    type="checkbox"
+                    id={item.diffName}
+                    checked={solvedStates[item.diffName]}
+                    readOnly={false}
+                  />
+                  <i className="swap-on text-easy fa-solid fa-circle-check" />
+                  <i className="swap-off text-text_hover2 fa-regular fa-circle-check" />
+                </label>
+              )}
+              <Link href={item.url} target="_blank">
+                <Icon icon="fa6-solid:square-arrow-up-right" className="transition-colors text-foreground/40 hover:text-foreground/20" />
+              </Link>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="mt-[4rem]">
+        <Leaderboard />
       </div>
       <div className="invisible text-easy text-medium text-hard"></div>
     </div>

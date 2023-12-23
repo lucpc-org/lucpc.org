@@ -85,7 +85,7 @@ export default function App() {
   return (
     <div className="flex flex-col w-full font-sans pb-[4rem] bg-background">
       <div className="flex flex-col space-y-2 mb-[4rem] md:mb-[6rem]">
-        <h1 className="leading-tight md:leading-none text-4xl md:text-5xl font-bold">
+        <h1 className="leading-tight md:leading-none">
           Competitive Programming Club
         </h1>
         <div className="leading-snug text-2xl">
