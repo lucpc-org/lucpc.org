@@ -21,11 +21,11 @@ export default function Humans() {
       title: "Vice President",
       name: "Will Starling",
       class: "2026",
-      major: "Software Engineering and Web & Mobile Programming",
+      major: "Software Engineering and Data Science with a Minor in Business",
       pic: "https://s6.imgcdn.dev/VXLPv.jpg",
       linkedin: "https://www.linkedin.com/in/willstarling/",
       github: "https://github.com/Willisaur",
-      color: 'text-blue-500'
+      color: 'text-[#db1d1d]'
 
     },
     {
@@ -47,21 +47,22 @@ export default function Humans() {
       linkedin: "https://www.linkedin.com/in/kqwq/",
       github: "https://github.com/kqwq",
       pic: "https://s6.imgcdn.dev/VXb9N.png",
-      color: 'text-blue-600'
+      color: 'text-white'
     },
     {
       title: "Outreach",
       name: "Alexa Wenger",
       class: "2026",
       major: "Software Engineering and Data Science with a Minor in Mathematics",
-      pic: "https://s6.imgcdn.dev/VX3hg.jpg",
+      pic: "https://s6.imgcdn.dev/fwAS0.jpg",
       linkedin: "https://www.linkedin.com/in/alexa-wenger/",
-      color: 'text-[#b5c997]'
+      color: 'text-[#b5c997]',
+      github: 'https://github.com/alexawenger'
     },
   ];
 
   return (
-    <div className="flex flex-col w-full font-sans pb-[4rem] bg-background">
+    <div className="flex flex-col w-full font-sans pb-12 bg-background">
       <div className="pb-[3rem]">
         <h1>Humans 🧍</h1>
         <p className="md:text-lg text-foreground/80">

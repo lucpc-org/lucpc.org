@@ -43,7 +43,7 @@ export default function NavBar() {
   ];
   return (
     <div className="w-full flex justify-between items-center pb-12 md:pb-[6rem] sm:text-base md:text-lg mt-4">
-      <Link href="/">
+      <Link href="/" className="hover:opacity-70 transition-opacity">
         <h1 className="text-3xl">🧑‍💻 <span className="hidden sm:inline">CPC</span></h1>
       </Link>
       <div className="flex gap-3 sm:gap-6 text-lg">

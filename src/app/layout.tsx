@@ -1,4 +1,5 @@
 import NavBar from "../component/NavBar";
+import Footer from "../component/Footer";
 import Head from "./head";
 import AuthProvider from "../component/AuthProvider";
 import { Inter, Newsreader } from "next/font/google"
@@ -26,11 +27,12 @@ export default function RootLayout({
         {/* This is the Livory Font */ }
 		    <link rel="stylesheet" href="https://use.typekit.net/uap0crb.css" />
       </head>
-      <body className="max-w-[90rem] mx-auto px-4 md:px-2">
+      <body className="flex flex-col min-h-screen max-w-[90rem] mx-auto px-4 md:px-2">
         <AuthProvider>
           <NavBar />
           {children}
         </AuthProvider>
+        <Footer />
       </body>
     </html>
   );

@@ -6,6 +6,10 @@ import { db } from "../service/FirebaseService";
 import { ref, get } from "firebase/database";
 
 import RedLink from "./RedLink";
+import clsx from 'clsx';
+import { Icon } from "@iconify/react";
+
+
 
 export default function Leaderboard() {
   const [boardStats, setBoardStats] = useState([]);
@@ -76,13 +80,13 @@ export default function Leaderboard() {
     <div className="flex flex-col w-full items-center text-sm lg:text-base">
       <div className="text-center pb-6">
         <h2 className="pb-1">Leaderboard</h2>
-        <p className="text-text_hover">Current rankings of club members (Total Score is per semester)</p>
+        <p className="text-foreground/70">Current rankings of club members (Total Score is per semester)</p>
       </div>
-      <div className="form-control w-full lg:w-11/12 xl:w-10/12 pb-4">
+      <div className="form-control w-full lg:w-11/12 pb-4">
         <div className="input-group justify-center md:justify-end">
           <span>Sort By</span>
           <select 
-            className="select select-bordered"
+            className="ml-2 select select-bordered"
             onChange={changeSortingMethod}
           >
             <option>Weekly</option>
@@ -91,9 +95,9 @@ export default function Leaderboard() {
         </div>
       </div>
       <div className="flex self-start md:self-center lg:justify-center w-full overflow-x-scroll lg:overflow-x-hidden">
-        <table className="table w-full lg:w-11/12 xl:w-10/12">
-          <thead className="text-text_hover">
-            <tr>
+        <table className="table w-full lg:w-11/12 overflow-hidden rounded-lg">
+          <thead className="text-foreground/80 bg-background-700">
+            <tr className="">
               <th className="text-lg text-center">#</th>
               <th className="text-lg">User</th>
               <th className="text-lg text-center">Weekly Score</th>
@@ -120,21 +124,21 @@ export default function Leaderboard() {
               .map((item, i) => {
                 let pos = i + 1;
                 let rankColors = {
-                  1: "text-yellow-400",
-                  2: "text-slate-400",
-                  3: "text-yellow-800",
+                  1: "text-[#FACC14]",
+                  2: "text-[#94A2B8]",
+                  3: "text-[#854D0F]",
                 };
                 return (
                   <tr key={item.username + "-" + i} >
                     <th className="text-center">
-                      <h3 className={rankColors[pos]}>{pos}</h3>
+                      <h3 className={clsx(rankColors[pos])}>{pos}</h3>
                     </th>
                     <td className="flex items-center">
                       {pos === 1 ?
                         (
                           <div className="relative inline-block w-[55px]">
                             <img src={item.imageURL} alt="Profile" className="w-[55px] h-[55px] mask mask-squircle" referrerPolicy="no-referrer"/>
-                            <i className=" fa-solid fa-crown text-2xl text-yellow-400 absolute top-1 left-0 transform -translate-x-1/2 -translate-y-1/2 -rotate-45"></i>
+                            <Icon width="32" height="32" icon="fa6-solid:crown" className="text-2xl text-[#FACC14] absolute top-1 left-0 transform -translate-x-1/2 -translate-y-1/2 -rotate-45" />
                           </div>
                         )
                         :
@@ -143,7 +147,7 @@ export default function Leaderboard() {
                       <div className="flex flex-col ml-4">
                         <h3 className="text-xl">{item.name}</h3>
                         {item.kattisLink &&
-                          <RedLink to={item.kattisLink} label="Kattis Profile" extraStyles="font-normal text-sm text-blue underline-offset-2" />
+                          <RedLink to={item.kattisLink} label="Kattis Profile" extraStyles="font-normal text-sm text-blue-600 underline-offset-2" />
                         }
                       </div>
                     </td>

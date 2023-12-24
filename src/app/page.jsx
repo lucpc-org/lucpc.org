@@ -83,7 +83,7 @@ export default function App() {
   
   //https://discord.gg/dneShg4YYv
   return (
-    <div className="flex flex-col w-full font-sans pb-[4rem] bg-background">
+    <div className="flex flex-col w-full font-sans pb-12 bg-background">
       <div className="flex flex-col space-y-2 mb-[4rem] md:mb-[6rem]">
         <h1 className="leading-tight md:leading-none">
           Competitive Programming Club
@@ -108,7 +108,7 @@ export default function App() {
         
         <div className="flex !mt-4 gap-2">
           <div className="flex justify-center md:justify-normal flex-row">
-            <Link href="https://discord.gg/dneShg4YYv" className="flex items-center text-white text-base px-4 py-1 rounded-3xl bg-pink-500 border border-pink-400 hover:bg-pink-500 transition-colors">
+            <Link href="https://discord.gg/dneShg4YYv" className="flex items-center text-white text-base px-4 py-1 rounded-3xl bg-dark-blue-500 border border-dark-blue-400 hover:bg-dark-blue-500 transition-colors">
               <Icon icon="ic:baseline-discord" width="20" height="20" />
               <p className="inline pl-2 font-semibold">Join our Discord</p>
             </Link>
@@ -129,14 +129,14 @@ export default function App() {
           <Link href={item.link} key={i} 
             className={`flex flex-col group p-5 bg-background-800 hover:bg-background-700 border border-background-600 rounded-lg 
             transition-all ease-in duration-150 [&>*]:transition-all [&>*]:ease-in [&>*]:duration-150 
-            ${i===0 ? 'hover:border-green-700' : (i===1 ? 'hover:border-pink-600' : 'hover:border-blue-700')}`}>
-            <h3 className={`flex pb-2 ${i===0 ? `group-hover:text-green-200` : (i ===1 ? 'group-hover:text-pink-300' : 'group-hover:text-blue-200')}`}>
+            ${i===0 ? 'hover:border-green-700' : (i===1 ? 'hover:border-dark-blue-600' : 'hover:border-blue-700')}`}>
+            <h3 className={`flex pb-2 ${i===0 ? `group-hover:text-green-200` : (i ===1 ? 'group-hover:text-dark-blue-300' : 'group-hover:text-blue-200')}`}>
               <span className="pr-3 ">{item.title}</span>
               <Icon icon={item.icon} className="inline self-center"/>
             </h3>
             <p className="leading-relaxed text-text_hover">{item.content}</p>
 
-            <div className={`flex flex-row subpixel-antialiased items-center mt-auto pt-5 ${i===0 ? 'text-green-500' : (i===1 ? 'text-pink-400' : 'text-blue-600') }`}>
+            <div className={`flex flex-row subpixel-antialiased items-center mt-auto pt-5 ${i===0 ? 'text-green-500' : (i===1 ? 'text-dark-blue-400' : 'text-blue-600') }`}>
               <p>{item.linkLabel}</p>
               <Icon icon="prime:arrow-right" className="ml-1 transition-all ease-in duration-150 group-hover:ml-4 mt-[.15rem]" />
             </div>

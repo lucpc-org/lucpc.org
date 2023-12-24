@@ -54,7 +54,7 @@ module.exports = {
         950: "#01374b",
       },
 
-      pink: {
+      "dark-blue": {
         50: "#f4f7fb",
         100: "#e9eef5",
         200: "#cddcea",
@@ -83,5 +83,10 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
+  daisyui: {
+    themes: false,
+    styled: true,
+    base: false,
+  }
 };

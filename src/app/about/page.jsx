@@ -1,6 +1,6 @@
 export default function About() {
   return (
-    <div className="flex flex-col w-full font-sans pb-[4rem]">
+    <div className="flex flex-col w-full font-sans pb-12">
       <h1 className="leading-tight md:leading-none">About Us 📖</h1>
       <div className="pb-12">
         <p className="text-xl whitespace-pre-line">
@@ -16,9 +16,9 @@ export default function About() {
         </p>
       </div>
       <div className="flex flex-wrap gap-4 w-full justify-between items-center">
-        <img src="/images/2022team.jpg" alt="Club members at the 2022 regionals" className="rounded-lg w-[450px]"/>
-        <img src="/images/zachandjosiah.png" alt="Club members at the 2022 regionals" className="rounded-lg w-[450px]"/>
-        <img src="/images/tryouts_2023.png" alt="Club members at the 2023 tryouts" className="rounded-lg w-[450px]"/>
+        <img src="https://s6.imgcdn.dev/fwOmM.jpg" alt="Club members at the 2022 regionals" className="rounded-lg w-[450px]"/>
+        <img src="https://s6.imgcdn.dev/fwRal.png" alt="Club members at the 2022 regionals" className="rounded-lg w-[450px]"/>
+        <img src="https://s6.imgcdn.dev/fw9cd.png" alt="Club members at the 2023 tryouts" className="rounded-lg w-[450px]"/>
       </div>
     </div> 
   );

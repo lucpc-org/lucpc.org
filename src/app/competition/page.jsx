@@ -159,9 +159,9 @@ export default function Problems() {
   };
 
   return (
-    <div className="flex flex-col w-full font-sans pb-[4rem] bg-background">
+    <div className="flex flex-col w-full font-sans pb-12 bg-background">
       <div className="pb-10">
-        <h1 className="pb-1">Competition</h1>
+        <h1 className="pb-1">Competition 🏃</h1>
         <p className="md:text-lg text-foreground/80">
           Weekly Problems are posted here. Check off each problem you solve
         </p>
@@ -190,8 +190,12 @@ export default function Problems() {
                     checked={solvedStates[item.diffName]}
                     readOnly={false}
                   />
-                  <i className="swap-on text-easy fa-solid fa-circle-check" />
-                  <i className="swap-off text-text_hover2 fa-regular fa-circle-check" />
+                  <svg className="fill-easy swap-on" xmlns="http://www.w3.org/2000/svg" height="34" width="34" viewBox="0 0 512 512">
+                    <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/>
+                  </svg>
+                  <svg className="fill-foreground/30 swap-off" xmlns="http://www.w3.org/2000/svg" height="34" width="34" viewBox="0 0 512 512">
+                    <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z"/>
+                  </svg>
                 </label>
               )}
               <Link href={item.url} target="_blank">
