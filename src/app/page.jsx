@@ -88,12 +88,12 @@ export default function App() {
         <h1 className="leading-tight md:leading-none">
           Competitive Programming Club
         </h1>
-        <div className="leading-snug text-2xl">
+        <div className="leading-snug text-xl sm:text-2xl">
           <Link href="https://www.liberty.edu" className="font-sans inline text-green-400 hover:underline transition-colors">
             @Liberty University
           </Link>
           
-          <p className="md:inline text-text_hover" id="affirmations">
+          <p className="md:inline text-foreground/80" id="affirmations">
             <span className="hidden md:inline px-2">-</span>We are 
             <TypeIt options={{loop: true, cursorChar: '&#9616'}} getBeforeInit={(instance) => {
               instance
@@ -106,8 +106,8 @@ export default function App() {
           </p>
         </div>
         
-        <div className="flex !mt-4 gap-2">
-          <div className="flex justify-center md:justify-normal flex-row">
+        <div className="self-start flex flex-col sm:flex-row !mt-4 gap-2">
+          <div className="flex md:justify-normal flex-row">
             <Link href="https://discord.gg/dneShg4YYv" className="flex items-center text-white text-base px-4 py-1 rounded-3xl bg-dark-blue-500 border border-dark-blue-400 hover:bg-dark-blue-500 transition-colors">
               <Icon icon="ic:baseline-discord" width="20" height="20" />
               <p className="inline pl-2 font-semibold">Join our Discord</p>
