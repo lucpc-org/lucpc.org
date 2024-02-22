@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../component/AuthProvider";
 
 import { db } from "../../service/FirebaseService";
@@ -10,10 +10,6 @@ import { Icon } from "@iconify/react";
 
 export default function Profile() {
   const { currentUser } = useContext(AuthContext);
-
-  // if (currentUser === null || currentUser === undefined) {
-  //   window.location.replace("/auth/login");
-  // }
 
   const [profileURL, setProfileURL] = useState("https://placehold.co/300");
   const [kattisURL, setKattisURL] = useState("");
