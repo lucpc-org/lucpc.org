@@ -63,6 +63,9 @@ export default function ProgrammingCompetition() {
       }
       user.checked_out_book = false;
       set(userRef, user);
+      if (!userCheckedOut) {
+        window.location.reload();
+      }
       setUserCheckedOut(false);
     });
   }
@@ -73,16 +76,18 @@ export default function ProgrammingCompetition() {
         <h1>Checkout </h1>
         <p className="pt-2 md:text-xl text-foreground/80">We keep track of who has checked out a book</p>
       </div>
-      <div className="flex gap-6">
-        <button onClick={handle_checkout} className="btn-green btn btn-lg !text-xl !font-semibold">
-          <Icon icon="material-symbols:shopping-cart-checkout" className="pr-1" fontSize={30} />
-          Checkout
-        </button>
-        <button onClick={handle_return} className="btn-dark-blue btn btn-lg !text-xl !font-semibold">
-          Return
-          <Icon icon="material-symbols:keyboard-return-rounded" className=" " fontSize={30} />
-        </button>
-      </div>
+      {!(currentUser === null || currentUser === undefined) && (
+        <div className="flex gap-6">
+          <button onClick={handle_checkout} className="btn-green btn btn-lg !text-xl !font-semibold">
+            <Icon icon="material-symbols:shopping-cart-checkout" className="pr-1" fontSize={30} />
+            Checkout
+          </button>
+          <button onClick={handle_return} className="btn-dark-blue btn btn-lg !text-xl !font-semibold">
+            Return
+            <Icon icon="material-symbols:keyboard-return-rounded" className=" " fontSize={30} />
+          </button>
+        </div>
+        )}
       <div className="mt-8">
         <h2>Users with books checked out:</h2>
         <div className="flex flex-wrap w-full gap-8 mt-4">
