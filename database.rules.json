@@ -9,6 +9,7 @@
           ".validate": "newData.isString() && newData.val().length < 28"
         },
         "imageURL": { ".validate": true },
+        "checked_out_book": {".validate": true },
         "kattisURL": { ".validate": true },
         "totalScore": {".validate": true },
         "weeklyScore": {".validate": true },

@@ -11,6 +11,7 @@ export default function ProgrammingCompetition() {
   const { currentUser, loading } = useContext(AuthContext);
 
   const [usersWhoCheckedOut, setUsersWhoCheckedOut] = useState([]);
+  const [userCheckedOut, setUserCheckedOut] = useState(false);
 
   useEffect(() => {
     const usersRef = ref(db, "users/");
@@ -20,13 +21,18 @@ export default function ProgrammingCompetition() {
       let usersWhoCheckedOut_local = [];
       // loop through user map
       for (const [uid, user] of Object.entries(users)) {
+        if (currentUser) {
+          if (uid === currentUser.uid) {
+            setUserCheckedOut(user.checked_out_book);
+          }
+        }
         if (user.checked_out_book) {
           usersWhoCheckedOut_local.push(user);
         }
       }
       setUsersWhoCheckedOut(usersWhoCheckedOut_local);
     });
-  }, []);
+  }, [userCheckedOut]);
 
   const handle_checkout = () => {
     if (currentUser === null || currentUser === undefined) {
@@ -40,6 +46,8 @@ export default function ProgrammingCompetition() {
       }
       user.checked_out_book = true;
       set(userRef, user);
+      //reload page
+      setUserCheckedOut(true);
     });
   }
 
@@ -55,6 +63,7 @@ export default function ProgrammingCompetition() {
       }
       user.checked_out_book = false;
       set(userRef, user);
+      setUserCheckedOut(false);
     });
   }
 
@@ -69,7 +78,7 @@ export default function ProgrammingCompetition() {
           <Icon icon="material-symbols:shopping-cart-checkout" className="pr-1" fontSize={30} />
           Checkout
         </button>
-        <button onClick={handle_checkout} className="btn-dark-blue btn btn-lg !text-xl !font-semibold">
+        <button onClick={handle_return} className="btn-dark-blue btn btn-lg !text-xl !font-semibold">
           Return
           <Icon icon="material-symbols:keyboard-return-rounded" className=" " fontSize={30} />
         </button>
