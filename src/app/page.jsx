@@ -163,7 +163,7 @@ export default function App() {
           </p>
         </div>
 
-        <div>
+        {/* <div>
           <h2 className="pb-3">News</h2>
           <div className="flex flex-col gap-4">
             {news.map((item, i) => (
@@ -175,7 +175,7 @@ export default function App() {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="flex flex-col">
