@@ -122,8 +122,7 @@ export default function App() {
             </div>
           </div>
         </div>
-          <img src="https://s6.imgcdn.dev/tmpSK.jpg" alt="Club members at the 2023 Mid-Atlantic Regional" className="rounded-lg w-[600px]"/>
-        
+        <img src="https://s6.imgcdn.dev/tmpSK.jpg" alt="Club members at the 2023 Mid-Atlantic Regional" className="rounded-lg hidden lg:block lg:w-[600px]"/>
       </div>
       
 
