@@ -15,10 +15,32 @@ export default function About() {
           `}
         </p>
       </div>
-      <div className="flex flex-wrap gap-4 w-full justify-between items-center">
-        <img src="https://s6.imgcdn.dev/fwOmM.jpg" alt="Club members at the 2022 regionals" className="rounded-lg w-[450px]"/>
-        <img src="https://s6.imgcdn.dev/fwRal.png" alt="Club members at the 2022 regionals" className="rounded-lg w-[450px]"/>
-        <img src="https://s6.imgcdn.dev/fw9cd.png" alt="Club members at the 2023 tryouts" className="rounded-lg w-[450px]"/>
+      <div className="flex flex-col gap-4 w-full items-center">
+        <div className="flex flex-col w-full items-center">
+          <h1 className="mb-6">2024</h1>
+          <div className="flex flex-wrap w-full justify-center items-center gap-6">
+            <img src="https://s6.imgcdn.dev/tm8Eh.jpg" alt="Club members at the 2023 Mid-Atlantic Regional" className="rounded-lg w-[450px]"/>
+            <img src="https://s6.imgcdn.dev/tmEOl.jpg" alt="Club members at the 2023 regionals" className="rounded-lg w-[450px]"/>
+            <img src="https://s6.imgcdn.dev/tmpSK.jpg" alt="Club members at the 2023 regionals" className="rounded-lg w-[450px]"/>
+            <img src="https://s6.imgcdn.dev/tmoQV.jpg" alt="Club members at the 2023 regionals" className="rounded-lg w-[450px]"/>
+            <img src="https://s6.imgcdn.dev/tqjan.jpg" alt="Club members at the 2023 regionals" className="rounded-lg w-[450px]"/>
+            <img src="https://s6.imgcdn.dev/tqhcO.jpg" alt="Club members at the 2023 regionals" className="rounded-lg w-[450px]"/>
+          </div>
+        </div>
+        <div className="flex flex-col w-full items-center">
+          <h1 className="mb-6">2023</h1>
+          <div className="flex flex-wrap w-full justify-between items-center gap-4">
+            <img src="https://s6.imgcdn.dev/tqDeo.png" alt="3rd place at the 2023 tryouts" className="rounded-lg w-[450px]"/>
+            <img src="https://s6.imgcdn.dev/fwRal.png" alt="Club members at the 2023 tryouts" className="rounded-lg w-[450px]"/>
+            <img src="https://s6.imgcdn.dev/fw9cd.png" alt="2nd place at the 2023 regionals" className="rounded-lg w-[450px]"/>
+          </div>
+        </div>
+        <div className="flex flex-col w-full items-center">
+          <h1 className="mb-6">2022</h1>
+          <div className="flex flex-wrap w-full justify-center gap-4">
+            <img src="https://s6.imgcdn.dev/fwOmM.jpg" alt="Club members at the 2022 tryouts" className="rounded-lg w-[450px]"/>
+          </div>
+        </div>
       </div>
     </div> 
   );

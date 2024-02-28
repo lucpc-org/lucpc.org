@@ -84,46 +84,50 @@ export default function App() {
   //https://discord.gg/dneShg4YYv
   return (
     <div className="flex flex-col w-full font-sans pb-12 bg-background">
-      <div className="flex flex-col space-y-2 mb-[4rem] md:mb-[6rem]">
-        <h1 className="leading-tight md:leading-none">
-          Competitive Programming Club
-        </h1>
-        <div className="leading-snug text-xl sm:text-2xl">
-          <Link href="https://www.liberty.edu" className="font-sans inline text-green-400 hover:underline transition-colors">
-            @Liberty University
-          </Link>
+      <div className="flex justify-between items-center w-full mb-[4rem] md:mb-[4rem]">
+        <div className="flex flex-col space-y-2 ">
+          <h1 className="leading-tight md:leading-none">
+            Competitive Programming Club
+          </h1>
+          <div className="leading-snug text-xl sm:text-2xl">
+            <Link href="https://www.liberty.edu" className="font-sans inline text-green-400 hover:underline transition-colors">
+              @Liberty University
+            </Link>
+            
+            <p className="md:inline text-foreground/80" id="affirmations">
+              <span className="hidden md:inline px-2">-</span>We are 
+              <TypeIt options={{loop: true, cursorChar: '&#9616'}} getBeforeInit={(instance) => {
+                instance
+                  .type(" problem solvers").pause(2000).delete().pause(700)
+                  .type(" developers").pause(2000).delete().pause(700)
+                  .type(" Champions for Christ").pause(2000).delete().pause(700)
+                  .type(" hard workers").pause(2000).delete().pause(700);
+                  return instance;
+              }}/>
+            </p>
+          </div>
           
-          <p className="md:inline text-foreground/80" id="affirmations">
-            <span className="hidden md:inline px-2">-</span>We are 
-            <TypeIt options={{loop: true, cursorChar: '&#9616'}} getBeforeInit={(instance) => {
-              instance
-                .type(" problem solvers").pause(2000).delete().pause(700)
-                .type(" developers").pause(2000).delete().pause(700)
-                .type(" Champions for Christ").pause(2000).delete().pause(700)
-                .type(" hard workers").pause(2000).delete().pause(700);
-                return instance;
-            }}/>
-          </p>
+          <div className="self-start flex flex-col sm:flex-row !mt-4 gap-2">
+            <div className="flex md:justify-normal flex-row">
+              <Link href="https://discord.gg/dneShg4YYv" className="flex items-center text-white text-base px-4 py-1 rounded-3xl bg-dark-blue-500 border border-dark-blue-400 hover:bg-dark-blue-500 transition-colors">
+                <Icon icon="ic:baseline-discord" width="20" height="20" />
+                <p className="inline pl-2 font-semibold">Join our Discord</p>
+              </Link>
+            </div>
+            <div className="flex justify-center md:justify-normal flex-row">
+              <Link href="https://guide.lucpc.org" className="flex items-center justify-between text-white text-base pl-4 pr-3 py-1 rounded-3xl bg-blue-600 border border-blue-500 hover:bg-blue-500 transition-colors">
+                <p className="inline font-semibold pr-1">Check out our guide</p>
+                <Icon icon="prime:arrow-up-right" width="20" height="20" />
+              </Link>
+            </div>
+          </div>
         </div>
+          <img src="https://s6.imgcdn.dev/tmpSK.jpg" alt="Club members at the 2023 Mid-Atlantic Regional" className="rounded-lg w-[600px]"/>
         
-        <div className="self-start flex flex-col sm:flex-row !mt-4 gap-2">
-          <div className="flex md:justify-normal flex-row">
-            <Link href="https://discord.gg/dneShg4YYv" className="flex items-center text-white text-base px-4 py-1 rounded-3xl bg-dark-blue-500 border border-dark-blue-400 hover:bg-dark-blue-500 transition-colors">
-              <Icon icon="ic:baseline-discord" width="20" height="20" />
-              <p className="inline pl-2 font-semibold">Join our Discord</p>
-            </Link>
-          </div>
-          <div className="flex justify-center md:justify-normal flex-row">
-            <Link href="https://guide.lucpc.org" className="flex items-center justify-between text-white text-base pl-4 pr-3 py-1 rounded-3xl bg-blue-600 border border-blue-500 hover:bg-blue-500 transition-colors">
-              <p className="inline font-semibold pr-1">Check out our guide</p>
-              <Icon icon="prime:arrow-up-right" width="20" height="20" />
-            </Link>
-          </div>
-        </div>
       </div>
       
 
-      <div className="grid grid-flow-row lg:grid-flow-col gap-2 mb-[4rem]">
+      <div className="grid grid-flow-row lg:grid-flow-col gap-4 mb-[4rem]">
         {card.map((item, i) => (
           
           <Link href={item.link} key={i} 
