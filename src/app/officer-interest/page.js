@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { useEffect } from "react";
 const LINK = "https://forms.gle/77zUoRKxpYEQR9is8";
 
-export default function DiscordRedirect() {
+export default function OfficerInterest() {
     redirect(LINK);
 
   useEffect(() => {
