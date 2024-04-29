@@ -9,45 +9,34 @@ export default function Humans() {
   const humans = [
     {
       title: "President",
-      name: "Cameron Kauffman",
-      class: "2026",
-      major: "Software Engineering with a Minor in Mathematics",
-      pic: "https://s6.imgcdn.dev/VXFvu.png",
-      linkedin: "https://www.linkedin.com/in/cameron-k-a00565257",
-      github: "https://github.com/wzid",
-      color: 'text-green-400'
-    },
-    {
-      title: "Vice President",
-      name: "Will Starling",
-      class: "2026",
-      major: "Software Engineering and Data Science with a Minor in Business",
-      pic: "https://s6.imgcdn.dev/VXLPv.jpg",
-      linkedin: "https://www.linkedin.com/in/willstarling/",
-      github: "https://github.com/Willisaur",
-      color: 'text-[#db1d1d]'
-
-    },
-    {
-      title: "Secretary",
       name: "Sam McDowell",
       class: "2026",
-      major: "Software Engineering",
+      major: "Software Engineering, Data Science, and Web & Mobile Programming",
       pic: "https://s6.imgcdn.dev/VXqkB.jpg",
       linkedin: "https://www.linkedin.com/in/samuelmcdowell64",
       github: "https://github.com/sammcdo",
       color: 'text-green-300'
-
     },
     {
-      title: "Treasurer",
-      name: "Kyle Wells",
+      title: "Vice President",
+      name: "Micah Nava",
       class: "2025",
-      major: "Computer Science: General",
-      linkedin: "https://www.linkedin.com/in/kqwq/",
-      github: "https://github.com/kqwq",
-      pic: "https://s6.imgcdn.dev/VXb9N.png",
-      color: 'text-white'
+      major: "Cyber Security",
+      pic: "https://s6.imgcdn.dev/WqaBK.jpg",
+      linkedin: "https://www.linkedin.com/in/micah-nava-91746a292/",
+      github: "https://github.com/M1C4H27",
+      color: 'text-green-800'
+      
+    },
+    {
+      title: "Competition Coordinator",
+      name: "Cameron Kauffman",
+      class: "2026",
+      major: "Software Engineering with a Minor in Mathematics",
+      pic: "https://s6.imgcdn.dev/VXFvu.png",
+      linkedin: "https://www.linkedin.com/in/cameronkffn/",
+      github: "https://github.com/wzid",
+      color: "text-[#134F47]"
     },
     {
       title: "Outreach",
@@ -59,9 +48,30 @@ export default function Humans() {
       color: 'text-[#b5c997]',
       github: 'https://github.com/alexawenger'
     },
+    {
+      title: "Secretary",
+      name: "Joel Boeve",
+      class: "2026",
+      major: "Software Engineering",
+      pic: "https://s6.imgcdn.dev/WqUXh.jpg",
+      linkedin: "https://www.linkedin.com/in/joel-boeve-264658232/",
+      github: "https://github.com/jboeve",
+      color: 'text-blue-200'
+      
+    },
+    {
+      title: "Treasurer",
+      name: "Colter Radke",
+      class: "2027",
+      major: "Data Science with a Minor in Biblical Languages",
+      pic: "https://s6.imgcdn.dev/Wq1Lo.png",
+      linkedin: "https://www.linkedin.com/in/colter-radke/",
+      github: "https://github.com/Colter13",
+      color: 'text-blue-200'
+    },
   ];
-
-  return (
+    
+    return (
     <div className="flex flex-col w-full font-sans pb-12 bg-background">
       <div className="pb-[3rem]">
         <h1>Humans 🧍</h1>
