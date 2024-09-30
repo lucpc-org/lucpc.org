@@ -1,3 +1,4 @@
+import colors from "tailwindcss/colors"
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
@@ -65,7 +66,7 @@ module.exports = {
         900: "#283c52",
         950: "#1b2736",
       },
-
+      real_blue: colors.blue,
       easy: "#3DA35D",
       medium: "#E6B749",
       hard: "#FF2B56",
