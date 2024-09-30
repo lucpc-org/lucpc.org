@@ -31,6 +31,7 @@ export const AuthProvider = ({ children }) => {
               name: currentUser.providerData[0].displayName,
               imageURL: currentUser.providerData[0].photoURL.slice(0, -6),
               kattisURL: '',
+              checked_out_book: false,
               totalScore: 0,
               weeklyScore: 0,
               problems: {},

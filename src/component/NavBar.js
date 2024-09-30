@@ -4,6 +4,7 @@ import React, { useContext } from "react";
 import Link from "next/link";
 import { AuthContext } from "./AuthProvider";
 import { usePathname } from "next/navigation";
+import clsx from 'clsx';
 
 export default function NavBar() {
   const { currentUser } = useContext(AuthContext);
@@ -41,27 +42,17 @@ export default function NavBar() {
         ]),
   ];
   return (
-    <div className="w-full flex justify-center pb-12 md:pb-[6rem] sm:text-base md:text-lg">
-      <div className="w-[95%] md:w-[90%] md:h-[70px] mt-2 flex flex-col md:flex-row justify-center md:justify-between items-center">
-        <Link href="/" className="flex pb-2">
-          <p className="flex justify-center font-bold text-2xl md:text-3xl btn btn-ghost">
-            🧑‍💻 CPC
-          </p>
-        </Link>
-
-        <div className="flex flex-row items-center justify-center text-sm md:text-base lg:text-lg xl:text-xl xl:space-x-10 space-x-5 lg:space-x-7">
-          {navLinks.map(({ name, path }) => {
-            const extraStyles =
-              currentPath === path
-                ? "text-green decoration-2 font-bol underline cursor-default"
-                : "text-text_color underline decoration-dotted decoration-background hover:decoration-gray-400 hover:text-text_hover transition-all duration-150";
-            return (
-              <Link href={path} key={name}>
-                <div className={`${extraStyles} `}>{name}</div>
-              </Link>
-            );
-          })}
-        </div>
+    <div className="w-full flex justify-between items-center pb-12 md:pb-[6rem] sm:text-base md:text-lg mt-4">
+      <Link href="/" className="hover:opacity-70 transition-opacity">
+        <h1 className="text-3xl">🧑‍💻 <span className="hidden sm:inline">CPC</span></h1>
+      </Link>
+      <div className="flex gap-3 sm:gap-6 text-lg">
+        {navLinks.map(({ name, path }) => {
+          const text_color = path === currentPath ? 'text-white' : 'text-foreground/60';
+          return (
+            <a href={path} key={name} className={clsx("hover:text-foreground/80 transition-colors", text_color)}>{name}</a>
+          );
+        })}
       </div>
     </div>
   );

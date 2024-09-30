@@ -7,10 +7,10 @@
 // import firebase from "firebase/app";
 import { useRouter } from "next/navigation";
 import { auth } from "../../../service/FirebaseService";
-import { GoogleAuthProvider } from "firebase/auth";
 
 import signInWithGoogle from "../signin";
 import { useEffect, useState } from "react";
+import { Icon } from "@iconify/react";
 
 const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -42,19 +42,17 @@ const Login = () => {
   }, []);
 
   return (
-    <div className="flex flex-col w-full items-center font-sans pb-[4rem]">
-      <div className="flex flex-col items-center w-[95%] lg:w-[85%] xl:w-[80%]">
-        <h1 className="pb-8">Sign in</h1>
-        <button
-          type="button"
-          onClick={handleSignInWithGoogle}
-          className="btn btn-secondary gap-2"
-        >
-          <i className="fa-brands fa-google"></i>
-            Sign in with Google
-        </button>
+    <div className="flex flex-col w-full items-center font-sans pb-12">
+      <h1 className="pb-8">Sign in</h1>
+      <button
+        type="button"
+        onClick={handleSignInWithGoogle}
+        className="btn btn-blue btn-lg gap-2"
+      >
+          <Icon icon="fa6-brands:google" />
+          Sign in with Google
+      </button>
 
-      </div>
     </div>
   );
 };
