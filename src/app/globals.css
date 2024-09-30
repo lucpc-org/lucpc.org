@@ -37,6 +37,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@supports (font-variation-settings: normal) {
+  :root {
+    font-family: InterVariable, sans-serif;
+  }
+}
+
 :root {
   color-scheme: dark;
   --ti-cursor-color: #fff;

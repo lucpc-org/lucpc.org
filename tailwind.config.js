@@ -1,5 +1,3 @@
-import { fontFamily } from "tailwindcss/defaultTheme";
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
@@ -73,11 +71,6 @@ module.exports = {
       hard: "#FF2B56",
     },
     extend: {
-      fontFamily: {
-        sans: ["Inter", ...fontFamily.sans],
-        serif: ["'Newsreader'", ...fontFamily.serif],
-        livory: ["Livory", ...fontFamily.serif],
-      },
       boxShadow: {
         lg: "0 4px 8px rgba(0,0,0,.1),0 2px 4px rgba(0,0,0,.06)",
       },
