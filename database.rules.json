@@ -1,5 +1,8 @@
 {
   "rules": {
+    "contest_link": {
+      ".read": "true"
+    },
     "users": {
       ".read": "true",
       "$uid": {

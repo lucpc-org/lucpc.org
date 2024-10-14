@@ -8,13 +8,25 @@ import { db } from "../../service/FirebaseService";
 import Leaderboard from "../../component/Leaderboard";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
-
+import RedLink from "../../component/RedLink";
+import clsx from "clsx";
 
 export default function Problems() {
+  const [contestLink, setContestLink] = useState("");
+  useEffect(() => {
+    const contest_link_db = ref(db, "contest_link");
+    get(contest_link_db).then((snap) => {
+      let real_contest_link_db = snap.val();
+      if (real_contest_link_db) {
+        setContestLink(real_contest_link_db);
+      }
+    });
+  });
+
   const [solvedStates, setSolvedStates] = useState({
-    'easy': false,
-    'medium': false,
-    'hard': false
+    easy: false,
+    medium: false,
+    hard: false,
   });
 
   const { currentUser, loading } = useContext(AuthContext);
@@ -46,7 +58,7 @@ export default function Problems() {
 
       get(userRef).then((snapshot) => {
         const data = snapshot.val();
-        if (data.problems){
+        if (data.problems) {
           setSolvedStates({
             easy: data.problems.easy ? data.problems.easy.state : false,
             medium: data.problems.medium ? data.problems.medium.state : false,
@@ -68,7 +80,7 @@ export default function Problems() {
     let newSolvedStates = Object.assign({}, solvedStates);
     newSolvedStates[e.target.id] = e.target.checked;
     setSolvedStates(newSolvedStates);
-    
+
     Promise.all([get(userRef)]).then((snapshots) => {
       if (snapshots[0].exists()) {
         let userData = snapshots[0].val();
@@ -113,7 +125,6 @@ export default function Problems() {
             userData.weeklyScore = difficulty;
           }
         } else {
-
           // Case where the problem is unchecked
           // These cases do not require any action if the data does not exist
           if ("problems" in userData) {
@@ -122,20 +133,20 @@ export default function Problems() {
             if (userData.problems[e.target.id].state) {
               userData.problems[e.target.id].state = false;
               userData.problems[e.target.id].time = null;
-  
+
               // Remove the problem value from their score and make sure its only one decimal place
               const newScore = Math.round((userData.weeklyScore - difficulty) * 10) / 10;
-  
+
               userData.weeklyScore = Math.max(0, newScore);
               userData.totalScore = Math.max(0, newScore);
             }
           }
         }
-        
+
         // Round scores to one decimal place
         userData.totalScore = Math.round(userData.totalScore * 10) / 10;
         userData.weeklyScore = Math.round(userData.weeklyScore * 10) / 10;
-        
+
         set(userRef, userData);
       } else {
         // Case where the snapshot does not exist
@@ -190,22 +201,46 @@ export default function Problems() {
                     checked={solvedStates[item.diffName]}
                     readOnly={false}
                   />
-                  <svg className="fill-easy swap-on" xmlns="http://www.w3.org/2000/svg" height="34" width="34" viewBox="0 0 512 512">
-                    <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/>
+                  <svg
+                    className="fill-easy swap-on"
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="34"
+                    width="34"
+                    viewBox="0 0 512 512"
+                  >
+                    <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
                   </svg>
-                  <svg className="fill-foreground/30 swap-off" xmlns="http://www.w3.org/2000/svg" height="34" width="34" viewBox="0 0 512 512">
-                    <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z"/>
+                  <svg
+                    className="fill-foreground/30 swap-off"
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="34"
+                    width="34"
+                    viewBox="0 0 512 512"
+                  >
+                    <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z" />
                   </svg>
                 </label>
               )}
               <Link href={item.url} target="_blank">
-                <Icon icon="fa6-solid:square-arrow-up-right" className="transition-colors text-foreground/40 hover:text-foreground/20" />
+                <Icon
+                  icon="fa6-solid:square-arrow-up-right"
+                  className="transition-colors text-foreground/40 hover:text-foreground/20"
+                />
               </Link>
             </div>
           </div>
         ))}
       </div>
-      <div className="mt-[4rem]">
+      {contestLink ? (
+        <div className="flex justify-center mt-10 text-lg">
+          <p className="">
+            For more problems check out our <RedLink to={contestLink} label="week-long contest on Kattis" />
+          </p>
+        </div>
+      ) : (
+        <div></div>
+      )}
+      <div className={clsx(contestLink ? "mt-10" : "mt-[4rem]")}>
         <Leaderboard />
       </div>
       <div className="invisible text-easy text-medium text-hard"></div>
