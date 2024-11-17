@@ -8,7 +8,6 @@ import { Icon } from "@iconify/react";
 import clsx from 'clsx';
 
 
-
 export default function App() {
 
   const card = [

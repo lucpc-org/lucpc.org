@@ -15,9 +15,18 @@ export default function About() {
           `}
         </p>
       </div>
-      <div className="flex flex-col gap-4 w-full items-center">
+      <div className="flex flex-col gap-12 w-full items-center">
+
+      <div className="flex flex-col w-full items-center">
+          <h1 className="mb-6">2024 Mid-Atlantic Regionals</h1>
+          <div className="flex flex-wrap w-full justify-center items-center gap-6">
+            <img src="https://s6.imgcdn.dev/Ec90g.jpg" alt="Club members at the 2024 regionals" className="rounded-lg w-[450px]"/>
+            <img src="https://s6.imgcdn.dev/EcZCn.png" alt="Club members at the 2024 regionals" className="rounded-lg w-[400px]"/>
+            <img src="https://s6.imgcdn.dev/EcR3v.jpg" alt="Club members at the 2024 regionals" className="rounded-lg w-[450px]"/>
+          </div>
+        </div>
         <div className="flex flex-col w-full items-center">
-          <h1 className="mb-6">2024</h1>
+          <h1 className="mb-6">2023 Mid-Atlantic Regionals</h1>
           <div className="flex flex-wrap w-full justify-center items-center gap-6">
             <img src="https://s6.imgcdn.dev/tm8Eh.jpg" alt="Club members at the 2023 Mid-Atlantic Regional" className="rounded-lg w-[450px]"/>
             <img src="https://s6.imgcdn.dev/tmEOl.jpg" alt="Club members at the 2023 regionals" className="rounded-lg w-[450px]"/>
@@ -27,8 +36,10 @@ export default function About() {
             <img src="https://s6.imgcdn.dev/tqhcO.jpg" alt="Club members at the 2023 regionals" className="rounded-lg w-[450px]"/>
           </div>
         </div>
+
+
         <div className="flex flex-col w-full items-center">
-          <h1 className="mb-6">2023</h1>
+          <h1 className="mb-6">2023 Tryouts</h1>
           <div className="flex flex-wrap w-full justify-between items-center gap-4">
             <img src="https://s6.imgcdn.dev/tqDeo.png" alt="3rd place at the 2023 tryouts" className="rounded-lg w-[450px]"/>
             <img src="https://s6.imgcdn.dev/fwRal.png" alt="Club members at the 2023 tryouts" className="rounded-lg w-[450px]"/>
