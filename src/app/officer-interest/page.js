@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { useEffect } from "react";
-const LINK = "https://forms.gle/77zUoRKxpYEQR9is8";
+const LINK = "https://forms.gle/VM94xgCkyQuSLc1E9";
 
 export default function OfficerInterest() {
     redirect(LINK);
@@ -12,8 +12,8 @@ export default function OfficerInterest() {
   }, []);
 
   return (
-    <a href={LINK}>
-      Redirecting... if you are not automatically redirected, click <b className="text-blue">here</b>
-    </a>
+    <div>
+      Redirecting... if you are not automatically redirected, click <a className="text-blue font-bold" href={LINK}>here</a>
+    </div>
   );
 }
