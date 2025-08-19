@@ -12,7 +12,7 @@ export default function Humans() {
       name: "Colter Radke",
       class: "2027",
       major: "Data Science with a Minor in Biblical Languages",
-      pic: "public/images/ColterR.jpeg",
+      pic: "/images/ColterR.jpeg",
       linkedin: "https://www.linkedin.com/in/colter-radke/",
       github: "https://github.com/Colter13",
       color: 'text-blue-200'
@@ -22,7 +22,7 @@ export default function Humans() {
       name: "Nathan O'Neill",
       class: "2027",
       major: "Software Engineering",
-      pic: "public/images/NateO.jpeg",
+      pic: "/images/NateO.jpeg",
       linkedin: "https://www.linkedin.com/in/nathanoneill1/",
       github: "https://github.com/Nathanoneill1",
       color: 'text-green-800'
@@ -33,7 +33,7 @@ export default function Humans() {
       name: "Will Cook",
       class: "2028",
       major: "Software Engineering and Data Science",
-      pic: "public/images/WillC.jpeg",
+      pic: "/images/WillC.jpeg",
       linkedin: "https://www.linkedin.com/in/willaurum/",
       github: 'https://github.com/willaurum',
       color: 'text-[#b5c997]'
@@ -43,18 +43,17 @@ export default function Humans() {
       name: "Caleb Hellmund",
       class: "2027",
       major: "Computer Engineering",
-      pic: "public/images/CalebH.jpeg",
+      pic: "/images/CalebH.jpeg",
       linkedin: "https://www.linkedin.com/in/caleb-hellmund/",
       github: "https://github.com/CalebHellmund",
       color: 'text-blue-200'
-      
     },
     {
       title: "Treasurer",
       name: "Nathanael Chu",
       class: "2028",
       major: "Data Science with a Minor in Mathematics",
-      pic: "public/images/NateC.jpeg",
+      pic: "/images/NateC.jpeg",
       linkedin: "https://www.linkedin.com/in/nathanael-chu-870200271/",
       github: "https://github.com/natechuchu",
       color: 'text-blue-200'
