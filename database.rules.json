@@ -1,11 +1,12 @@
-{"rules": {
+{
+  "rules": {
     "contest_link": {
-      ".read": "true"
+      ".read": true
     },
     "users": {
-      ".read": "true",
+      ".read": true,
       "$uid": {
-        ".read": "true",
+        ".read": true,
         ".write": "auth != null && $uid === auth.uid",
         "name": {
           ".validate": "newData.isString() && newData.val().length < 28"
@@ -25,7 +26,7 @@
       }
     },
     "problems": {
-      ".read": "true",
+      ".read": true,
       ".write": "auth.token.admin === true",
       "easy": { ".validate": true },
       "medium": { ".validate": true },
