@@ -1,4 +1,5 @@
-{"rules": {
+{
+  "rules": {
     "contest_link": {
       ".read": "true"
     },

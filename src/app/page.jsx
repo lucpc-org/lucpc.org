@@ -154,8 +154,8 @@ export default function App() {
             <p className="font-normal text-white text-base md:text-xl">
               School of Business 2830 
               <span className="invisible md:visible inline px-1">-</span> 
-              <span className="flex md:inline">Thurs. 5 - 6 p.m.</span>
-            </p>
+              <span className="flex md:inline">Thurs. 5:30 - 6:30 p.m.</span>
+            </p> 
           </div>
           <p className=" md:text-text_hover whitespace-pre-line">
             {`Our meetings will typically cover anything from data structures, algorithms, and general software engineering tools. Each week leading up to the annual International Collegiate Programming Competition we will cover critical concepts to give students a competitive edge.
