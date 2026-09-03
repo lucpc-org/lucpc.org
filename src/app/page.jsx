@@ -152,7 +152,7 @@ export default function App() {
           <div className="pb-3">
             <h2 className="leading-tight">Meetings</h2>
             <p className="font-normal text-white text-base md:text-xl">
-              School of Business 2830 
+              School of Business 2810 
               <span className="invisible md:visible inline px-1">-</span> 
               <span className="flex md:inline">Thurs. 5:30 - 6:30 p.m.</span>
             </p> 
